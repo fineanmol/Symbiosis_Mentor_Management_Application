@@ -1,74 +1,42 @@
 {
   "project_info": {
-    "project_number": "695299467683",
-    "firebase_url": "https://slotbooking-2ca0c.firebaseio.com",
-    "project_id": "slotbooking-2ca0c",
-    "storage_bucket": "slotbooking-2ca0c.appspot.com"
+    "project_number": "507456189128",
+    "firebase_url": "https://multipleslotbooking.firebaseio.com",
+    "project_id": "multipleslotbooking",
+    "storage_bucket": "multipleslotbooking.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:695299467683:android:19689d426c2328a7",
+        "mobilesdk_app_id": "1:507456189128:android:0e6c4fabfa1fe8c8",
         "android_client_info": {
-          "package_name": "com.sibmentor.appointment"
+          "package_name": "com.sibmentors.appointment"
         }
       },
       "oauth_client": [
         {
-          "client_id": "695299467683-to3v0d5cbucq0pfm255m8vaul6m4ekbf.apps.googleusercontent.com",
+          "client_id": "507456189128-olsanroa69qnrapmqdmk6m48jsfqsob5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.sibmentor.appointment",
-            "certificate_hash": "c933acbb762b90bf849f770015a91ef8842dad39"
-          }
-        },
-        {
-          "client_id": "695299467683-uu9csnpisro7fbd1rbg2fhps0k9icskv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.sibmentor.appointment",
-            "certificate_hash": "3d3a6944c6ba746da70550e0b107fa0b89382aa9"
-          }
-        },
-        {
-          "client_id": "695299467683-buqar2ctq0nl3mh0kjdpvumsbaic99cr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.sibmentor.appointment",
-            "certificate_hash": "eccfea33e7b92f007ecbc3ae05900bdefca3220e"
-          }
-        },
-        {
-          "client_id": "695299467683-a9v49l0lggv2ngjuk1mkt8fjl34ba7j4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.sibmentor.appointment",
-            "certificate_hash": "bc33aa2ded7c9da604de004707b2fb447c83f5a8"
-          }
-        },
-        {
-          "client_id": "695299467683-ms6qaen47nv2kvii73st5i529ho4tiri.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.sibmentor.appointment",
+            "package_name": "com.sibmentors.appointment",
             "certificate_hash": "58424372806834dae8228e459fd4dd1269a2fee2"
           }
         },
         {
-          "client_id": "695299467683-75hipnmaohc509pno99dokhbqnkch14e.apps.googleusercontent.com",
+          "client_id": "507456189128-44tttg443bcfi6hl7072mo3lo67ifh2r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC-FlBO0NvWtqAek9sdGHEjJ292tJR49vI"
+          "current_key": "AIzaSyAri5FqCUxe9xRW4hjsU-Clr6kNBCnNa_w"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "695299467683-75hipnmaohc509pno99dokhbqnkch14e.apps.googleusercontent.com",
+              "client_id": "507456189128-44tttg443bcfi6hl7072mo3lo67ifh2r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

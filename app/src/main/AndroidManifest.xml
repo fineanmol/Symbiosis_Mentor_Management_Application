@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.sibmentor.appointment">
+          package="com.sibmentors.appointment">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
@@ -14,62 +14,62 @@
             android:supportsRtl="true"
             android:theme="@style/MaterialDrawerTheme.TranslucentStatus"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.sibmentor.appointment.BuyMeACoffee">
+        <activity android:name="com.sibmentors.appointment.BuyMeACoffee">
         </activity>
-        <activity android:name="com.sibmentor.appointment.passwordReset">
+        <activity android:name="com.sibmentors.appointment.passwordReset">
         </activity>
-        <activity android:name="com.sibmentor.appointment.UserPassUpdate">
+        <activity android:name="com.sibmentors.appointment.UserPassUpdate">
         </activity>
-        <activity android:name="com.sibmentor.appointment.UserEmailUpdate">
+        <activity android:name="com.sibmentors.appointment.UserEmailUpdate">
         </activity>
-        <activity android:name="com.sibmentor.appointment.UserPhoneVerify">
+        <activity android:name="com.sibmentors.appointment.UserPhoneVerify">
         </activity>
-        <activity android:name="com.sibmentor.appointment.UserProfile">
+        <activity android:name="com.sibmentors.appointment.UserProfile">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.mentorShowSlotActivity"
+                android:name="com.sibmentors.appointment.mentorShowSlotActivity"
                 android:theme="@style/CustomTheme">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.UserHomeV2"
+                android:name="com.sibmentors.appointment.UserHomeV2"
                 android:label="@string/title_activity_user_home_v2"
                 android:theme="@style/CustomTheme">
         </activity>
-        <activity android:name="com.sibmentor.appointment.MentorRegistration">
+        <activity android:name="com.sibmentors.appointment.MentorRegistration">
         </activity>
-        <activity android:name="com.sibmentor.appointment.student_show_reserved_slot_Activity">
+        <activity android:name="com.sibmentors.appointment.student_show_reserved_slot_Activity">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.AppointmentList2"
+                android:name="com.sibmentors.appointment.AppointmentList2"
                 android:label="@string/title_appointmentList">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.AboutDeveloper"
+                android:name="com.sibmentors.appointment.AboutDeveloper"
                 android:label="@string/title_aboutdeveloper">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.mentorhomev2"
+                android:name="com.sibmentors.appointment.mentorhomev2"
                 android:label="@string/title_activity_mentorhomev2"
                 android:theme="@style/CustomTheme">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.MentorSlotList"
+                android:name="com.sibmentors.appointment.MentorSlotList"
                 android:label="@string/title_activity_locallist">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.addSlotActivity"
+                android:name="com.sibmentors.appointment.addSlotActivity"
                 android:label="@string/title__addslot">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.UserHome"
+                android:name="com.sibmentors.appointment.UserHome"
                 android:label="Book Slots">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.UserSignup"
+                android:name="com.sibmentors.appointment.UserSignup"
                 android:label="@string/title_activity_user_signup">
         </activity>
         <activity
-                android:name="com.sibmentor.appointment.MainActivity"
+                android:name="com.sibmentors.appointment.MainActivity"
                 android:label="@string/title_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
