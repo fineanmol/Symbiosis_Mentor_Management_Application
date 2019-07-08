@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.app_bar_user_home_v2.*
 import java.util.*
 
 class mentorShowSlotActivity : AppCompatActivity() {
@@ -24,7 +25,8 @@ class mentorShowSlotActivity : AppCompatActivity() {
     var d = " "
     var m = " "
     var y = " "
-
+    val userref = FirebaseDatabase.getInstance().getReference("users")
+    val currentUser = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,38 @@ class mentorShowSlotActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(toolbar)
+        currentUser?.let { user ->
+
+            val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                    //create new user
+                    Toast.makeText(this@mentorShowSlotActivity, "User details not found,\nTry Again or Contact Developer", Toast.LENGTH_LONG).show()
+
+                } else {
+                    var lastvalue="Slots"
+                    for (e in dataSnapshot.children) {
+                        val employee = e.getValue(Data::class.java)
+                        var name = (employee!!.name).split(" ").first()
+                        var eid = employee.studentId
+                        mentorshow(name, eid,lastvalue)
+
+
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                }
+            }
+            userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+        }
+
+
+
+    }
+    private fun mentorshow(name: String, eid: String, lastvalue: String) {
+        //region MentorShowSlots
         val calendar = Calendar.getInstance()
 
         var month = calendar.get(Calendar.MONTH)
@@ -50,7 +84,7 @@ class mentorShowSlotActivity : AppCompatActivity() {
             spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                     //  Toast.makeText(this@mentorShowSlotActivity, filter[position], Toast.LENGTH_SHORT).show()
-                    ref = FirebaseDatabase.getInstance().getReference("Slots").child("Nikhil Nishad")
+                    ref = FirebaseDatabase.getInstance().getReference("Slots").child("$name$eid$lastvalue")
                     ref.addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(p0: DataSnapshot) {
                             if (p0.exists()) {
@@ -186,8 +220,7 @@ class mentorShowSlotActivity : AppCompatActivity() {
                 }
             }
         }
-
-
+        //endregion
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
