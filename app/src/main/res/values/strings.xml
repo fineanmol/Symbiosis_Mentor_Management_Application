@@ -45,6 +45,7 @@
     <string name="drawer_item_home">Home</string>
     <string name="drawer_item_free_play">Free Play</string>
     <string name="drawer_item_custom">Your Appointments</string>
+    <string name="drawer_item_custom1">Refer Code</string>
     <string name="drawer_item_section_header">Section Header</string>
     <string name="drawer_item_settings">Settings</string>
     <string name="drawer_item_help">Help</string>
@@ -54,7 +55,8 @@
     <string name="newooking">Need any Assistance? \n
         <b>Book an Appointment Now !!</b>
     </string>
-    <string name="already_booked_show">Ready for Appointment \n <i>Click below to</i>
+    <string name="already_booked_show">Ready for Appointment \n
+        <i>Click below to</i>
         <b>Check details</b>
     </string>
 </resources>

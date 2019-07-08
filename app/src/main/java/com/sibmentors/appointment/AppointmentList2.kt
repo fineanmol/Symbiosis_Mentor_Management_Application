@@ -22,15 +22,54 @@ class AppointmentList2 : AppCompatActivity() {
     var d = " "
     var m = " "
     var y = " "
+    val userref = FirebaseDatabase.getInstance().getReference("users")
+    val currentUser = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_appointment_list2)
-        val calendar = Calendar.getInstance()
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(toolbar)
+
+        //region Current User
+        currentUser?.let { user ->
+
+            val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                    //create new user
+                    Toast.makeText(this@AppointmentList2, "User details not found,\nTry Again or Contact Developer", Toast.LENGTH_LONG).show()
+
+                } else {
+                    var lastvalue="Slots"
+                    for (e in dataSnapshot.children) {
+                        val employee = e.getValue(Data::class.java)
+                        var name = (employee!!.name).split(" ").first()
+                        var eid = employee.studentId
+                        appointlist(name, eid,lastvalue)
+
+
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                }
+            }
+            userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+        }
+        //endregion
+
+
+
+    }
+
+    private fun appointlist(name: String, eid: String, lastvalue: String)
+    {
+        //region Appointment List Code
+        val calendar = Calendar.getInstance()
         var month = calendar.get(Calendar.MONTH)
         var Week = calendar.get(Calendar.WEEK_OF_YEAR)
         var year = calendar.get(Calendar.YEAR)
@@ -46,7 +85,7 @@ class AppointmentList2 : AppCompatActivity() {
             spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                     /*Toast.makeText(this@AppointmentList2, filter[position], Toast.LENGTH_SHORT).show()*/
-                    ref = FirebaseDatabase.getInstance().getReference("Slots").child("Nikhil Nishad")
+                    ref = FirebaseDatabase.getInstance().getReference("Slots").child("$name$eid$lastvalue")
                     ref.addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(p0: DataSnapshot) {
                             if (p0.exists()) {
@@ -127,8 +166,7 @@ class AppointmentList2 : AppCompatActivity() {
                 }
             }
         }
-
-
+        //endregion
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

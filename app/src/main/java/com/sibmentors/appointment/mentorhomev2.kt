@@ -301,6 +301,14 @@ class mentorhomev2 : AppCompatActivity() {
                         }
                     }).withIcon(
                     FontAwesome.Icon.faw_eye
+                ),CustomUrlPrimaryDrawerItem().withName(R.string.drawer_item_custom1).withDescription("Refer your mentor code to Students").withOnDrawerItemClickListener(
+                    object : Drawer.OnDrawerItemClickListener {
+                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                            startActivity(Intent(this@mentorhomev2, Mentor_refer::class.java))
+                            return false
+                        }
+                    }).withIcon(
+                    FontAwesome.Icon.faw_red_river
                 ),
                 CustomUrlPrimaryDrawerItem().withName("Something New Coming Up").withDescription("Be connected").withIcon(
                     FontAwesome.Icon.faw_app_store

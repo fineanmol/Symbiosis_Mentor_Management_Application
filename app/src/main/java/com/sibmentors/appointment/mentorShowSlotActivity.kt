@@ -35,6 +35,7 @@ class mentorShowSlotActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(toolbar)
+        //region Current User Details
         currentUser?.let { user ->
 
             val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
@@ -61,6 +62,7 @@ class mentorShowSlotActivity : AppCompatActivity() {
             userNameRef?.addListenerForSingleValueEvent(eventListener)
 
         }
+        //endregion
 
 
 
