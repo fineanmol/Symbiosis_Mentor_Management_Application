@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onStart()
         mAuth.currentUser?.let {
-            
+
             login()
 
         }

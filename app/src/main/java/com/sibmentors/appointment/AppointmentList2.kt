@@ -151,5 +151,3 @@ class AppointmentList2 : AppCompatActivity() {
     }
 }
 
-
-
