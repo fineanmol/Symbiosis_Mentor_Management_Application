@@ -40,7 +40,7 @@ class Mentor_refer : AppCompatActivity() {
                     var lastvalue = "Slots"
                     for (e in dataSnapshot.children) {
                         val employee = e.getValue(Data::class.java)
-                        var name = employee!!.name
+                        var name = (employee!!.name).split(" ").first()
                         var eid = employee.studentId
                         mentorrefer(name, eid, lastvalue)
 
