@@ -97,7 +97,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<slo
                                         var phone = employee?.number
                                         var studentkey = employee?.id
                                         var status = employee?.status
-                                        //var nodevalue= employee.no
+                                      //  var nodevalue= employee.me
                                         var node= studentName!!.split(" ").first() + studentId + "Slots"
                                         if (status == "NB") {
                                             userref.child(studentkey!!).child("status").setValue("B")
