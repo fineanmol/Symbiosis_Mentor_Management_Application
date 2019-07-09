@@ -16,8 +16,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<slotsData>) :
-    ArrayAdapter<slotsData>(mCtx, layoutId, slotList) {
+class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<BookedData>) :
+    ArrayAdapter<BookedData>(mCtx, layoutId, slotList) {
     val currentUser = FirebaseAuth.getInstance().currentUser
     val ref = FirebaseDatabase.getInstance().getReference("Slots")
     val userref = FirebaseDatabase.getInstance().getReference("users")
@@ -69,7 +69,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<slo
     }
     private fun bookbtnclickmethod(
         view: View,
-        slot: slotsData,
+        slot: BookedData,
         time: TextView,
         refercode: String
     ) {
@@ -101,10 +101,10 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<slo
                                         var node= studentName!!.split(" ").first() + studentId + "Slots"
                                         if (status == "NB") {
                                             userref.child(studentkey!!).child("status").setValue("B")
-                                            ref.child(id).child(id).child("studentNumber").setValue(phone)
-                                            ref.child(id).child(id).child("reserved_by").setValue(studentName)
-                                            ref.child(id).child(id).child("studentId").setValue(studentId)
-                                            ref.child(id).child(id).child("status").setValue("B")
+                                            ref.child(id).child(slot.mentorcode).child("studentNumber").setValue(phone)
+                                            ref.child(id).child(slot.mentorcode).child("reserved_by").setValue(studentName)
+                                            ref.child(id).child(slot.mentorcode).child("studentId").setValue(studentId)
+                                            ref.child(id).child(slot.mentorcode).child("status").setValue("B")
                                             Toast.makeText(
                                                 mCtx,
                                                 "$studentName Appointment Booked! \n at: ${time.text}",
