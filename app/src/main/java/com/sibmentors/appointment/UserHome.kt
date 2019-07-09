@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_add_slot.*
 import java.util.*
 
 
@@ -107,8 +108,10 @@ class UserHome : AppCompatActivity() {
 
                     }
                 }
+
                 val adapter = customAdapter(this@UserHome, R.layout.listview_custom, slotList)
                 listview.adapter = adapter
+
             }
             else{
                 Toast.makeText(
@@ -117,12 +120,14 @@ class UserHome : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
+
         }
 
         override fun onCancelled(p0: DatabaseError) {
         }
     })
     //endregion
+
 }
 
     }
