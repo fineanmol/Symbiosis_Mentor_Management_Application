@@ -10,6 +10,7 @@ class slotsData(
     val studentId:String,
     val studentNumber:String,
     val status:String
+
 ) {
     constructor() : this("", ("").split("[").last(), "", ("").split("]").first(), "", "", "", "", "")
 

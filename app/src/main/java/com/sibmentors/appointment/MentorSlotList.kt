@@ -116,6 +116,7 @@ class MentorSlotList : AppCompatActivity() {
                         var studentNumber = ""
                         var status = "NB"
                         var mentorcode = employee.name + namernd
+                        var nodeid= namernd.toString()
                         val sId = """${generated.split(" ").first()}${employee.studentId}Slots"""
                         val addSlot = slotsData(sId, begin1, end1, date1, generated, reserved_by, studentId, studentNumber, status)
                         ref.child(sId).child(mentorcode).setValue(addSlot)
