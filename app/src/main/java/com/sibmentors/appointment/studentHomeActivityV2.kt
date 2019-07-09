@@ -43,7 +43,7 @@ class UserHomeV2 : AppCompatActivity() {
     val currentUser = FirebaseAuth.getInstance().currentUser
     private lateinit var headerResult: AccountHeader
     private lateinit var result: Drawer
-
+    val ref = FirebaseDatabase.getInstance().getReference("Slots")
     private lateinit var profile: IProfile<*>
 
 
@@ -72,18 +72,85 @@ class UserHomeV2 : AppCompatActivity() {
         })
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener(View.OnClickListener {
+            val builder = AlertDialog.Builder(this)
+            //set title for alert dialog
+            builder.setTitle("Enter Mentor's Code here")
+            //set message for alert dialog
+            builder.setMessage("\nEnter your mentor's code here, so you can see that mentor's available bookings\nIts only one time process for a particular mentor!")
+            builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+            //performing positive action
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+               /* Toast.makeText(applicationContext,"clicked yes",Toast.LENGTH_LONG).show()*/
+                //region Mentor Code Addition
+                var mentorid="Arun67275"
+                //region StudentBookButtonFunction
+
+                currentUser?.let { user ->
+                    // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
+                    val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+
+                    val eventListener = object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if (!dataSnapshot.exists()) {
+                                //create new user
+
+                            } else {
+                                for (e in dataSnapshot.children) {
+                                    val employee = e.getValue(Data::class.java)
+                                    var refercode = employee?.mentorreferal
+                                    var studentkey = employee?.id
+                                    var status = employee?.status
+                                    if (refercode == "MentorCodes" || refercode.isNullOrEmpty()) {
+                                        userref.child(studentkey!!).child("mentorreferal").setValue("$mentorid")
+                                        Toast.makeText(this@UserHomeV2, "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!", Toast.LENGTH_SHORT).show()
+
+                                    }
+                                    else{
+                                        var codes= refercode!!.split("/")
+
+                                            if(codes.contains("$mentorid")) {
+                                                Toast.makeText(this@UserHomeV2, "This Mentor is Already Added", Toast.LENGTH_SHORT).show()
+                                                break
+                                            }
+                                            else{
+                                                var new_mentorid= refercode +"/"+ mentorid
+                                                userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
+                                                Toast.makeText(this@UserHomeV2, "Successfully Added!! \nNow you can see their Available Slots\n" +
+                                                        "Book Now!!", Toast.LENGTH_SHORT).show()
+
+                                            }
 
 
-            /* val intent = Intent(
-                 Intent.ACTION_SENDTO, Uri.fromParts(
-                     "mailto", "agarwal.anmol2004@gmail.com", null
-                 )
-             )
-             intent.putExtra(Intent.EXTRA_SUBJECT, "Report of Bugs,Improvements")
-             intent.putExtra(Intent.EXTRA_TEXT, "Hi\n I would like to inform you that")
-             startActivity(Intent.createChooser(intent, "Choose an Email client :"))*/
+
+                                    }
+                                }
+                            }
+                        }
+                        override fun onCancelled(databaseError: DatabaseError) {
+                        }
+                    }
+                    userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+                }
+                //endregion
+                //endregion
+
+            }
+
+            //performing negative action
+            builder.setNegativeButton("No"){dialogInterface, which ->
+                Toast.makeText(applicationContext,"Cancelled!\nYou need to enter your mentor's unique code to book their slots",Toast.LENGTH_LONG).show()
+            }
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
+    )
+
         currentUser?.let { user ->
             if (user.displayName.isNullOrEmpty()) {
                 val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)

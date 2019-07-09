@@ -8,8 +8,9 @@ class Data(
     val number: String,
     val studentId: String,
     val status: String,
-    val user_type: String
+    val user_type: String,
+    val mentorreferal:String
 ) {
-    constructor() : this("", "", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "", "","")
 
 }

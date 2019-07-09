@@ -29,7 +29,7 @@ class UserSignup : AppCompatActivity() {
             val studentidf = studentid.text.toString().trim()
             val status = ("NB")
             val user_type = ("S")
-            //val flag2 = (" ").toString().trim()
+            val mentorreferal = ("MentorCodes").toString().trim()
 
             if (namef.isEmpty()) {
                 name.error = "Name Required"
@@ -66,7 +66,7 @@ class UserSignup : AppCompatActivity() {
                 u_r_pass.requestFocus()
                 return@setOnClickListener
             }
-            registerUser(email, password, namef, number, studentidf, status, user_type)
+            registerUser(email, password, namef, number, studentidf, status, user_type,mentorreferal)
 
         }
 
@@ -82,7 +82,8 @@ class UserSignup : AppCompatActivity() {
         number: String,
         dob: String,
         status: String,
-        user_type: String
+        user_type: String,
+        mentorreferal: String
     ) {
 
         progressbar.visibility = View.VISIBLE
@@ -90,7 +91,7 @@ class UserSignup : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 progressbar.visibility = View.GONE
                 if (task.isSuccessful) {
-                    addUser(email, password, name, number, dob, status, user_type)
+                    addUser(email, password, name, number, dob, status, user_type,mentorreferal)
                     login()
                 } else {
                     task.exception?.message?.let {
@@ -115,13 +116,14 @@ class UserSignup : AppCompatActivity() {
         number: String,
         studentId: String,
         status: String,
-        user_type: String
+        user_type: String,
+        mentorreferal: String
     ) {
 
 
         ref = FirebaseDatabase.getInstance().reference
         val userId= (ref.push().key).toString()
-        val addUser = Data(userId, email, password, name, number, studentId, status, user_type)
+        val addUser = Data(userId, email, password, name, number, studentId, status, user_type,mentorreferal)
 
 
         ref.child("users").child(userId).setValue(addUser)

@@ -1,7 +1,6 @@
 package com.sibmentors.appointment
 
 import android.content.*
-import android.content.ClipData
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
