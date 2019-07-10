@@ -10,7 +10,7 @@
             android:layout_width="74dp"
             android:layout_height="41dp"
             tools:layout_editor_absoluteY="20dp"
-            android:id="@+id/stime"
+            android:id="@+id/mentorName"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
             android:layout_marginLeft="16dp"
@@ -24,11 +24,11 @@
             android:layout_width="85dp"
             android:layout_height="41dp"
             tools:layout_editor_absoluteY="20dp"
-            android:id="@+id/etime"
+            android:id="@+id/mentorId"
             tools:ignore="MissingConstraints"
             android:textAlignment="center"
             android:gravity="center"
-            app:layout_constraintStart_toEndOf="@+id/stime" android:layout_marginStart="15dp"
+            app:layout_constraintStart_toEndOf="@+id/mentorName" android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"/>
     <TextView
             android:text="Date"
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:textAlignment="center"
             tools:ignore="MissingConstraints"
-            app:layout_constraintStart_toEndOf="@+id/etime"
+            app:layout_constraintStart_toEndOf="@+id/mentorId"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"/>
     <Button
@@ -58,6 +58,6 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etime"
+            app:layout_constraintTop_toBottomOf="@+id/mentorId"
             android:layout_marginTop="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

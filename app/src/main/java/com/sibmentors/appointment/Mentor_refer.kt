@@ -86,15 +86,7 @@ class Mentor_refer : AppCompatActivity() {
             )
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
             startActivity(Intent.createChooser(sharingIntent, "Share via"))
-            //endregion
-         /*   //region CopyMentorCode
-            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText(
-                "label",
-                "This is the unique code of your Mentor\nwhich is required to book their slots :$name$eid$lastvalue"
-            )
-            clipboard.primaryClip = clip
-            //endregion*/
+
         })
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -14,6 +14,8 @@
             android:supportsRtl="true"
             android:theme="@style/MaterialDrawerTheme.TranslucentStatus"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".MentorList">
+        </activity>
         <activity android:name=".Mentor_refer">
         </activity>
         <activity android:name=".BuyMeACoffee">

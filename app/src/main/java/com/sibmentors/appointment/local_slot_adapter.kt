@@ -19,8 +19,8 @@ class local_slot_adapter(val mCtx: Context, val layoutId: Int, var local_slotLis
         val layoutInflater: LayoutInflater = LayoutInflater.from(mCtx)
         val view: View = layoutInflater.inflate(layoutId, null)
 
-        val stime = view.findViewById<TextView>(R.id.stime)
-        val etime = view.findViewById<TextView>(R.id.etime)
+        val stime = view.findViewById<TextView>(R.id.mentorName)
+        val etime = view.findViewById<TextView>(R.id.mentorId)
         val date = view.findViewById<TextView>(R.id.date)
         val delete = view.findViewById<TextView>(R.id.delete)
 

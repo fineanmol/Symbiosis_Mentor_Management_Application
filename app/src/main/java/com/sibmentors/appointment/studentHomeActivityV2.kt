@@ -295,7 +295,7 @@ class UserHomeV2 : AppCompatActivity() {
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             Log.d("TAGDDD", "clicked")
-                            startActivity(Intent(this@UserHomeV2, student_show_reserved_slot_Activity::class.java))
+                            startActivity(Intent(this@UserHomeV2, MentorList::class.java))
                             return false
                         }
                     }).withIcon(
