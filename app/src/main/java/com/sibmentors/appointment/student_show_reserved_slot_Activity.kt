@@ -66,7 +66,7 @@ private  fun studentshowtheirbooking(mentorreferal: String) {
 
     var multiplementors= mentorreferal.split("/")
     for(i in multiplementors){
-    var query = ref.child("$i").orderByChild("studentId").equalTo(studentId)
+    var query = ref.child("${i.split(":").first()}").orderByChild("studentId").equalTo(studentId)
     query.addValueEventListener(object : ValueEventListener {
         override fun onDataChange(p0: DataSnapshot) {
             if (p0.exists()) {

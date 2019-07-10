@@ -121,7 +121,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                                                     "$studentName Appointment Booked! \n at: ${time.text}",
                                                     Toast.LENGTH_LONG
                                                 ).show()
-                                                var intent = Intent(mCtx, MainActivity::class.java)
+                                                var intent = Intent(mCtx, UserHomeV2::class.java)
                                                 startActivity(mCtx, intent, Bundle.EMPTY)
                                             }
                                             if (i.split(":").last() == "B" && i.split(":").first()==id) {
