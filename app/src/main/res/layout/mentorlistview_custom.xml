@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+    <TextView
+            android:text="Name Loading.."
+            android:layout_width="74dp"
+            android:layout_height="41dp"
+            tools:layout_editor_absoluteY="20dp"
+            android:id="@+id/mentorName"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            android:gravity="center"
+            android:layout_marginStart="16dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+    />
+    <TextView
+            android:text="Id Loading."
+            android:layout_width="85dp"
+            android:layout_height="41dp"
+            tools:layout_editor_absoluteY="20dp"
+            android:id="@+id/mentorId"
+            tools:ignore="MissingConstraints"
+            android:textAlignment="center"
+            android:gravity="center"
+            app:layout_constraintStart_toEndOf="@+id/mentorName" android:layout_marginStart="88dp"
+    />
+    <Button
+            android:layout_width="15dp"
+            android:layout_height="19dp"
+            android:id="@+id/delete"
+            android:background="@drawable/ic_delete_gray_24dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="31dp"
+            tools:layout_editor_absoluteX="309dp"/>
+    <View
+            android:id="@+id/divider"
+            android:layout_width="395dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mentorId"
+            android:layout_marginTop="8dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
