@@ -137,7 +137,6 @@ class mentorhomev2 : AppCompatActivity() {
                 // Change the app background color
             }
 
-
             // Display a negative button on alert dialog
             builder.setNegativeButton("No") { dialog, which ->
                 Toast.makeText(applicationContext, "Not excited to Create New Session ?", Toast.LENGTH_SHORT).show()
@@ -192,10 +191,8 @@ class mentorhomev2 : AppCompatActivity() {
                         ).show()
 
                     }
-
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
             }
         }
@@ -212,7 +209,6 @@ class mentorhomev2 : AppCompatActivity() {
         // Create a few sample profile
         profile =
             ProfileDrawerItem().withName(name).withEmail(email).withIcon(resources.getDrawable(R.drawable.profile))
-
 
         // Create the AccountHeader
         buildHeader(false, savedInstanceState)

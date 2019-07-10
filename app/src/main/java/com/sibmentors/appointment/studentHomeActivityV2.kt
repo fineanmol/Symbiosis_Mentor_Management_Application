@@ -11,6 +11,7 @@ import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile
 import com.sibmentors.appointment.drawerItems.CustomPrimaryDrawerItem
 import com.sibmentors.appointment.drawerItems.CustomUrlPrimaryDrawerItem
 import kotlinx.android.synthetic.main.content_user_home_v2.*
+import kotlinx.android.synthetic.main.mentor_code_input_dialog.*
 
 class UserHomeV2 : AppCompatActivity() {
     val userref = FirebaseDatabase.getInstance().getReference("users")
@@ -79,12 +81,24 @@ class UserHomeV2 : AppCompatActivity() {
             //set message for alert dialog
             builder.setMessage("\nEnter your mentor's code here, so you can see that mentor's available bookings\nIts only one time process for a particular mentor!")
             builder.setIcon(android.R.drawable.ic_dialog_alert)
+            val view = layoutInflater.inflate(R.layout.mentor_code_input_dialog, null)
+
+            val code = view.findViewById(R.id.mentor_code) as EditText
+
+            builder.setView(view);
 
             //performing positive action
             builder.setPositiveButton("Yes"){dialogInterface, which ->
                /* Toast.makeText(applicationContext,"clicked yes",Toast.LENGTH_LONG).show()*/
                 //region Mentor Code Addition
-                var edittectid="NikhilSlots"
+               /* if (code.text.toString() == ("") || code.text.toString().isNullOrEmpty()) {
+                    mentor_code.error = "Please Enter Code First"
+                    mentor_code.requestFocus()
+                    Toast.makeText(this, "Mentor's Code is required to book thier slots.", Toast.LENGTH_LONG).show()
+                }
+                mentor_code.error = null
+                */
+                var edittectid=code.text.toString()
                 var mentorid="$edittectid:NB"
                 //region StudentBookButtonFunction
 

@@ -1,5 +1,6 @@
 package com.sibmentors.appointment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -90,6 +91,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                         // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
                         val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
                         val eventListener = object : ValueEventListener {
+                            @SuppressLint("ResourceAsColor")
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 if (!dataSnapshot.exists()) {
                                     //create new user
@@ -121,8 +123,8 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                                                     "$studentName Appointment Booked! \n at: ${time.text}",
                                                     Toast.LENGTH_LONG
                                                 ).show()
-                                                var intent = Intent(mCtx, UserHomeV2::class.java)
-                                                startActivity(mCtx, intent, Bundle.EMPTY)
+                                                book.text="Booked!"
+                                                book.setBackgroundColor(R.color.material_drawer_dark_selected)
                                             }
                                             if (i.split(":").last() == "B" && i.split(":").first()==id) {
 
