@@ -19,8 +19,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotList: List<slotsData>) :
-    ArrayAdapter<slotsData>(mCtx, layoutId, slotList) {
+class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotList: List<BookedData>) :
+    ArrayAdapter<BookedData>(mCtx, layoutId, slotList) {
     val currentUser = FirebaseAuth.getInstance().currentUser
     val ref = FirebaseDatabase.getInstance().getReference("Slots")
     val userref = FirebaseDatabase.getInstance().getReference("users")
@@ -79,7 +79,7 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
     }
 
     /** Delete Button Functionality for Mentor*/
-    private fun deleteInfo(slots: slotsData) {
+    private fun deleteInfo(slots: BookedData) {
         var s_id = ""
         /** User Data Updated Function*/
 
@@ -96,23 +96,100 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
                         s_id = student?.id.toString()
                         userNameRef.removeEventListener(this)
                     }
-                    userref.child(s_id).child("status").setValue("NB")
-                    val myDatabase = FirebaseDatabase.getInstance().getReference("Slots").child("Nikhil Nishad")
-                    myDatabase.child(slots.sid).removeValue()
-                    Toast.makeText(mCtx, "Deleted ! \n Please tell ${slots.reserved_by}  to book Again", Toast.LENGTH_LONG).show()
+                    currentUser?.let { user ->
+
+                        val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+                        val eventListener = object : ValueEventListener {
+                            override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                                //create new user
+                                Toast.makeText(mCtx, "User details not found", Toast.LENGTH_LONG).show()
+                                //  logout()
+                            } else {
+                                var lastvalue = "Slots"
+                                for (e in dataSnapshot.children) {
+                                    val employee = e.getValue(Data::class.java)
+                                    var name = (employee!!.name).split(" ").first()
+                                    var eid = employee.studentId
+                                    deletebookedvalue(name, eid, lastvalue,slots,mCtx)
+
+
+                                }
+                            }
+
+                            override fun onCancelled(databaseError: DatabaseError) {
+                            }
+                        }
+                        userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+                    }
+
                 }
 
 
             })
 
         }
-        if(slots.reserved_by == ""){
-            val myDatabase = FirebaseDatabase.getInstance().getReference("Slots").child("Nikhil Nishad")
-            myDatabase.child(slots.sid).removeValue()
-            Toast.makeText(mCtx, "You Deleted an Empty Slot!", Toast.LENGTH_LONG).show()
+        if (slots.reserved_by == "") {
+            currentUser?.let { user ->
+
+                val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+                val eventListener = object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                        //create new user
+                        Toast.makeText(mCtx, "User details not found", Toast.LENGTH_LONG).show()
+                        //  logout()
+                    } else {
+                        var lastvalue = "Slots"
+                        for (e in dataSnapshot.children) {
+                            val employee = e.getValue(Data::class.java)
+                            var name = (employee!!.name).split(" ").first()
+                            var eid = employee.studentId
+                            deleteemptyvalue(name, eid, lastvalue,slots,mCtx)
+
+
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                    }
+                }
+                userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+            }
+
 
         }
+
     }
 }
 
+private fun deleteemptyvalue(
+    name: String,
+    eid: String,
+    lastvalue: String,
+    slots: BookedData,
+    mCtx: Context
+) {
+    var nodeid=name.split(" ").first()+eid+lastvalue
+    val myDatabase = FirebaseDatabase.getInstance().getReference("Slots").child(nodeid)
+    myDatabase.child(slots.mentorcode).removeValue()
+    Toast.makeText(mCtx, "You Deleted an Empty Slot!", Toast.LENGTH_LONG).show()
+}
+private fun deletebookedvalue(
+    name: String,
+    eid: String,
+    lastvalue: String,
+    slots: BookedData,
+    mCtx: Context
+) {
 
+   // userref.child(s_id).child("status").setValue("NB")
+    var nodeid=name.split(" ").first()+eid+lastvalue
+    val myDatabase = FirebaseDatabase.getInstance().getReference("Slots").child(nodeid)
+    myDatabase.child(slots.mentorcode).removeValue()
+    Toast.makeText(
+        mCtx,
+        "Deleted ! \n Please tell ${slots.reserved_by}  to book Again",
+        Toast.LENGTH_LONG
+    ).show()
+}

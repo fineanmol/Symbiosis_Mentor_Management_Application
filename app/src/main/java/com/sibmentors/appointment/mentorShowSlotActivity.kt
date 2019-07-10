@@ -20,7 +20,7 @@ class mentorShowSlotActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var firebaseAuth: FirebaseUser
     lateinit var ref: DatabaseReference
-    lateinit var slotList: MutableList<slotsData>
+    lateinit var slotList: MutableList<BookedData>
     lateinit var listview: ListView
     var d = " "
     var m = " "
@@ -92,7 +92,7 @@ class mentorShowSlotActivity : AppCompatActivity() {
                             if (p0.exists()) {
                                 slotList.clear()
                                 for (e in p0.children) {
-                                    val employee = e.getValue(slotsData::class.java)
+                                    val employee = e.getValue(BookedData::class.java)
                                     var status = employee!!.status
                                     var date = employee.date
                                     d = date.split("/").first().toString()
