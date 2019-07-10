@@ -94,6 +94,7 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
                     for (e in p0.children) {
                         val student = e.getValue(Data::class.java)
                         s_id = student?.id.toString()
+                        userref.child(s_id).child("status").setValue("NB")
                         userNameRef.removeEventListener(this)
                     }
                     currentUser?.let { user ->
@@ -110,7 +111,7 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
                                     val employee = e.getValue(Data::class.java)
                                     var name = (employee!!.name).split(" ").first()
                                     var eid = employee.studentId
-                                    deletebookedvalue(name, eid, lastvalue,slots,mCtx)
+                                    deletebookedvalue(name, eid, lastvalue, slots, mCtx)
 
 
                                 }
@@ -144,7 +145,7 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
                             val employee = e.getValue(Data::class.java)
                             var name = (employee!!.name).split(" ").first()
                             var eid = employee.studentId
-                            deleteemptyvalue(name, eid, lastvalue,slots,mCtx)
+                            deleteemptyvalue(name, eid, lastvalue, slots, mCtx)
 
 
                         }
@@ -170,11 +171,12 @@ private fun deleteemptyvalue(
     slots: BookedData,
     mCtx: Context
 ) {
-    var nodeid=name.split(" ").first()+eid+lastvalue
+    var nodeid = name.split(" ").first() + eid + lastvalue
     val myDatabase = FirebaseDatabase.getInstance().getReference("Slots").child(nodeid)
     myDatabase.child(slots.mentorcode).removeValue()
     Toast.makeText(mCtx, "You Deleted an Empty Slot!", Toast.LENGTH_LONG).show()
 }
+
 private fun deletebookedvalue(
     name: String,
     eid: String,
@@ -183,8 +185,8 @@ private fun deletebookedvalue(
     mCtx: Context
 ) {
 
-   // userref.child(s_id).child("status").setValue("NB")
-    var nodeid=name.split(" ").first()+eid+lastvalue
+    // userref.child(s_id).child("status").setValue("NB")
+    var nodeid = name.split(" ").first() + eid + lastvalue
     val myDatabase = FirebaseDatabase.getInstance().getReference("Slots").child(nodeid)
     myDatabase.child(slots.mentorcode).removeValue()
     Toast.makeText(

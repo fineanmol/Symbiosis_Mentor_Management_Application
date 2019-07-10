@@ -326,6 +326,30 @@ class UserHomeV2 : AppCompatActivity() {
                             return false
                         }
                     }),
+                SecondaryDrawerItem().withName(R.string.drawer_item_contact).withSelectedIconColor(Color.RED).withIconTintingEnabled(
+                    true
+                ).withIcon(FontAwesome.Icon.faw_instagram).withTag("Bullhorn").withOnDrawerItemClickListener(
+                    object : Drawer.OnDrawerItemClickListener {
+                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                            val uri = Uri.parse("http://instagram.com/nightowldevelopers")
+                            val likeIng = Intent(Intent.ACTION_VIEW, uri)
+
+                            likeIng.setPackage("com.instagram.android")
+
+                            try {
+                                startActivity(likeIng)
+                            } catch (e: ActivityNotFoundException) {
+                                startActivity(
+                                    Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("http://instagram.com/nightowldevelopers")
+                                    )
+                                )
+                            }
+
+                            return false
+                        }
+                    }),
                 SecondaryDrawerItem().withName("Buy me a Coffee").withIcon(FontAwesome.Icon.faw_coffee).withEnabled(
                     false
                 ).withOnDrawerItemClickListener(
@@ -345,29 +369,6 @@ class UserHomeV2 : AppCompatActivity() {
                                 Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
                             val intent = Intent(Intent.ACTION_VIEW, uri)
                             startActivity(intent)
-                            return false
-                        }
-                    }),
-                SecondaryDrawerItem().withName(R.string.drawer_item_contact).withSelectedIconColor(Color.RED).withIconTintingEnabled(
-                    true
-                ).withIcon(
-                    IconicsDrawable(this, GoogleMaterial.Icon.gmd_add).actionBar().padding(IconicsSize.dp(5)).color(
-                        IconicsColor.colorRes(
-                            R.color.material_drawer_dark_primary_text
-                        )
-                    )
-                ).withTag("Bullhorn").withOnDrawerItemClickListener(
-                    object : Drawer.OnDrawerItemClickListener {
-                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            val intent = Intent(
-                                Intent.ACTION_SENDTO, Uri.fromParts(
-                                    "mailto", "agarwal.anmol2004@gmail.com", null
-                                )
-                            )
-                            intent.putExtra(Intent.EXTRA_SUBJECT, "Report of Bugs,Improvements")
-                            intent.putExtra(Intent.EXTRA_TEXT, android.R.id.message)
-                            startActivity(Intent.createChooser(intent, "Choose an Email client :"))
-
                             return false
                         }
                     }),
