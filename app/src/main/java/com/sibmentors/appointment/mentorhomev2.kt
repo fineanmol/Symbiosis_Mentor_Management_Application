@@ -108,34 +108,32 @@ class mentorhomev2 : AppCompatActivity() {
             // Set a positive button and its click listener on alert dialog
             builder.setPositiveButton("YES") { dialog, which ->
                 // Do something when user press the positive button
-                val userNameRef = userref.orderByChild("user_type").equalTo("S")
-                val eventListener = object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        if (!dataSnapshot.exists()) {
+                currentUser?.let { user ->
+
+                    val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+                    val eventListener = object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                             //create new user
-                            Toast.makeText(this@mentorhomev2, "Slots are ready for booking", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@mentorhomev2, "User details not found", Toast.LENGTH_LONG).show()
+                            logout()
                         } else {
                             for (e in dataSnapshot.children) {
                                 val employee = e.getValue(Data::class.java)
-                                var studentkey = employee?.id
-                                userref.child(studentkey!!).child("status").setValue("NB")
-                                Toast.makeText(
-                                    applicationContext,
-                                    "Ok, Things are Ready!!  Generate Slots.",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                var Name = employee!!.name.split(" ").first()
+                                var empid = employee.studentId
+                                var lastvalue="Slots"
+                                SessionReset(Name, empid, lastvalue)
+
 
                             }
+                        }
 
+                        override fun onCancelled(databaseError: DatabaseError) {
                         }
                     }
+                    userNameRef?.addListenerForSingleValueEvent(eventListener)
 
-                    override fun onCancelled(databaseError: DatabaseError) {
-                    }
                 }
-                var addintent = Intent(this, addSlotActivity::class.java)
-                startActivity(addintent)
-                userNameRef.addListenerForSingleValueEvent(eventListener)
                 // Change the app background color
             }
 
@@ -164,6 +162,46 @@ class mentorhomev2 : AppCompatActivity() {
         }
 
 
+    }
+    private fun SessionReset(name: String, empid: String, lastvalue: String) {
+        var id= name+empid+lastvalue
+        val userNameRef = userref.orderByChild("user_type").equalTo("S")
+        val eventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (!dataSnapshot.exists()) {
+                    //create new user
+                    Toast.makeText(this@mentorhomev2, "Slots are ready for booking", Toast.LENGTH_LONG).show()
+                } else {
+                    for (e in dataSnapshot.children) {
+                        val employee = e.getValue(Data::class.java)
+                        var studentkey = employee?.id
+                        var mentorrefercodes = employee!!.mentorreferal
+                        var mentorcodes = mentorrefercodes.split("/")
+                        for (i in mentorcodes) {
+                            if (i.split(":").last() == "B" && i.split(":").first() == id) {
+
+                                var newrefercodes = mentorrefercodes.replace(i, "$id:NB")
+                                userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes)
+                            }
+                        }
+                        userref.child(studentkey!!).child("status").setValue("NB")
+                        Toast.makeText(
+                            applicationContext,
+                            "Ok, Things are Ready!!  Generate Slots.",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                    }
+
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+            }
+        }
+        var addintent = Intent(this, addSlotActivity::class.java)
+        startActivity(addintent)
+        userNameRef.addListenerForSingleValueEvent(eventListener)
     }
 
     /** Drawer Method*/
