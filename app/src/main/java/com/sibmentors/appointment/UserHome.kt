@@ -81,7 +81,7 @@ class UserHome : AppCompatActivity() {
     ref = FirebaseDatabase.getInstance().getReference("Slots").child("${i.split(":").first()}")
     var query = ref.orderByChild("status").equalTo("NB")
 
-    query.addValueEventListener(object : ValueEventListener {
+    query.addListenerForSingleValueEvent(object : ValueEventListener {
         override fun onDataChange(p0: DataSnapshot) {
             if (p0.exists()) {
                // slotList.clear()
