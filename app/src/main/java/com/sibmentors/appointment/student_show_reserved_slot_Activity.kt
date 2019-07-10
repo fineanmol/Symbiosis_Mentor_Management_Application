@@ -47,40 +47,10 @@ class student_show_reserved_slot_Activity : AppCompatActivity() {
                             val employee = e.getValue(Data::class.java)!!
                             studentName = employee.name
                             studentId = employee.studentId
-
+                            studentshowtheirbooking(employee!!.mentorreferal)
 
                         }
-                        var query = ref.child("Nikhil Nishad").orderByChild("studentId").equalTo(studentId)
-                        query.addValueEventListener(object : ValueEventListener {
-                            override fun onDataChange(p0: DataSnapshot) {
-                                if (p0.exists()) {
-                                    slotList.clear()
-                                    for (e in p0.children) {
-                                        val employee = e.getValue(slotsData::class.java)
-                                        var status = employee!!.status
-                                        if (status == "B") {
-                                            slotList.add(employee)
-                                        }
-                                    }
-                                    val adapter = student_reserved_slot_adapter(
-                                        this@student_show_reserved_slot_Activity,
-                                        R.layout.s_r_s_adapter_list,
-                                        slotList
-                                    )
-                                    listview.adapter = adapter
-                                } else {
 
-                                    Toast.makeText(
-                                        this@student_show_reserved_slot_Activity,
-                                        "Please !! Book an Appointment First",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
-                            }
-
-                            override fun onCancelled(p0: DatabaseError) {
-                            }
-                        })
                     }
                 }
 
@@ -92,7 +62,43 @@ class student_show_reserved_slot_Activity : AppCompatActivity() {
        // Toast.makeText(this, studentName, Toast.LENGTH_LONG).show()
 
     }
+private  fun studentshowtheirbooking(mentorreferal: String) {
 
+    var multiplementors= mentorreferal.split("/")
+    for(i in multiplementors){
+    var query = ref.child("$i").orderByChild("studentId").equalTo(studentId)
+    query.addValueEventListener(object : ValueEventListener {
+        override fun onDataChange(p0: DataSnapshot) {
+            if (p0.exists()) {
+                slotList.clear()
+                for (e in p0.children) {
+                    val employee = e.getValue(slotsData::class.java)
+                    var status = employee!!.status
+                    if (status == "B") {
+                        slotList.add(employee)
+                    }
+                }
+                val adapter = student_reserved_slot_adapter(
+                    this@student_show_reserved_slot_Activity,
+                    R.layout.s_r_s_adapter_list,
+                    slotList
+                )
+                listview.adapter = adapter
+            } else {
+
+                Toast.makeText(
+                    this@student_show_reserved_slot_Activity,
+                    "Please !! Book an Appointment First",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
+        override fun onCancelled(p0: DatabaseError) {
+        }
+
+    })}
+}
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.user_home_v2, menu)

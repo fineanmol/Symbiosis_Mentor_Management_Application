@@ -84,7 +84,8 @@ class UserHomeV2 : AppCompatActivity() {
             builder.setPositiveButton("Yes"){dialogInterface, which ->
                /* Toast.makeText(applicationContext,"clicked yes",Toast.LENGTH_LONG).show()*/
                 //region Mentor Code Addition
-                var mentorid="Arun67275"
+                var edittectid="NikhilSlots"
+                var mentorid="$edittectid:NB"
                 //region StudentBookButtonFunction
 
                 currentUser?.let { user ->
@@ -108,10 +109,24 @@ class UserHomeV2 : AppCompatActivity() {
 
                                     }
                                     else{
-                                        var codes= refercode!!.split("/")
 
-                                            if(codes.contains("$mentorid")) {
-                                                Toast.makeText(this@UserHomeV2, "This Mentor is Already Added", Toast.LENGTH_SHORT).show()
+                                        var codes2= ((refercode!!.split("]").first()).split("[").last())
+                                       var codes= (codes2.split("/"))
+
+                                            if(codes.contains("$edittectid")) {
+                                                for(i in codes){
+                                                    if(i=="$edittectid")
+                                                 //   var status= i.toString().split(":").last()
+                                                    if(i=="$edittectid:NB")
+                                                    {
+                                                        Toast.makeText(this@UserHomeV2, "Mentor is Already added\n You didn't book their slots yet", Toast.LENGTH_SHORT).show()
+
+                                                    }
+                                                    if(i.toString()=="$edittectid:B"){
+                                                        Toast.makeText(this@UserHomeV2, "You Already Booked this mentor's Appointment\nWait for new Session", Toast.LENGTH_SHORT).show()
+
+                                                    }
+                                                }
                                                 break
                                             }
                                             else{
@@ -235,6 +250,15 @@ class UserHomeV2 : AppCompatActivity() {
                     )
               ,
                 PrimaryDrawerItem().withName("Show Appointments").withDescription("Check your Appointment").withOnDrawerItemClickListener(
+                    object : Drawer.OnDrawerItemClickListener {
+                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                            Log.d("TAGDDD", "clicked")
+                            startActivity(Intent(this@UserHomeV2, student_show_reserved_slot_Activity::class.java))
+                            return false
+                        }
+                    }).withIcon(
+                    FontAwesome.Icon.faw_eye
+                ),CustomUrlPrimaryDrawerItem().withName("Your Mentors").withDescription("Your list of Mentors").withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             Log.d("TAGDDD", "clicked")

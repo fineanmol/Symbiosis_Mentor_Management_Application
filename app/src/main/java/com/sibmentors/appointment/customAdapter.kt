@@ -2,6 +2,8 @@ package com.sibmentors.appointment
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -45,7 +48,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                     for (e in dataSnapshot.children) {
                         val employee = e.getValue(Data::class.java)
                         var refercode = employee!!.mentorreferal
-                        bookbtnclickmethod(view,slot,time,refercode)
+                        bookbtnclickmethod(view, slot, time, refercode)
 
 
                     }
@@ -67,6 +70,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
 
         return view
     }
+
     private fun bookbtnclickmethod(
         view: View,
         slot: BookedData,
@@ -81,6 +85,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                     // do something when the button is clicked
                     //region StudentBookButtonFunction
                     var id = slot.sid
+
                     currentUser?.let { user ->
                         // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
                         val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
@@ -88,7 +93,8 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 if (!dataSnapshot.exists()) {
                                     //create new user
-                                    Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
+                                        .show()
                                 } else {
                                     for (e in dataSnapshot.children) {
                                         val employee = e.getValue(Data::class.java)
@@ -97,30 +103,40 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                                         var phone = employee?.number
                                         var studentkey = employee?.id
                                         var status = employee?.status
-                                      //  var nodevalue= employee.me
-                                        var node= studentName!!.split(" ").first() + studentId + "Slots"
-                                        if (status == "NB") {
-                                            userref.child(studentkey!!).child("status").setValue("B")
-                                            ref.child(id).child(slot.mentorcode).child("studentNumber").setValue(phone)
-                                            ref.child(id).child(slot.mentorcode).child("reserved_by").setValue(studentName)
-                                            ref.child(id).child(slot.mentorcode).child("studentId").setValue(studentId)
-                                            ref.child(id).child(slot.mentorcode).child("status").setValue("B")
-                                            Toast.makeText(
-                                                mCtx,
-                                                "$studentName Appointment Booked! \n at: ${time.text}",
-                                                Toast.LENGTH_LONG
-                                            ).show()
-                                        } else {
-                                            Toast.makeText(
-                                                mCtx,
-                                                "You have already booked an appointment.",
-                                                Toast.LENGTH_LONG
-                                            ).show()
+                                        var mentorrefercodes = employee!!.mentorreferal
 
+                                        var mentorcodes = mentorrefercodes.split("/")
+                                        for (i in mentorcodes) {
+                                            if (i.split(":").last() == "NB" && i.split(":").first()==id) {
+
+                                                var newrefercodes=mentorrefercodes.replace(i,"$id:B")
+                                                userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes)
+                                                ref.child(id).child(slot.mentorcode).child("studentNumber").setValue(phone)
+                                                ref.child(id).child(slot.mentorcode).child("reserved_by")
+                                                    .setValue(studentName)
+                                                ref.child(id).child(slot.mentorcode).child("studentId").setValue(studentId)
+                                                ref.child(id).child(slot.mentorcode).child("status").setValue("B")
+                                                Toast.makeText(
+                                                    mCtx,
+                                                    "$studentName Appointment Booked! \n at: ${time.text}",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                                var intent = Intent(mCtx, MainActivity::class.java)
+                                                startActivity(mCtx, intent, Bundle.EMPTY)
+                                            }
+                                            if (i.split(":").last() == "B" && i.split(":").first()==id) {
+
+                                                Toast.makeText(mCtx, "You have already booked an appointment.", Toast.LENGTH_LONG).show()
+                                            }
                                         }
+                                       /* if (status == "NB") {
+                                           // userref.child(studentkey!!).child("status").setValue("B")
+
+                                        }*/
                                     }
                                 }
                             }
+
                             override fun onCancelled(databaseError: DatabaseError) {
                             }
                         }
@@ -133,7 +149,6 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                 .setNegativeButton("No", // do something when the button is clicked
                     DialogInterface.OnClickListener { arg0, arg1 -> })
                 .show()
-
 
 
         }

@@ -78,7 +78,7 @@ class UserHome : AppCompatActivity() {
     var multiplementors= mentorids.split("/")
     for(i in multiplementors){
     //region ShowBookingtoStudent
-    ref = FirebaseDatabase.getInstance().getReference("Slots").child("$i")
+    ref = FirebaseDatabase.getInstance().getReference("Slots").child("${i.split(":").first()}")
     var query = ref.orderByChild("status").equalTo("NB")
 
     query.addValueEventListener(object : ValueEventListener {
