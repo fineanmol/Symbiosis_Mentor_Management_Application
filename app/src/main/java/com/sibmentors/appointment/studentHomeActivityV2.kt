@@ -97,7 +97,8 @@ class UserHomeV2 : AppCompatActivity() {
                             if (!dataSnapshot.exists()) {
                                 //create new user
 
-                            } else {
+                            }
+                            else {
                                 for (e in dataSnapshot.children) {
                                     val employee = e.getValue(Data::class.java)
                                     var refercode = employee?.mentorreferal
