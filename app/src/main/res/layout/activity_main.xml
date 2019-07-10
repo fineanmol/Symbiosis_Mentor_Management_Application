@@ -112,7 +112,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:id="@+id/loginbtn"
-            android:background="@color/design_default_color_error"
+            android:background="@drawable/roundedbutton2"
             app:layout_constraintTop_toBottomOf="@+id/forget_link" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.521" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="36dp" app:layout_constraintBottom_toTopOf="@+id/register"/>

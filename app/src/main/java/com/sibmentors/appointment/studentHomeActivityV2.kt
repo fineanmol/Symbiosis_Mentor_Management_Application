@@ -38,7 +38,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile
 import com.sibmentors.appointment.drawerItems.CustomPrimaryDrawerItem
 import com.sibmentors.appointment.drawerItems.CustomUrlPrimaryDrawerItem
 import kotlinx.android.synthetic.main.content_user_home_v2.*
-import kotlinx.android.synthetic.main.mentor_code_input_dialog.*
 
 class UserHomeV2 : AppCompatActivity() {
     val userref = FirebaseDatabase.getInstance().getReference("users")
@@ -69,7 +68,7 @@ class UserHomeV2 : AppCompatActivity() {
 
         })
         show_appointment_btn.setOnClickListener(View.OnClickListener {
-            var showintent= Intent(this,student_show_reserved_slot_Activity::class.java)
+            var showintent = Intent(this, student_show_reserved_slot_Activity::class.java)
             startActivity(showintent)
         })
 
@@ -85,21 +84,21 @@ class UserHomeV2 : AppCompatActivity() {
 
             val code = view.findViewById(R.id.mentor_code) as EditText
 
-            builder.setView(view);
+            builder.setView(view)
 
             //performing positive action
-            builder.setPositiveButton("Yes"){dialogInterface, which ->
-               /* Toast.makeText(applicationContext,"clicked yes",Toast.LENGTH_LONG).show()*/
-                //region Mentor Code Addition
-               /* if (code.text.toString() == ("") || code.text.toString().isNullOrEmpty()) {
-                    mentor_code.error = "Please Enter Code First"
-                    mentor_code.requestFocus()
-                    Toast.makeText(this, "Mentor's Code is required to book thier slots.", Toast.LENGTH_LONG).show()
+            builder.setPositiveButton("Yes") { dialogInterface, which ->
+
+                var edittectid = code.text.toString()
+                if (code.text.isNullOrEmpty()) {
+                    code.error = "Field can't be Empty"
+                    Toast.makeText(this, "Mentor's code is Required to book their slots", Toast.LENGTH_SHORT).show()
+                    code.requestFocus()
+                    return@setPositiveButton
+
+
                 }
-                mentor_code.error = null
-                */
-                var edittectid=code.text.toString()
-                var mentorid="$edittectid:NB"
+                var mentorid = "$edittectid:NB"
                 //region StudentBookButtonFunction
 
                 currentUser?.let { user ->
@@ -111,8 +110,7 @@ class UserHomeV2 : AppCompatActivity() {
                             if (!dataSnapshot.exists()) {
                                 //create new user
 
-                            }
-                            else {
+                            } else {
                                 for (e in dataSnapshot.children) {
                                     val employee = e.getValue(Data::class.java)
                                     var refercode = employee?.mentorreferal
@@ -120,44 +118,58 @@ class UserHomeV2 : AppCompatActivity() {
                                     var status = employee?.status
                                     if (refercode == "MentorCodes" || refercode.isNullOrEmpty()) {
                                         userref.child(studentkey!!).child("mentorreferal").setValue("$mentorid")
-                                        Toast.makeText(this@UserHomeV2, "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            this@UserHomeV2,
+                                            "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
 
-                                    }
-                                    else{
+                                    } else {
 
-                                        var codes2= ((refercode!!.split("]").first()).split("[").last())
-                                       var codes= (codes2.split("/"))
+                                        var codes2 = ((refercode.split("]").first()).split("[").last())
+                                        var codes = (codes2.split("/"))
 
-                                            if(codes.contains("$edittectid")) {
-                                                for(i in codes){
-                                                    if(i=="$edittectid")
-                                                 //   var status= i.toString().split(":").last()
-                                                    if(i=="$edittectid:NB")
-                                                    {
-                                                        Toast.makeText(this@UserHomeV2, "Mentor is Already added\n You didn't book their slots yet", Toast.LENGTH_SHORT).show()
 
-                                                    }
-                                                    if(i.toString()=="$edittectid:B"){
-                                                        Toast.makeText(this@UserHomeV2, "You Already Booked this mentor's Appointment\nWait for new Session", Toast.LENGTH_SHORT).show()
+                                        for (i in codes) {
 
-                                                    }
-                                                }
+
+                                            if (i == "$edittectid:NB") {
+                                                Toast.makeText(
+                                                    this@UserHomeV2,
+                                                    "Mentor is Already added\n You didn't book their slots yet",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
                                                 break
                                             }
-                                            else{
-                                                var new_mentorid= refercode +"/"+ mentorid
-                                                userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
-                                                Toast.makeText(this@UserHomeV2, "Successfully Added!! \nNow you can see their Available Slots\n" +
-                                                        "Book Now!!", Toast.LENGTH_SHORT).show()
-
+                                            if (i == "$edittectid:B") {
+                                                Toast.makeText(
+                                                    this@UserHomeV2,
+                                                    "You Already Booked this mentor's Appointment\nWait for new Session",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                                break
                                             }
+                                        }
 
+
+                                        if (edittectid !in codes2) {
+                                            var new_mentorid = "$refercode/$mentorid"
+                                            userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
+                                            Toast.makeText(
+                                                this@UserHomeV2,
+                                                "Successfully Added!! \nNow you can see their Available Slots\n" +
+                                                        "Book Now!!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+
+                                        }
 
 
                                     }
                                 }
                             }
                         }
+
                         override fun onCancelled(databaseError: DatabaseError) {
                         }
                     }
@@ -170,8 +182,12 @@ class UserHomeV2 : AppCompatActivity() {
             }
 
             //performing negative action
-            builder.setNegativeButton("No"){dialogInterface, which ->
-                Toast.makeText(applicationContext,"Cancelled!\nYou need to enter your mentor's unique code to book their slots",Toast.LENGTH_LONG).show()
+            builder.setNegativeButton("No") { dialogInterface, which ->
+                Toast.makeText(
+                    applicationContext,
+                    "Cancelled!\nYou need to enter your mentor's unique code to book their slots",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             // Create the AlertDialog
             val alertDialog: AlertDialog = builder.create()
@@ -179,7 +195,7 @@ class UserHomeV2 : AppCompatActivity() {
             alertDialog.setCancelable(false)
             alertDialog.show()
         }
-    )
+        )
 
         currentUser?.let { user ->
             if (user.displayName.isNullOrEmpty()) {
@@ -205,7 +221,6 @@ class UserHomeV2 : AppCompatActivity() {
             } else {
                 createNavBar(user.displayName.toString(), user.email.toString(), savedInstanceState)
             }
-
 
 
         }
@@ -242,7 +257,9 @@ class UserHomeV2 : AppCompatActivity() {
                 //here we use a customPrimaryDrawerItem we defined in our sample app
                 //this custom DrawerItem extends the PrimaryDrawerItem so it just overwrites some methods
 
-                CustomPrimaryDrawerItem().withBackgroundRes(R.color.accent).withName("Book Appointment").withDescription("Book Scheduled Slots")
+                CustomPrimaryDrawerItem().withBackgroundRes(R.color.accent).withName("Book Appointment").withDescription(
+                    "Book Scheduled Slots"
+                )
                     .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             currentUser?.let { user ->
@@ -263,7 +280,7 @@ class UserHomeV2 : AppCompatActivity() {
                     }).withIcon(
                         GoogleMaterial.Icon.gmd_filter_center_focus
                     )
-              ,
+                ,
                 PrimaryDrawerItem().withName("Show Appointments").withDescription("Check your Appointment").withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
@@ -273,7 +290,8 @@ class UserHomeV2 : AppCompatActivity() {
                         }
                     }).withIcon(
                     FontAwesome.Icon.faw_eye
-                ),CustomUrlPrimaryDrawerItem().withName("Your Mentors").withDescription("Your list of Mentors").withOnDrawerItemClickListener(
+                ),
+                CustomUrlPrimaryDrawerItem().withName("Your Mentors").withDescription("Your list of Mentors").withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             Log.d("TAGDDD", "clicked")
@@ -313,9 +331,9 @@ class UserHomeV2 : AppCompatActivity() {
                 ).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                           /* val uri = Uri.parse("https://www.buymeacoffee.com/fineanmol") // missing 'http://' will cause crashed
-                            val intent = Intent(Intent.ACTION_VIEW, uri)
-                            startActivity(intent)*/
+                            /* val uri = Uri.parse("https://www.buymeacoffee.com/fineanmol") // missing 'http://' will cause crashed
+                             val intent = Intent(Intent.ACTION_VIEW, uri)
+                             startActivity(intent)*/
                             startActivity(Intent(this@UserHomeV2, BuyMeACoffee::class.java))
                             return false
                         }
@@ -323,7 +341,8 @@ class UserHomeV2 : AppCompatActivity() {
                 SecondaryDrawerItem().withName(R.string.drawer_item_open_source).withIcon(FontAwesome.Icon.faw_github).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            val uri = Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
+                            val uri =
+                                Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
                             val intent = Intent(Intent.ACTION_VIEW, uri)
                             startActivity(intent)
                             return false
@@ -392,7 +411,8 @@ class UserHomeV2 : AppCompatActivity() {
                 SecondaryDrawerItem().withName(R.string.drawer_item_open_source).withIcon(FontAwesome.Icon.faw_github).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            val uri = Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
+                            val uri =
+                                Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
                             val intent = Intent(Intent.ACTION_VIEW, uri)
                             startActivity(intent)
                             return false
@@ -402,6 +422,7 @@ class UserHomeV2 : AppCompatActivity() {
             .withSavedInstance(savedInstanceState)
             .build()
     }
+
     private fun buildHeader(compact: Boolean, savedInstanceState: Bundle?) {
         // Create the AccountHeader
         headerResult = AccountHeaderBuilder()
@@ -413,7 +434,7 @@ class UserHomeV2 : AppCompatActivity() {
                 ProfileSettingDrawerItem().withName("Rate on Playstore").withIcon(FontAwesome.Icon.faw_star1).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                          //  Toast.makeText(this@UserHomeV2,this@UserHomeV2.packageName,Toast.LENGTH_LONG).show()
+                            //  Toast.makeText(this@UserHomeV2,this@UserHomeV2.packageName,Toast.LENGTH_LONG).show()
                             val uri = Uri.parse("market://details?id=" + this@UserHomeV2.packageName)
                             val goToMarket = Intent(Intent.ACTION_VIEW, uri)
                             // To count with Play market backstack, After pressing back button,
@@ -445,7 +466,8 @@ class UserHomeV2 : AppCompatActivity() {
                             return false
                         }
                     }).withIcon(GoogleMaterial.Icon.gmd_settings)
-                ,ProfileSettingDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out_alt).withOnDrawerItemClickListener(
+                ,
+                ProfileSettingDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out_alt).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             logout()
