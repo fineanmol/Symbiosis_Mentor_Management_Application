@@ -12,7 +12,7 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
-            android:theme="@style/MaterialDrawerTheme.TranslucentStatus"
+            android:theme="@style/MaterialTheme.Light.TranslucentStatus"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MentorList"
                   android:label="@string/Mentor_List">
