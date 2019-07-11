@@ -1,6 +1,7 @@
 package com.sibmentors.appointment
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.util.Log
@@ -35,14 +36,16 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
 
         val listmentor = mentorList[position]
         Log.d("TAG1", listmentor)
-        mentorname.text = listmentor
+
         var extractedid=""
         for(i in listmentor){
                 if(i.isDigit())
                 extractedid+=i
         }
 
-        mentorid.text = extractedid
+    mentorid.text = extractedid
+    mentorname.text = listmentor
+
 
         currentUser?.let { user ->
 
@@ -88,48 +91,39 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                     // do something when the button is clicked
                     //region StudentBookButtonFunction
 
-
-              /*      currentUser?.let { user ->
+                    currentUser?.let { user ->
                         // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
                         val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
                         val eventListener = object : ValueEventListener {
                             @SuppressLint("ResourceAsColor")
-                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                if (!dataSnapshot.exists()) {
-                                    //create new user
-                                    Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
-                                        .show()
-                                } else {
-                                    for (e in dataSnapshot.children) {
-                                        val employee = e.getValue(Data::class.java)
-                                        var studentId = employee?.studentId
-                                        var studentName = employee?.name
-                                        var phone = employee?.number
-                                        var studentkey = employee?.id
-                                        var status = employee?.status
-                                        var mentorrefercodes = employee!!.mentorreferal
+                            override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                                //create new user
+                                Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
+                                    .show()
+                            } else {
+                                for (e in dataSnapshot.children) {
+                                    val employee = e.getValue(Data::class.java)
 
-                                        var mentorcodes = mentorrefercodes.split("/")
-                                        for (i in mentorcodes) {
-                                            if (i.split(":").last() == "NB" ) {
+                                    var studentkey = employee?.id
+                                    var mentorrefercodes = employee!!.mentorreferal
 
-                                                var newrefercodes=mentorrefercodes.replace(i,"$:B")
-                                                userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes)
+                                    var mentorcodes = mentorrefercodes.split("/")
+                                    var newcodes=""
+                                    for (i in mentorcodes) {
+                                        if (i.split(":").first() == listmentor ) {
 
-                                                Toast.makeText(
-                                                    mCtx,
-                                                    "$studentName Appointment Booked! \n at: ",
-                                                    Toast.LENGTH_LONG
-                                                ).show()
+                                            var newrefercodes=mentorrefercodes.replace("/$i/","/")
+                                            var newrefercodes1=newrefercodes.replace("$i/","")
+                                            var newrefercodes2=newrefercodes1.replace("/$i","")
+                                            var newrefercodes3=newrefercodes2.replace("$i","")
+                                            userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes3)
 
-                                            }
-                                            if (i.split(":").last() == "B" ) {
 
-                                                Toast.makeText(mCtx, "You have already booked an appointment.", Toast.LENGTH_LONG).show()
-                                            }
+
                                         }
 
                                     }
+
                                 }
                             }
 
@@ -138,7 +132,7 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                         }
                         userNameRef?.addListenerForSingleValueEvent(eventListener)
 
-                    }*/
+                    }
                 })
                 .setNegativeButton("No", // do something when the button is clicked
                     DialogInterface.OnClickListener { arg0, arg1 -> })

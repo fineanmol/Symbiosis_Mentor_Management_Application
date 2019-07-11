@@ -49,7 +49,9 @@ class MentorList : AppCompatActivity() {
                         var mentorlists = referal.split("/")
                         for(i in mentorlists){
                             var mentordetail= i.split(":").first()
-                            mentorList.add(mentordetail)
+
+                                mentorList.add(mentordetail)
+
                             Log.d("TAG1",mentordetail)
                             val adapter = MentorListAdapter(this@MentorList, R.layout.mentorlistview_custom, mentorList)
                             listview.adapter = adapter
