@@ -42,8 +42,27 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                 extractedid += i
         }
         if (listmentor.isNotEmpty() || (listmentor != "MentorCodes" && listmentor != "")) {
-            mentorid.text = extractedid
-            mentorname.text = listmentor
+            val userNameRef = ref.parent?.child("users")?.orderByChild("studentId")?.equalTo(extractedid)
+            val eventListener = object : ValueEventListener {
+                @SuppressLint("ResourceAsColor")
+                override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                    //create new user
+                    Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    for (e in dataSnapshot.children) {
+                        val employee = e.getValue(Data::class.java)
+                        mentorname.text=employee?.name
+
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                }
+            }
+            userNameRef?.addValueEventListener(eventListener)
+            mentorid.text = listmentor
+            //mentorname.text = listmentor
         }
         if (listmentor == "" || listmentor.isNullOrBlank()) {
             deletebtn.visibility = View.GONE
@@ -101,7 +120,7 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                             override fun onCancelled(databaseError: DatabaseError) {
                             }
                         }
-                        userNameRef?.addListenerForSingleValueEvent(eventListener)
+                        userNameRef?.addValueEventListener(eventListener)
 
                     }
                 })
