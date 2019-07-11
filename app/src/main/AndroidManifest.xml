@@ -14,17 +14,22 @@
             android:supportsRtl="true"
             android:theme="@style/MaterialDrawerTheme.TranslucentStatus"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MentorList">
+        <activity android:name=".MentorList"
+                  android:label="@string/Mentor_List">
         </activity>
-        <activity android:name=".Mentor_refer">
+        <activity android:name=".Mentor_refer"
+                  android:label="Refer Page"
+        >
         </activity>
         <activity android:name=".BuyMeACoffee">
         </activity>
-        <activity android:name=".passwordReset">
+        <activity android:name=".passwordReset"
+                  android:label="Password Reset">
         </activity>
         <activity android:name=".UserPassUpdate">
         </activity>
-        <activity android:name=".UserEmailUpdate">
+        <activity android:name=".UserEmailUpdate"
+                  android:label="Email Update">
         </activity>
         <activity android:name=".UserPhoneVerify">
         </activity>

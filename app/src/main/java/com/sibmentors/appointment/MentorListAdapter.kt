@@ -12,13 +12,11 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.text.isDigitsOnly
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.util.regex.Pattern
 
 class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: List<String>) :
     ArrayAdapter<String>(mCtx, layoutId, mentorList) {
@@ -33,58 +31,30 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
         val view: View = layoutInflater.inflate(layoutId, null)
         val mentorname = view.findViewById<TextView>(R.id.mentorName)
         val mentorid = view.findViewById<TextView>(R.id.mentorId)
-
+        val deletebtn = view.findViewById<TextView>(R.id.delete)
+        val dividerbtn = view.findViewById<View>(R.id.divider)
         val listmentor = mentorList[position]
         Log.d("TAG1", listmentor)
 
-        var extractedid=""
-        for(i in listmentor){
-                if(i.isDigit())
-                extractedid+=i
+        var extractedid = ""
+        for (i in listmentor) {
+            if (i.isDigit())
+                extractedid += i
         }
-
-    mentorid.text = extractedid
-    mentorname.text = listmentor
-
-
-        currentUser?.let { user ->
-
-            val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
-            val eventListener = object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
-                    //create new user
-                    Toast.makeText(mCtx, "User details not found", Toast.LENGTH_LONG).show()
-                    //logout()
-                } else {
-
-                    for (e in dataSnapshot.children) {
-                        val employee = e.getValue(Data::class.java)
-                        var refercode = employee!!.mentorreferal
-                        deletebtnclickmethod(view, refercode, listmentor)
-
-
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                }
-            }
-            userNameRef?.addListenerForSingleValueEvent(eventListener)
-
+        if (listmentor.isNotEmpty() || (listmentor != "MentorCodes" && listmentor != "")) {
+            mentorid.text = extractedid
+            mentorname.text = listmentor
         }
-
-
-
-        return view
-    }
-
-    private fun deletebtnclickmethod(
-        view: View,
-        refercode: String,
-        listmentor: String
-    ) {
-        val deletebtn = view.findViewById<TextView>(R.id.delete)
+        if (listmentor == "" || listmentor.isNullOrBlank()) {
+            deletebtn.visibility = View.GONE
+            mentorid.text = ""
+            mentorname.text = ""
+            dividerbtn.visibility = View.INVISIBLE
+            Toast.makeText(mCtx, "You have to add atleast 1 mentor's Code \n <-- GoBack and Add First", Toast.LENGTH_LONG).show()
+        }
         deletebtn.setOnClickListener {
+
+
             val alertbox = AlertDialog.Builder(mCtx)
                 .setMessage("Do you want to Delete this Mentor !!\nYou have to add this mentor's code again if you want to see their slots")
                 .setPositiveButton("Delete", DialogInterface.OnClickListener { arg0, arg1 ->
@@ -108,16 +78,17 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                                     var mentorrefercodes = employee!!.mentorreferal
 
                                     var mentorcodes = mentorrefercodes.split("/")
-                                    var newcodes=""
+                                    var newcodes = ""
                                     for (i in mentorcodes) {
-                                        if (i.split(":").first() == listmentor ) {
+                                        if (i.split(":").first() == listmentor) {
 
-                                            var newrefercodes=mentorrefercodes.replace("/$i/","/")
-                                            var newrefercodes1=newrefercodes.replace("$i/","")
-                                            var newrefercodes2=newrefercodes1.replace("/$i","")
-                                            var newrefercodes3=newrefercodes2.replace("$i","")
-                                            userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes3)
-
+                                            var newrefercodes = mentorrefercodes.replace("/$i/", "/")
+                                            var newrefercodes1 = newrefercodes.replace("$i/", "")
+                                            var newrefercodes2 = newrefercodes1.replace("/$i", "")
+                                            var newrefercodes3 = newrefercodes2.replace("$i", "")
+                                            userref.child(studentkey!!).child("mentorreferal")
+                                                .setValue(newrefercodes3)
+                                            Toast.makeText(mCtx, "Deleted!!  \nNow You won't see their available slots &#128522", Toast.LENGTH_LONG).show()
 
 
                                         }
@@ -139,6 +110,77 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                 .show()
 
 
-                }
         }
+
+
+
+
+
+
+        return view
     }
+}
+/* private fun deletebtnclickmethod(
+     view: View,
+     refercode: String,
+     listmentor: String
+ ) {
+
+     deletebtn.setOnClickListener {
+         val alertbox = AlertDialog.Builder(mCtx)
+             .setMessage("Do you want to Delete this Mentor !!\nYou have to add this mentor's code again if you want to see their slots")
+             .setPositiveButton("Delete", DialogInterface.OnClickListener { arg0, arg1 ->
+                 // do something when the button is clicked
+                 //region StudentBookButtonFunction
+
+                 currentUser?.let { user ->
+                     // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
+                     val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+                     val eventListener = object : ValueEventListener {
+                         @SuppressLint("ResourceAsColor")
+                         override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                             //create new user
+                             Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
+                                 .show()
+                         } else {
+                             for (e in dataSnapshot.children) {
+                                 val employee = e.getValue(Data::class.java)
+
+                                 var studentkey = employee?.id
+                                 var mentorrefercodes = employee!!.mentorreferal
+
+                                 var mentorcodes = mentorrefercodes.split("/")
+                                 var newcodes=""
+                                 for (i in mentorcodes) {
+                                     if (i.split(":").first() == listmentor ) {
+
+                                         var newrefercodes=mentorrefercodes.replace("/$i/","/")
+                                         var newrefercodes1=newrefercodes.replace("$i/","")
+                                         var newrefercodes2=newrefercodes1.replace("/$i","")
+                                         var newrefercodes3=newrefercodes2.replace("$i","")
+                                         userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes3)
+
+
+
+                                     }
+
+                                 }
+
+                             }
+                         }
+
+                         override fun onCancelled(databaseError: DatabaseError) {
+                         }
+                     }
+                     userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+                 }
+             })
+             .setNegativeButton("No", // do something when the button is clicked
+                 DialogInterface.OnClickListener { arg0, arg1 -> })
+             .show()
+
+
+             }
+     }
+ }*/

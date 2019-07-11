@@ -59,4 +59,6 @@
         <i>Click below to</i>
         <b>Check details</b>
     </string>
+    <string name="name_mentor_s_code_delete">Name  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Mentor\'s Code &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Delete</string>
+    <string name="Mentor_List">Mentors List</string>
 </resources>
