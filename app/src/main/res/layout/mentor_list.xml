@@ -22,8 +22,11 @@
 
     </com.google.android.material.appbar.AppBarLayout>
     <ListView
+            android:paddingTop="100dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp" android:id="@+id/mentorlistview" android:layout_margin="100dp"/>
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="0dp"
+            android:id="@+id/mentorlistview"
+          />
 </androidx.constraintlayout.widget.ConstraintLayout>
