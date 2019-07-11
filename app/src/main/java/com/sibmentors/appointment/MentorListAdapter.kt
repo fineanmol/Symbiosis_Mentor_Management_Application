@@ -47,8 +47,7 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                 @SuppressLint("ResourceAsColor")
                 override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                     //create new user
-                    Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
-                        .show()
+
                 } else {
                     for (e in dataSnapshot.children) {
                         val employee = e.getValue(Data::class.java)

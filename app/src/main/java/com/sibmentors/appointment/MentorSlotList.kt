@@ -18,6 +18,7 @@ import com.google.firebase.database.*
 class MentorSlotList : AppCompatActivity() {
     val currentUser = FirebaseAuth.getInstance().currentUser
     val userref = FirebaseDatabase.getInstance().getReference("users")
+    lateinit var ref1: DatabaseReference
     lateinit var parts: MutableList<String>
     lateinit var listView: ListView
     var receiver: BroadcastReceiver? = null
@@ -90,7 +91,7 @@ class MentorSlotList : AppCompatActivity() {
     private fun addSlot(begin: String, end: String, date: String, rnds: Int) {
         var date1 = date.split("$").last().toString().trim().replace("]", "")
         val begin1 = begin.split("$").first().split("-").first().toString().trim().replace("[", "")
-        var  end1 = end.split("$").first().split("-").last().toString().trim()
+        var end1 = end.split("$").first().split("-").last().toString().trim()
 
         currentUser?.let { user ->
 
@@ -110,6 +111,7 @@ class MentorSlotList : AppCompatActivity() {
                     val namernd = (5..100000).random()
                     for (e in dataSnapshot.children) {
                         val employee = e.getValue(Data::class.java)!!
+                        val mentorcodesarray = e.getValue(MentorsCodeArray::class.java)
                         val reserved_by = ""
                         var generated = employee.name
                         var studentId = ""
@@ -117,9 +119,42 @@ class MentorSlotList : AppCompatActivity() {
                         var status = "NB"
                         var mentorcode = employee.name + namernd
 
-                        val sId = """${generated.split(" ").first()}${employee.studentId}Slots"""
-                        val addSlot = BookedData(sId, begin1, end1, date1, generated, reserved_by, studentId, studentNumber, status,mentorcode)
+                        var sId = """${generated.split(" ").first()}${employee.studentId}Slots"""
+                        val addSlot = BookedData(
+                            sId,
+                            begin1,
+                            end1,
+                            date1,
+                            generated,
+                            reserved_by,
+                            studentId,
+                            studentNumber,
+                            status,
+                            mentorcode
+                        )
+
                         ref.child(sId).child(mentorcode).setValue(addSlot)
+                        ref1 = FirebaseDatabase.getInstance().reference
+                        /** This Valu is Coming Empty. need to fix*/
+                        var valu = mentorcodesarray!!.list
+                        if (valu.isNullOrBlank() && valu=="") {
+                            ref1.child("MentorsCodes").child("List").setValue(sId)
+                        }
+                        if (valu.length > 2) {
+                            var dupfind = valu.split(",")
+                            for (i in dupfind) {
+                                if (i == sId) {
+                                    var status = "false"
+                                    sId = ""
+                                    break
+                                }
+
+                            }
+                            if (sId !="") {
+                                valu += ",$sId"
+                                ref1.child("MentorsCodes").child("List").setValue(valu)
+                            }
+                        }
 
                         Toast.makeText(
                             this@MentorSlotList,
@@ -132,7 +167,8 @@ class MentorSlotList : AppCompatActivity() {
 
                 }
             })
-        }}
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.

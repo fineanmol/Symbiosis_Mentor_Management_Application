@@ -85,14 +85,45 @@ class UserHomeV2 : AppCompatActivity() {
             val code = view.findViewById(R.id.mentor_code) as EditText
 
             builder.setView(view)
+/** Trail 2 Starts*/
+val userNameRef = ref.parent?.child("MentorsCodes")
 
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        //create new user
+
+                    } else {
+                        for (e in dataSnapshot.children) {
+                            val employee = e.getValue(MentorsCodeArray::class.java)
+                            var listcodes = employee?.list
+
+
+                               // userref.child(studentkey!!).child("mentorreferal").setValue("")
+                                /*Toast.makeText(
+                                    this@UserHomeV2,
+                                    "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!",
+                                    Toast.LENGTH_SHORT
+                                ).show()*/
+
+
+                        }
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                }
+            }
+            userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+            /** Trail 2 ends*/
             //performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
 
                 var edittectid = code.text.toString()
                 if (code.text.isNullOrEmpty()) {
                     code.error = "Field can't be Empty"
-                    Toast.makeText(this, "Mentor's code is Required to book their slots", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Mentor's code is Required to book their slots !Empty!", Toast.LENGTH_SHORT).show()
                     code.requestFocus()
                     return@setPositiveButton
 
