@@ -1,6 +1,7 @@
 package com.sibmentors.appointment
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,14 +23,13 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
         val view: View = layoutInflater.inflate(layoutId, null)
         val mentorname = view.findViewById<TextView>(R.id.mentorName)
         val mentorid = view.findViewById<TextView>(R.id.mentorId)
-        var mentorlistvalue= mentorList
         val listmentor = mentorList[position]
+        Log.d("TAG1",listmentor)
 
 
 
 
-
-        mentorname.text = listmentor[0].toString()
+        mentorname.text = listmentor.toString()
         mentorid.text = "id"
         return view
     }
