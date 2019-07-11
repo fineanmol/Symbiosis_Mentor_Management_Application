@@ -12,7 +12,7 @@
         <RelativeLayout
                 android:id="@+id/layoutHead"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="200dp" android:background="@color/common_google_signin_btn_text_light_pressed">
 
             <ImageView
                     android:id="@+id/image_view"
@@ -107,7 +107,8 @@
                     android:text="Update"
                     android:id="@+id/button_update"
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" android:background="@color/md_red_A700"
+                    android:textColor="@color/about_libraries_special_button_openSource_dark"/>
 
         </LinearLayout>
 
