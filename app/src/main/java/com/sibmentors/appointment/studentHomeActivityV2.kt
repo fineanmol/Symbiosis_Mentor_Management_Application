@@ -299,7 +299,7 @@ class UserHomeV2 : AppCompatActivity() {
                             return false
                         }
                     }).withIcon(
-                    FontAwesome.Icon.faw_eye
+                    FontAwesome.Icon.faw_people_carry
                 ),
                 CustomUrlPrimaryDrawerItem().withEnabled(
                     false
