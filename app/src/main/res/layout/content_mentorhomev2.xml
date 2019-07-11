@@ -7,14 +7,14 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_mentorhomev2"
-        tools:context=".mentorhomev2">
+        tools:context=".mentorhomev2" android:background="@color/about_libraries_special_button_openSource_dark">
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wants_to_create_new_slots_n_click_on_start_new_session"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textColor="#C3AEB2"
+            android:textColor="@color/about_libraries_dividerDark_openSource_dark"
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="17dp"
             android:id="@+id/textView9" android:layout_marginTop="56dp" app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
             android:text="@string/existing_session_value"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textColor="#C3AEB2"
+            android:textColor="@color/about_libraries_dividerDark_openSource_dark"
             app:layout_constraintTop_toTopOf="parent"
             android:textSize="17dp"
             android:id="@+id/textView7" android:layout_marginTop="356dp" app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
     <Button
             android:text="Start New Session"
             android:layout_width="250dp"
-            android:background="@drawable/roundedbutton"
+            android:background="@color/md_red_A700"
             android:layout_height="wrap_content"
             android:id="@+id/new_session_btn" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.496" app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
             android:text="Manage Existing Session"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundedbutton"
+            android:background="@color/md_red_A700"
             android:id="@+id/existing_session_btn" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.496" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView7"

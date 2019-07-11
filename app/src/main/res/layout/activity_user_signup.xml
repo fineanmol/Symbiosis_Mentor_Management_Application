@@ -32,12 +32,12 @@
 
     <TextView
             android:id="@+id/register_title2"
-            android:layout_width="280dp"
+            android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:gravity="center"
             android:text="Account Registration"
-            android:textColor="#fff"
-            android:textSize="20dp"
+            android:textColor="@color/about_libraries_dividerDark_openSource_dark"
+            android:textSize="24sp"
             android:textStyle="bold"
 
             android:layout_centerHorizontal="true"
@@ -63,13 +63,13 @@
                 android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"/>
+                android:textColor="@color/about_libraries_card_dark"/>
 
         <EditText
                 android:id="@+id/name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_name"
+                android:drawableLeft="@drawable/ic_aboutdeveloper"
                 android:drawablePadding="10dp"
                 android:singleLine="true"
                 android:layout_marginBottom="10dp"
@@ -83,13 +83,13 @@
                 android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"/>
+                android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
 
         <EditText
                 android:id="@+id/u_r_email"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawableLeft="@drawable/ic_mail"
                 android:drawablePadding="10dp"
                 android:singleLine="true"
                 android:layout_marginBottom="10dp"
@@ -101,14 +101,15 @@
                 android:text="Mobile Number"
                 android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textColor="#FFFFFF"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
         <EditText
                 android:drawablePadding="10dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:id="@+id/mobile"
-                android:drawableLeft="@drawable/ic_phone_android_black_24dp"
+                android:drawableLeft="@drawable/ic_call_black_24dp"
                 android:hint="9876543210"
                 android:inputType="number" android:textColor="#FFFFFF"
                 android:textColorHint="#847F7F"/>
@@ -118,13 +119,14 @@
                 android:text="Student Id"
                 android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textColor="#FFFFFF"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
 
         <EditText
                 android:drawablePadding="10dp"
 
                 android:id="@+id/studentid"
-                android:drawableLeft="@drawable/ic_college_id_24dp"
+                android:drawableLeft="@drawable/ic_contact"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
 
@@ -140,7 +142,8 @@
                 android:text="Password"
                 android:fontFamily="sans-serif-light"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textColor="#FFFFFF"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
 
         <EditText
                 android:drawablePadding="10dp"
@@ -148,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:id="@+id/u_r_pass"
-                android:drawableLeft="@drawable/ic_pass_black_24dp"
+                android:drawableLeft="@android:drawable/ic_lock_lock"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF" android:textColorHint="#847F7F"/>
@@ -157,7 +160,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/roundedbutton"
+                android:background="@color/md_red_A700"
                 android:text="REGISTER"
                 android:textAllCaps="false"
                 android:textColor="#fff"

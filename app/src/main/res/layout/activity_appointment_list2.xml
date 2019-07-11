@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
 
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay" tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -45,6 +45,6 @@
             android:divider="@null"
             android:dividerHeight="10dp" tools:ignore="MissingConstraints"
             app:layout_constraintBottom_toBottomOf="parent" tools:layout_editor_absoluteX="3dp"
-    />
+            android:background="@color/about_libraries_special_button_openSource_dark"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@
         <RelativeLayout
                 android:id="@+id/layoutHead"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="200dp" android:background="@color/common_google_signin_btn_text_light_pressed">
 
             <ImageView
                     android:id="@+id/image_view"
@@ -60,7 +60,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:layout_gravity="top"
                     android:drawablePadding="16dp"
-                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawableLeft="@drawable/ic_mail"
                     tools:text="probelalkhan@gmail.com"
                     android:id="@+id/text_email"
                     android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:layout_gravity="top"
                     android:drawablePadding="16dp"
-                    android:drawableLeft="@drawable/ic_phone_android_black_24dp"
+                    android:drawableLeft="@drawable/ic_call_black_24dp"
                     tools:text="+917549161079"
                     android:enabled="true"
                     android:id="@+id/text_phone"
@@ -94,7 +94,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:layout_gravity="top"
                     android:drawablePadding="16dp"
-                    android:drawableLeft="@android:drawable/ic_lock_idle_alarm"
+                    android:drawableLeft="@android:drawable/ic_lock_lock"
                     android:text="Update Password"
                     android:enabled="true"
                     android:id="@+id/text_password"
@@ -115,7 +115,7 @@
                     android:id="@+id/button_save"
                     android:layout_marginTop="15dp"
                     android:textColor="@android:color/white"
-                    android:background="?colorPrimary"
+                    android:background="@color/md_red_A700"
                     android:textAllCaps="false"
                     android:layout_gravity="center_horizontal"
                     android:text="Save Changes"

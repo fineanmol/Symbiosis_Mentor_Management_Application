@@ -12,7 +12,7 @@
 
         <RelativeLayout
                 android:id="@+id/layoutHead"
-                android:background="#5CC09F"
+                android:background="@color/material_drawer_header_selection_text"
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
@@ -142,7 +142,8 @@
                     android:text="Verify"
                     android:id="@+id/button_verify"
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" android:background="@color/md_red_A700"
+                    android:textColor="@color/about_libraries_special_button_openSource_dark"/>
 
         </LinearLayout>
 
