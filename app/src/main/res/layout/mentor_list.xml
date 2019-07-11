@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay" tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -25,5 +25,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp" android:id="@+id/mentorlistview"/>
+            tools:layout_editor_absoluteX="8dp" android:id="@+id/mentorlistview" android:layout_margin="100dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import android.util.Log
 
 class MentorList : AppCompatActivity() {
     lateinit var ref: DatabaseReference
@@ -49,7 +50,7 @@ class MentorList : AppCompatActivity() {
                         for(i in mentorlists){
                             var mentordetail= i.split(":").first()
                             mentorList.add(mentordetail)
-
+                            Log.d("TAG1",mentordetail)
                             val adapter = MentorListAdapter(this@MentorList, R.layout.mentorlistview_custom, mentorList)
                             listview.adapter = adapter
                         }
