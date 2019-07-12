@@ -94,9 +94,8 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                         //create new user
 
                     } else {
-                        for (e in dataSnapshot.children) {
-                            val employee = e.getValue(MentorsCodeArray::class.java)
-                            var listcodes = employee?.List
+                        for (ds in dataSnapshot.children) {
+                            val codes = ds.getValue(String::class.java)
 
 
                                // userref.child(studentkey!!).child("mentorreferal").setValue("")
