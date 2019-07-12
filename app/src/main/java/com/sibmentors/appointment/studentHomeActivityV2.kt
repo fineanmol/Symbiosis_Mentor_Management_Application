@@ -95,37 +95,6 @@ class UserHomeV2 : AppCompatActivity() {
             builder.setPositiveButton("Yes") { dialogInterface, which ->
 
                 var edittectid = code.text.toString()
-
-                /** Trail 2 Starts*/
-                val userNameRef = ref.parent?.child("MentorsCodes")
-
-                val eventListener = object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        if (!dataSnapshot.exists()) {
-                            //create new user
-
-                        } else {
-                            for (ds in dataSnapshot.children) {
-                                val codes = ds.getValue(String::class.java)
-                                var duplist= codes!!.split(",")
-                                for(i in duplist){
-                                    if(i.toLowerCase()==edittectid.toLowerCase()){
-                                        edittectid.replace(edittectid,"")
-                                        break
-                                    }
-                                }
-
-                            }
-                        }
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                    }
-                }
-                userNameRef?.addListenerForSingleValueEvent(eventListener)
-
-                /** Trail 2 ends*/
-
                 if (code.text.isNullOrEmpty()) {
                     code.error = "Field can't be Empty"
                     Toast.makeText(this, "Mentor's code is Required to book their slots !Empty!", Toast.LENGTH_SHORT).show()
@@ -142,86 +111,121 @@ class UserHomeV2 : AppCompatActivity() {
 
 
                 }
-                var mentorid = "$edittectid:NB"
-                //region StudentBookButtonFunction
+                /** Trail 2 Starts*/
+                val database = FirebaseDatabase.getInstance()
+                val myRef = database.getReference("MentorsCodes")
+                myRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        // This method is called once with the initial value and again
+                        // whenever data at this location is updated.
+                        if (!dataSnapshot.exists()) {
+                            //create new user
+                            myRef.child("List").setValue("")
 
-                currentUser?.let { user ->
-                    // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
-                    val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+                        } else {
+                            for (ds in dataSnapshot.children) {
+                                val codes = ds.getValue(String::class.java)
+                                Log.d("TAG", "$codes")
+                                var valu=codes.toString()?.split(",")
+                                if(valu.indexOf(edittectid)<0){
+                                    Toast.makeText(this@UserHomeV2,"Mentor code not found",Toast.LENGTH_LONG)
 
-                    val eventListener = object : ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            if (!dataSnapshot.exists()) {
-                                //create new user
+                                }
+                                else{
+                                    var mentorid = "$edittectid:NB"
+                                    //region StudentBookButtonFunction
 
-                            } else {
-                                for (e in dataSnapshot.children) {
-                                    val employee = e.getValue(Data::class.java)
-                                    var refercode = employee?.mentorreferal
-                                    var studentkey = employee?.id
-                                    var status = employee?.status
-                                    if (refercode == "MentorCodes" || refercode.isNullOrEmpty()) {
-                                        userref.child(studentkey!!).child("mentorreferal").setValue("$mentorid")
-                                        Toast.makeText(
-                                            this@UserHomeV2,
-                                            "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                                    currentUser?.let { user ->
+                                        // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
+                                        val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
 
-                                    } else {
+                                        val eventListener = object : ValueEventListener {
+                                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                                if (!dataSnapshot.exists()) {
+                                                    //create new user
 
-                                        var codes2 = ((refercode.split("]").first()).split("[").last()).toLowerCase()
-                                        var codes = (codes2.split("/"))
+                                                } else {
+                                                    for (e in dataSnapshot.children) {
+                                                        val employee = e.getValue(Data::class.java)
+                                                        var refercode = employee?.mentorreferal
+                                                        var studentkey = employee?.id
+                                                        var status = employee?.status
+                                                        if (refercode == "MentorCodes" || refercode.isNullOrEmpty()) {
+                                                            userref.child(studentkey!!).child("mentorreferal").setValue("$mentorid")
+                                                            Toast.makeText(
+                                                                this@UserHomeV2,
+                                                                "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!",
+                                                                Toast.LENGTH_SHORT
+                                                            ).show()
+
+                                                        } else {
+
+                                                            var codes2 = ((refercode.split("]").first()).split("[").last()).toLowerCase()
+                                                            var codes = (codes2.split("/"))
 
 
-                                        for (i in codes) {
+                                                            for (i in codes) {
 
 
-                                            if (i.toLowerCase() == "$edittectid:NB".toLowerCase()) {
-                                                Toast.makeText(
-                                                    this@UserHomeV2,
-                                                    "Mentor is Already added\n You didn't book their slots yet",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                                break
+                                                                if (i.toLowerCase() == "$edittectid:NB".toLowerCase()) {
+                                                                    Toast.makeText(
+                                                                        this@UserHomeV2,
+                                                                        "Mentor is Already added\n You didn't book their slots yet",
+                                                                        Toast.LENGTH_SHORT
+                                                                    ).show()
+                                                                    break
+                                                                }
+                                                                if (i == "$edittectid:B") {
+                                                                    Toast.makeText(
+                                                                        this@UserHomeV2,
+                                                                        "You Already Booked this mentor's Appointment\nWait for new Session",
+                                                                        Toast.LENGTH_SHORT
+                                                                    ).show()
+                                                                    break
+                                                                }
+                                                            }
+
+
+                                                            if (edittectid.toLowerCase() !in codes2) {
+                                                                var new_mentorid = "$refercode/$mentorid"
+                                                                userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
+                                                                Toast.makeText(
+                                                                    this@UserHomeV2,
+                                                                    "Successfully Added!! \nNow you can see their Available Slots\n" +
+                                                                            "Book Now!!",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+
+                                                            }
+
+
+                                                        }
+                                                    }
+                                                }
                                             }
-                                            if (i == "$edittectid:B") {
-                                                Toast.makeText(
-                                                    this@UserHomeV2,
-                                                    "You Already Booked this mentor's Appointment\nWait for new Session",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                                break
+
+                                            override fun onCancelled(databaseError: DatabaseError) {
                                             }
                                         }
-
-
-                                        if (edittectid.toLowerCase() !in codes2) {
-                                            var new_mentorid = "$refercode/$mentorid"
-                                            userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
-                                            Toast.makeText(
-                                                this@UserHomeV2,
-                                                "Successfully Added!! \nNow you can see their Available Slots\n" +
-                                                        "Book Now!!",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-
-                                        }
-
+                                        userNameRef?.addListenerForSingleValueEvent(eventListener)
 
                                     }
+                                    //endregion
+                                    //endregion
+
+
                                 }
                             }
                         }
-
-                        override fun onCancelled(databaseError: DatabaseError) {
-                        }
                     }
-                    userNameRef?.addListenerForSingleValueEvent(eventListener)
+                    override fun onCancelled(databaseError: DatabaseError) {
+                    }
+                })
 
-                }
-                //endregion
-                //endregion
+                /** Trail 2 ends*/
+
+
+
 
             }
 
