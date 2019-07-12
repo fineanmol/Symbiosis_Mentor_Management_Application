@@ -125,6 +125,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                                                 ).show()
                                                 book.text="Booked!"
                                                 book.setBackgroundColor(R.color.material_drawer_dark_selected)
+                                                userref.child(studentkey!!).child("status").setValue("")
                                             }
                                             if (i.split(":").last() == "B" && i.split(":").first()==id) {
 
@@ -132,7 +133,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                                             }
                                         }
 
-                                            userref.child(studentkey!!).child("status").setValue("")
+
 
 
                                     }

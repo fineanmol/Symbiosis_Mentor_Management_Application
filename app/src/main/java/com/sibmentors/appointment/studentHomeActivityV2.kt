@@ -56,6 +56,7 @@ class UserHomeV2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home_v2)
         var Alertstatus= findViewById<TextView>(R.id.textviewstatus)
+
         new_book_btn.setOnClickListener(View.OnClickListener {
             currentUser?.let { user ->
                 if (user.phoneNumber.isNullOrEmpty()) {
@@ -68,6 +69,7 @@ class UserHomeV2 : AppCompatActivity() {
                 } else {
                     var bookintent = Intent(this, UserHome::class.java)
                     startActivity(bookintent)
+
                 }
             }
 
@@ -111,6 +113,7 @@ class UserHomeV2 : AppCompatActivity() {
 
 
                 }
+
                 /** Trail 2 Starts*/
                 val database = FirebaseDatabase.getInstance()
                 val myRef = database.getReference("MentorsCodes")
@@ -128,7 +131,7 @@ class UserHomeV2 : AppCompatActivity() {
                                 Log.d("TAG", "$codes")
                                 var valu=codes.toString()?.split(",")
                                 if(valu.indexOf(edittectid)<0){
-                                    Toast.makeText(this@UserHomeV2,"Mentor code not found",Toast.LENGTH_LONG)
+                                    Toast.makeText(this@UserHomeV2,"Mentor code not found",Toast.LENGTH_LONG).show()
 
                                 }
                                 else{

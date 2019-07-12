@@ -147,6 +147,7 @@ class UserHome : AppCompatActivity() {
         if (item.itemId == android.R.id.home) // Press Back Icon
         {
             finish()
+
         }
 
         if (id == R.id.action_logout) {
