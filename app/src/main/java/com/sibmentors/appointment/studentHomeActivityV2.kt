@@ -90,44 +90,53 @@ class UserHomeV2 : AppCompatActivity() {
             val code = view.findViewById(R.id.mentor_code) as EditText
 
             builder.setView(view)
-/** Trail 2 Starts*/
-val userNameRef = ref.parent?.child("MentorsCodes")
 
-            val eventListener = object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (!dataSnapshot.exists()) {
-                        //create new user
-
-                    } else {
-                        for (ds in dataSnapshot.children) {
-                            val codes = ds.getValue(String::class.java)
-
-
-                               // userref.child(studentkey!!).child("mentorreferal").setValue("")
-                                /*Toast.makeText(
-                                    this@UserHomeV2,
-                                    "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!",
-                                    Toast.LENGTH_SHORT
-                                ).show()*/
-
-
-                        }
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                }
-            }
-            userNameRef?.addListenerForSingleValueEvent(eventListener)
-
-            /** Trail 2 ends*/
             //performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
 
                 var edittectid = code.text.toString()
+
+                /** Trail 2 Starts*/
+                val userNameRef = ref.parent?.child("MentorsCodes")
+
+                val eventListener = object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (!dataSnapshot.exists()) {
+                            //create new user
+
+                        } else {
+                            for (ds in dataSnapshot.children) {
+                                val codes = ds.getValue(String::class.java)
+                                var duplist= codes!!.split(",")
+                                for(i in duplist){
+                                    if(i.toLowerCase()==edittectid.toLowerCase()){
+                                        edittectid.replace(edittectid,"")
+                                        break
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                    }
+                }
+                userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+                /** Trail 2 ends*/
+
                 if (code.text.isNullOrEmpty()) {
                     code.error = "Field can't be Empty"
                     Toast.makeText(this, "Mentor's code is Required to book their slots !Empty!", Toast.LENGTH_SHORT).show()
+                    code.requestFocus()
+                    return@setPositiveButton
+
+
+                }
+                if (edittectid=="") {
+                    code.error = "Invalid Code Entered"
+                    Toast.makeText(this, "Mentor's code is Invalid!", Toast.LENGTH_SHORT).show()
                     code.requestFocus()
                     return@setPositiveButton
 
@@ -161,14 +170,14 @@ val userNameRef = ref.parent?.child("MentorsCodes")
 
                                     } else {
 
-                                        var codes2 = ((refercode.split("]").first()).split("[").last())
+                                        var codes2 = ((refercode.split("]").first()).split("[").last()).toLowerCase()
                                         var codes = (codes2.split("/"))
 
 
                                         for (i in codes) {
 
 
-                                            if (i == "$edittectid:NB") {
+                                            if (i.toLowerCase() == "$edittectid:NB".toLowerCase()) {
                                                 Toast.makeText(
                                                     this@UserHomeV2,
                                                     "Mentor is Already added\n You didn't book their slots yet",
@@ -187,7 +196,7 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                                         }
 
 
-                                        if (edittectid !in codes2) {
+                                        if (edittectid.toLowerCase() !in codes2) {
                                             var new_mentorid = "$refercode/$mentorid"
                                             userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
                                             Toast.makeText(
@@ -256,6 +265,15 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                 }
                 userNameRef?.addListenerForSingleValueEvent(eventListener)
             } else {
+                val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
+                val eventListener = object : ValueEventListener {
+                    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+                    override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                        //create new user
+
+
+
+                    } else {
               for (e in dataSnapshot.children) {
                             val employee = e.getValue(Data::class.java)
 
@@ -266,7 +284,7 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                                 Alertstatus.width=980
                                 Alertstatus.height=140
                                 Alertstatus.setTextColor(Color.WHITE)
-                                Alertstatus.textSize= 36.0F
+                                Alertstatus.textSize= 34.0F
                             }
                             else{
                                 Alertstatus.text = ""
@@ -280,7 +298,6 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                     }
                 }
                 userNameRef?.addListenerForSingleValueEvent(eventListener)
-
                 createNavBar(user.displayName.toString(), user.email.toString(), savedInstanceState)
             }
 
