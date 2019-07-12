@@ -119,7 +119,7 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                             override fun onCancelled(databaseError: DatabaseError) {
                             }
                         }
-                        userNameRef?.addValueEventListener(eventListener)
+                        userNameRef?.addListenerForSingleValueEvent(eventListener)
 
                     }
                 })

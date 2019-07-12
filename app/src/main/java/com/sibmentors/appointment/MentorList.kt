@@ -45,7 +45,7 @@ class MentorList : AppCompatActivity() {
                         val user = e.getValue(Data::class.java)
                         var referal = user!!.mentorreferal
 
-
+                        mentorList.clear()
                         var mentorlists = referal.split("/")
                         for(i in mentorlists){
                             var mentordetail= i.split(":").first()
@@ -65,7 +65,7 @@ class MentorList : AppCompatActivity() {
                 override fun onCancelled(databaseError: DatabaseError) {
                 }
             }
-            userNameRef?.addListenerForSingleValueEvent(eventListener)
+            userNameRef?.addValueEventListener(eventListener)
 
         }
 
