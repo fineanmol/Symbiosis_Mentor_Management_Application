@@ -189,14 +189,20 @@ private fun deletebookedvalue(
                 var mentor_codes = student?.mentorreferal.toString()
 
                     var temp_list= mentor_codes.split("/").toMutableList()
+
                     var pos=temp_list.indexOf(name+eid+lastvalue+":B")
-                    temp_list[pos]=name+eid+lastvalue+":NB"
+                    if(pos<0){
+                        break
+                    }
+                    else{
+                        temp_list[pos]=name+eid+lastvalue+":NB"
 
-                    Log.d("TAG41",pos.toString())
+                        Log.d("TAG41",pos.toString())
 
-                    var fcodes=temp_list.toString().replace("[","").replace("]","").replace(",","/").replace(" ","")
-                    Log.d("TAG41",fcodes)
-                    ref.parent?.child("users")?.child(student?.id.toString())?.child("mentorreferal")?.setValue(fcodes)
+                        var fcodes=temp_list.toString().replace("[","").replace("]","").replace(",","/").replace(" ","")
+                        Log.d("TAG41",fcodes)
+                        ref.parent?.child("users")?.child(student?.id.toString())?.child("mentorreferal")?.setValue(fcodes)
+                    }
 
 
                 userNameRef.removeEventListener(this)
