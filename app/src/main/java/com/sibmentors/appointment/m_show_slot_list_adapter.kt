@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,19 +85,7 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
         /** User Data Updated Function*/
 
         if (slots.reserved_by != "" && slots.studentId != "") {
-            val userNameRef = ref.parent?.child("users")?.orderByChild("studentId")?.equalTo(slots.studentId)
-            userNameRef?.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
 
-                override fun onDataChange(p0: DataSnapshot) {
-                    for (e in p0.children) {
-                        val student = e.getValue(Data::class.java)
-                        s_id = student?.id.toString()
-                        userref.child(s_id).child("status").setValue("NB")
-                        userNameRef.removeEventListener(this)
-                    }
                     currentUser?.let { user ->
 
                         val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
@@ -127,9 +116,6 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
                 }
 
 
-            })
-
-        }
         if (slots.reserved_by == "") {
             currentUser?.let { user ->
 
@@ -184,11 +170,42 @@ private fun deletebookedvalue(
     slots: BookedData,
     mCtx: Context
 ) {
+    var flag=0
 
     // userref.child(s_id).child("status").setValue("NB")
     var nodeid = name.split(" ").first() + eid + lastvalue
     val myDatabase = FirebaseDatabase.getInstance().getReference("Slots").child(nodeid)
     myDatabase.child(slots.mentorcode).removeValue()
+
+    val ref = FirebaseDatabase.getInstance().getReference("Slots")
+    val userNameRef = ref.parent?.child("users")?.orderByChild("studentId")?.equalTo(slots.studentId)
+    userNameRef?.addValueEventListener(object : ValueEventListener {
+        override fun onCancelled(p0: DatabaseError) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onDataChange(p0: DataSnapshot) {
+            for (e in p0.children) {
+                val student = e.getValue(Data::class.java)
+                var mentor_codes = student?.mentorreferal.toString()
+                if(flag<1){flag++}
+                else{
+                    var temp_list= mentor_codes.split("/").toMutableList()
+                    var pos=temp_list.indexOf(name+eid+lastvalue+":B")
+                    temp_list[pos]=name+eid+lastvalue+":NB"
+
+                    Log.d("TAG41",pos.toString())
+
+                    var fcodes=temp_list.toString().replace("[","").replace("]","").replace(",","/").replace(" ","")
+                    Log.d("TAG41",fcodes)
+                    ref.parent?.child("users")?.child(student?.id.toString())?.child("mentorreferal")?.setValue(fcodes)
+                }
+
+
+                userNameRef.removeEventListener(this)
+            }
+        }
+    })
     Toast.makeText(
         mCtx,
         "Deleted ! \n Please tell ${slots.reserved_by}  to book Again",
