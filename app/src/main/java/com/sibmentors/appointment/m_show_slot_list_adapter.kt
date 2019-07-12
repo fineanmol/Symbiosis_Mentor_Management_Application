@@ -170,7 +170,6 @@ private fun deletebookedvalue(
     slots: BookedData,
     mCtx: Context
 ) {
-    var flag=0
 
     // userref.child(s_id).child("status").setValue("NB")
     var nodeid = name.split(" ").first() + eid + lastvalue
@@ -188,8 +187,7 @@ private fun deletebookedvalue(
             for (e in p0.children) {
                 val student = e.getValue(Data::class.java)
                 var mentor_codes = student?.mentorreferal.toString()
-                if(flag<1){flag++}
-                else{
+
                     var temp_list= mentor_codes.split("/").toMutableList()
                     var pos=temp_list.indexOf(name+eid+lastvalue+":B")
                     temp_list[pos]=name+eid+lastvalue+":NB"
@@ -199,7 +197,6 @@ private fun deletebookedvalue(
                     var fcodes=temp_list.toString().replace("[","").replace("]","").replace(",","/").replace(" ","")
                     Log.d("TAG41",fcodes)
                     ref.parent?.child("users")?.child(student?.id.toString())?.child("mentorreferal")?.setValue(fcodes)
-                }
 
 
                 userNameRef.removeEventListener(this)
