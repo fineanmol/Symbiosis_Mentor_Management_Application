@@ -1,5 +1,8 @@
 package com.sibmentors.appointment
 
-class MentorsCodeArray(val List: String){
+class MentorCodeListData(
+    val List:String
+) {
     constructor() : this("")
+
 }

@@ -96,7 +96,7 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                     } else {
                         for (e in dataSnapshot.children) {
                             val employee = e.getValue(MentorsCodeArray::class.java)
-                            var listcodes = employee?.list
+                            var listcodes = employee?.List
 
 
                                // userref.child(studentkey!!).child("mentorreferal").setValue("")
