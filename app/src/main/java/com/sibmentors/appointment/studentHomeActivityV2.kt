@@ -77,7 +77,7 @@ class UserHomeV2 : AppCompatActivity() {
             startActivity(showintent)
         })
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
+     val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener(View.OnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
@@ -90,61 +90,44 @@ class UserHomeV2 : AppCompatActivity() {
             val code = view.findViewById(R.id.mentor_code) as EditText
 
             builder.setView(view)
+/** Trail 2 Starts*/
+val userNameRef = ref.parent?.child("MentorsCodes")
 
+            val eventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        //create new user
+
+                    } else {
+                        for (ds in dataSnapshot.children) {
+                            val codes = ds.getValue(String::class.java)
+
+
+                               // userref.child(studentkey!!).child("mentorreferal").setValue("")
+                                /*Toast.makeText(
+                                    this@UserHomeV2,
+                                    "Successfully Added!! \nNow you can see their Available Slots\nBook Now!!",
+                                    Toast.LENGTH_SHORT
+                                ).show()*/
+
+
+                        }
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                }
+            }
+            userNameRef?.addListenerForSingleValueEvent(eventListener)
+
+            /** Trail 2 ends*/
             //performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
 
-
                 var edittectid = code.text.toString()
-                /** Trail 2 Starts*/
-              /*  //region Checking MentorCode is Valid or Not
-
-                val userNameRef = ref.parent?.child("MentorsCodes")
-
-                val eventListener = object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        if (!dataSnapshot.exists()) {
-                            //create new user
-
-                        } else {
-                            for (e in dataSnapshot.children) {
-                                val employee = e.getValue(MentorsCodeArray::class.java)
-                                var listcodes = employee!!.list
-
-                                var listfind =listcodes.split(",")
-                                for(i in listfind){
-                                    if(i==edittectid){
-                                        edittectid=""
-                                        break
-
-                                    }
-                                }
-
-
-
-                            }
-                        }
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                    }
-                }
-                userNameRef?.addListenerForSingleValueEvent(eventListener)
-
-
-                //endregion*/
-                /** Trail 2 ends*/
                 if (code.text.isNullOrEmpty()) {
                     code.error = "Field can't be Empty"
                     Toast.makeText(this, "Mentor's code is Required to book their slots !Empty!", Toast.LENGTH_SHORT).show()
-                    code.requestFocus()
-                    return@setPositiveButton
-
-
-                }
-                if (edittectid=="") {
-                    code.error = "Field can't be Empty"
-                    Toast.makeText(this, "This is not a Valid Mentor's Id!", Toast.LENGTH_SHORT).show()
                     code.requestFocus()
                     return@setPositiveButton
 
@@ -178,14 +161,14 @@ class UserHomeV2 : AppCompatActivity() {
 
                                     } else {
 
-                                        var codes2 = ((refercode.split("]").first()).split("[").last()).toLowerCase()
+                                        var codes2 = ((refercode.split("]").first()).split("[").last())
                                         var codes = (codes2.split("/"))
 
 
                                         for (i in codes) {
 
 
-                                            if (i.toLowerCase() == "$edittectid:NB".toLowerCase()) {
+                                            if (i == "$edittectid:NB") {
                                                 Toast.makeText(
                                                     this@UserHomeV2,
                                                     "Mentor is Already added\n You didn't book their slots yet",
@@ -204,7 +187,7 @@ class UserHomeV2 : AppCompatActivity() {
                                         }
 
 
-                                        if (edittectid.toLowerCase() !in codes2) {
+                                        if (edittectid !in codes2) {
                                             var new_mentorid = "$refercode/$mentorid"
                                             userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
                                             Toast.makeText(
@@ -255,13 +238,14 @@ class UserHomeV2 : AppCompatActivity() {
                 val eventListener = object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                         //create new user
-                        Toast.makeText(this@UserHomeV2, "User details not found", Toast.LENGTH_LONG).show()
+
+                      
+                      
                     } else {
                         for (e in dataSnapshot.children) {
                             val employee = e.getValue(Data::class.java)
                             var Name = employee!!.name
                             var Email = employee.email
-
                             Log.d("TAGDDD", Name + Email)
                             createNavBar(Name, Email, savedInstanceState)
                         }
@@ -272,14 +256,7 @@ class UserHomeV2 : AppCompatActivity() {
                 }
                 userNameRef?.addListenerForSingleValueEvent(eventListener)
             } else {
-                val userNameRef = userref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
-                val eventListener = object : ValueEventListener {
-                    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-                    override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
-                        //create new user
-                        Toast.makeText(this@UserHomeV2, "User details not found", Toast.LENGTH_LONG).show()
-                    } else {
-                        for (e in dataSnapshot.children) {
+              for (e in dataSnapshot.children) {
                             val employee = e.getValue(Data::class.java)
 
                             var status=employee!!.status

@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+
+
 
 
 class MentorSlotList : AppCompatActivity() {
@@ -134,47 +137,48 @@ class MentorSlotList : AppCompatActivity() {
                         )
 
                         ref.child(sId).child(mentorcode).setValue(addSlot)
-                        ref1 = FirebaseDatabase.getInstance().getReference("MentorsCodes")
-                        /** This Valu is Coming Empty. need to fix*/
-                        var valu = ""
-                        val userNameRef = ref1.orderByChild("List")
-                        userNameRef?.addValueEventListener(object : ValueEventListener {
-                            override fun onCancelled(p0: DatabaseError) {
-                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                            }
+                        val database = FirebaseDatabase.getInstance()
+                        val myRef = database.getReference("MentorsCodes")
+                        myRef.addValueEventListener(object : ValueEventListener {
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                // This method is called once with the initial value and again
+                                // whenever data at this location is updated.
+                                if (!dataSnapshot.exists()) {
+                                    //create new user
+                                    myRef.child("List").setValue("")
 
-                            override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
-                                Toast.makeText(
-                                    this@MentorSlotList,
-                                    "User Not Registered",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            } else {
-                                val value = dataSnapshot.getValue(MentorCodeListData::class.java)
-                                Log.d("TAG1", "Value is: $value")
-                                valu=value.toString()
-                            }
-                            })
+                                } else {
+                                    for (ds in dataSnapshot.children) {
+                                        val codes = ds.getValue(String::class.java)
+                                        Log.d("TAG", "$codes")
+                                        var valu=codes
 
+                                        if (valu.isNullOrBlank() && valu == "") {
+                                            myRef.child("List").setValue(sId)
+                                        }
+                                        if (valu?.length!! > 2) {
+                                            var dupfind = valu.split(",")
+                                            for (i in dupfind) {
+                                                if (i == sId) {
+                                                    var status = "false"
+                                                    sId = ""
+                                                    break
+                                                }
 
-                        if (valu.isNullOrBlank() && valu=="") {
-                            ref1.child("MentorsCodes").child("List").setValue(sId)
-                        }
-                        if (valu.length > 2) {
-                            var dupfind = valu.split(",")
-                            for (i in dupfind) {
-                                if (i == sId) {
-                                    var status = "false"
-                                    sId = ""
-                                    break
+                                            }
+                                            if (sId != "") {
+                                                valu += ",$sId"
+                                                myRef.child("List").setValue(valu)
+                                            }
+                                        }
+                                    }
                                 }
+                            }
+                            override fun onCancelled(databaseError: DatabaseError) {
+                            }
+                        })
 
-                            }
-                            if (sId !="") {
-                                valu += ",$sId"
-                                ref1.child("MentorsCodes").child("List").setValue(valu)
-                            }
-                        }
+
 
                         Toast.makeText(
                             this@MentorSlotList,
