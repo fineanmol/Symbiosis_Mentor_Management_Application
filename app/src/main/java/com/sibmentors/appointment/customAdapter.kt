@@ -131,10 +131,10 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                                                 Toast.makeText(mCtx, "You have already booked an appointment.", Toast.LENGTH_LONG).show()
                                             }
                                         }
-                                       /* if (status == "NB") {
-                                           // userref.child(studentkey!!).child("status").setValue("B")
 
-                                        }*/
+                                            userref.child(studentkey!!).child("status").setValue("")
+
+
                                     }
                                 }
                             }
