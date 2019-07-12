@@ -181,9 +181,10 @@ class mentorhomev2 : AppCompatActivity() {
 
                                 var newrefercodes = mentorrefercodes.replace(i, "$id:NB")
                                 userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes)
+                              //  userref.child(studentkey!!).child("status").setValue("New Session Available")
                             }
                         }
-                        userref.child(studentkey!!).child("status").setValue("NB")
+                        userref.child(studentkey!!).child("status").setValue("New Session Available !!")
                         Toast.makeText(
                             applicationContext,
                             "Ok, Things are Ready!!  Generate Slots.",

@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -12,11 +13,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginTop
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -51,6 +55,7 @@ class UserHomeV2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home_v2)
+        var Alertstatus= findViewById<TextView>(R.id.textviewstatus)
         new_book_btn.setOnClickListener(View.OnClickListener {
             currentUser?.let { user ->
                 if (user.phoneNumber.isNullOrEmpty()) {
@@ -72,7 +77,7 @@ class UserHomeV2 : AppCompatActivity() {
             startActivity(showintent)
         })
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
+     val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener(View.OnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
@@ -233,7 +238,9 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                 val eventListener = object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                         //create new user
-                        Toast.makeText(this@UserHomeV2, "User details not found", Toast.LENGTH_LONG).show()
+
+                      
+                      
                     } else {
                         for (e in dataSnapshot.children) {
                             val employee = e.getValue(Data::class.java)
@@ -249,6 +256,31 @@ val userNameRef = ref.parent?.child("MentorsCodes")
                 }
                 userNameRef?.addListenerForSingleValueEvent(eventListener)
             } else {
+              for (e in dataSnapshot.children) {
+                            val employee = e.getValue(Data::class.java)
+
+                            var status=employee!!.status
+                            if(!(status == "NB" || status == "")) {
+                                Alertstatus.text=status
+                                Alertstatus.background=getDrawable(R.drawable.roundedbutton)
+                                Alertstatus.width=980
+                                Alertstatus.height=140
+                                Alertstatus.setTextColor(Color.WHITE)
+                                Alertstatus.textSize= 36.0F
+                            }
+                            else{
+                                Alertstatus.text = ""
+                            }
+
+
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                    }
+                }
+                userNameRef?.addListenerForSingleValueEvent(eventListener)
+
                 createNavBar(user.displayName.toString(), user.email.toString(), savedInstanceState)
             }
 
