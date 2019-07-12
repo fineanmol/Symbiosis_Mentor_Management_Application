@@ -89,6 +89,7 @@ class UserHomeV2 : AppCompatActivity() {
             //performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
 
+
                 var edittectid = code.text.toString()
                 /** Trail 2 Starts*/
               /*  //region Checking MentorCode is Valid or Not
@@ -172,14 +173,14 @@ class UserHomeV2 : AppCompatActivity() {
 
                                     } else {
 
-                                        var codes2 = ((refercode.split("]").first()).split("[").last())
+                                        var codes2 = ((refercode.split("]").first()).split("[").last()).toLowerCase()
                                         var codes = (codes2.split("/"))
 
 
                                         for (i in codes) {
 
 
-                                            if (i == "$edittectid:NB") {
+                                            if (i.toLowerCase() == "$edittectid:NB".toLowerCase()) {
                                                 Toast.makeText(
                                                     this@UserHomeV2,
                                                     "Mentor is Already added\n You didn't book their slots yet",
@@ -198,7 +199,7 @@ class UserHomeV2 : AppCompatActivity() {
                                         }
 
 
-                                        if (edittectid !in codes2) {
+                                        if (edittectid.toLowerCase() !in codes2) {
                                             var new_mentorid = "$refercode/$mentorid"
                                             userref.child(studentkey!!).child("mentorreferal").setValue("$new_mentorid")
                                             Toast.makeText(

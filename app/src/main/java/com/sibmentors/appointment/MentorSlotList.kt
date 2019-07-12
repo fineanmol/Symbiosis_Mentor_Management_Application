@@ -134,9 +134,29 @@ class MentorSlotList : AppCompatActivity() {
                         )
 
                         ref.child(sId).child(mentorcode).setValue(addSlot)
-                        ref1 = FirebaseDatabase.getInstance().reference
+                        ref1 = FirebaseDatabase.getInstance().getReference("MentorsCodes")
                         /** This Valu is Coming Empty. need to fix*/
-                        var valu = mentorcodesarray!!.list
+                        var valu = ""
+                        val userNameRef = ref1.orderByChild("List")
+                        userNameRef?.addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(p0: DatabaseError) {
+                                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                            }
+
+                            override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
+                                Toast.makeText(
+                                    this@MentorSlotList,
+                                    "User Not Registered",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                val value = dataSnapshot.getValue(MentorCodeListData::class.java)
+                                Log.d("TAG1", "Value is: $value")
+                                valu=value.toString()
+                            }
+                            })
+
+
                         if (valu.isNullOrBlank() && valu=="") {
                             ref1.child("MentorsCodes").child("List").setValue(sId)
                         }
