@@ -537,12 +537,12 @@ class mentorhomev2 : AppCompatActivity() {
 
 
             }
-            R.id.nav_AboutDeveloper -> {
+           /* R.id.nav_AboutDeveloper -> {
                 Toast.makeText(this, "You click contact us", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, AboutDeveloper::class.java))
 
                 return true
-            }
+            }*/
             R.id.action_logout -> {
                 logout()
                 return true

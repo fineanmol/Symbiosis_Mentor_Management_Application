@@ -15,6 +15,7 @@
             android:theme="@style/MaterialTheme.Light.TranslucentStatus"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MentorList"
+                  android:screenOrientation="portrait"
                   android:label="@string/Mentor_List">
         </activity>
         <activity android:name=".Mentor_refer"
@@ -49,6 +50,8 @@
         <activity android:name=".MentorRegistration">
         </activity>
         <activity android:name=".student_show_reserved_slot_Activity">
+            android:screenOrientation="portrait"
+            android:label="Your Booking"
         </activity>
         <activity
                 android:name=".AppointmentList2"
@@ -61,7 +64,7 @@
         <activity
                 android:name=".mentorhomev2"
                 android:icon="@drawable/property"
-                android:roundIcon="@drawable/property"
+
                 android:screenOrientation="portrait"
                 android:label="@string/title_activity_mentorhomev2"
                 android:theme="@style/CustomTheme"/>
