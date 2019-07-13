@@ -13,12 +13,12 @@
             android:id="@+id/mentorName"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints"
-            android:layout_marginLeft="16dp"
             android:gravity="center"
+            android:fontFamily="@font/yatra_one"
             android:layout_marginStart="16dp"
             android:textAlignment="center"
             android:textAllCaps="true"
-    />
+            android:textStyle="bold"/>
     <TextView
             android:text="Etime"
             android:layout_width="85dp"
@@ -28,8 +28,9 @@
             tools:ignore="MissingConstraints"
             android:textAlignment="center"
             android:gravity="center"
+            android:fontFamily="@font/yatra_one"
             app:layout_constraintStart_toEndOf="@+id/mentorName" android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"/>
+            android:textStyle="bold"/>
     <TextView
             android:text="Date"
             android:layout_width="84dp"
@@ -37,10 +38,11 @@
             android:id="@+id/date"
             android:gravity="center"
             android:textAlignment="center"
+            android:fontFamily="@font/sofia"
             tools:ignore="MissingConstraints"
             app:layout_constraintStart_toEndOf="@+id/mentorId"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"/>
+            android:textStyle="bold"/>
     <Button
             android:layout_width="31dp"
             android:layout_height="39dp"

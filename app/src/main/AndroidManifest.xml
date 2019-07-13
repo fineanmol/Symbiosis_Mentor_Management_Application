@@ -5,12 +5,11 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
             android:theme="@style/MaterialTheme.Light.TranslucentStatus"
@@ -38,10 +37,12 @@
         </activity>
         <activity
                 android:name=".mentorShowSlotActivity"
+                android:label="Manage Session"
                 android:theme="@style/CustomTheme">
         </activity>
         <activity
                 android:name=".UserHomeV2"
+                android:screenOrientation="portrait"
                 android:label="@string/title_activity_user_home_v2"
                 android:theme="@style/CustomTheme">
         </activity>
@@ -59,27 +60,33 @@
         </activity>
         <activity
                 android:name=".mentorhomev2"
+                android:icon="@drawable/property"
+                android:roundIcon="@drawable/property"
+                android:screenOrientation="portrait"
                 android:label="@string/title_activity_mentorhomev2"
-                android:theme="@style/CustomTheme">
-        </activity>
+                android:theme="@style/CustomTheme"/>
         <activity
                 android:name=".MentorSlotList"
+                android:screenOrientation="portrait"
                 android:label="@string/title_activity_locallist">
         </activity>
         <activity
                 android:name=".addSlotActivity"
-                android:label="@string/title__addslot">
-        </activity>
+                android:screenOrientation="portrait"
+                android:label="@string/title__addslot"/>
         <activity
                 android:name=".UserHome"
+                android:screenOrientation="portrait"
                 android:label="Book Slots">
         </activity>
         <activity
                 android:name=".UserSignup"
+                android:screenOrientation="portrait"
                 android:label="@string/title_activity_user_signup">
         </activity>
         <activity
                 android:name=".MainActivity"
+                android:screenOrientation="portrait"
                 android:label="@string/title_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

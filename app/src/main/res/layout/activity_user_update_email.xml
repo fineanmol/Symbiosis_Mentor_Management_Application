@@ -98,6 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="New Email"
+
                     android:fontFamily="@font/yatra_one"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"/>

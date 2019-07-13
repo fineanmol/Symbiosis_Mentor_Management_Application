@@ -18,7 +18,7 @@
                 android:layout_height="?attr/actionBarSize"
 
                 android:minHeight="?attr/actionBarSize"
-                />
+        />
 
     </com.google.android.material.appbar.AppBarLayout>
     <ListView

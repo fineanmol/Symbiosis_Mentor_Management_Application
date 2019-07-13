@@ -7,6 +7,7 @@
           app:showAsAction="never"/>
     <item
             android:id="@+id/submit"
+
             app:showAsAction="always"
             android:title="Submit"/>
 

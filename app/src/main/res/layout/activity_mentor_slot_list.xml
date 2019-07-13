@@ -16,25 +16,27 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_marginTop="25dp"
+
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="?attr/colorAccent"
                 android:minHeight="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        />
 
     </com.google.android.material.appbar.AppBarLayout>
     <TextView
             android:id="@+id/banner"
 
             android:layout_height="wrap_content"
-            android:text="    StartTime        EndTime            Date"
+            android:fontFamily="@font/alegreya_sans_sc_bold_italic"
+            android:text="@string/starttime_endtime_date"
             android:gravity="center"
             android:textAlignment="viewStart"
             android:textColor="#ffffff"
             app:layout_constraintTop_toTopOf="parent"
-           android:layout_marginTop="80dp"
+           android:layout_marginTop="82dp"
             android:layout_width="fill_parent"
             android:textSize="16dip"
-            android:background="@drawable/roundedbutton2"
+            android:background="@drawable/roundedredbutton"
             app:layout_constraintVertical_bias="0.881"/>
     <ListView
             android:layout_marginTop="108dp"

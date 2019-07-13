@@ -32,6 +32,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/image_view"
                     android:enabled="true"
+                    android:fontFamily="@font/mate_sc"
                     android:id="@+id/edit_text_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -112,6 +113,7 @@
 
             <TextView
                     android:textAlignment="center"
+                    android:fontFamily="@font/kurale"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:text="Please wait while we automatically verify your number. If auto verification is not working you can enter the code received as well."
                     android:layout_width="match_parent"
@@ -131,6 +133,7 @@
                     android:id="@+id/edit_text_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/amarante"
                     android:hint="Verification Code"
                     android:inputType="number"
                     android:singleLine="true"/>
@@ -140,6 +143,7 @@
                     android:layout_gravity="center_horizontal"
                     android:textAllCaps="false"
                     android:text="Verify"
+                    android:fontFamily="@font/mate_sc"
                     android:id="@+id/button_verify"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content" android:background="@color/md_red_A700"

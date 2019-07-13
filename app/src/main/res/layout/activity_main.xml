@@ -100,7 +100,7 @@
             android:textSize="16dip"
             app:layout_constraintHorizontal_bias="0.524"
             app:layout_constraintTop_toBottomOf="@+id/loginbtn"
-            android:fontFamily="@font/rosemary"/>
+            android:fontFamily="@font/yatra_one"/>
     <TextView
             android:id="@+id/mentorregister"
             android:layout_height="wrap_content"
@@ -112,7 +112,6 @@
             app:layout_constraintStart_toStartOf="@+id/register"
             android:layout_width="match_parent"
             android:textSize="16dip"
-
             android:fontFamily="@font/architects_daughter"
             android:layout_marginBottom="58dp" android:layout_marginTop="31dp"
             app:layout_constraintVertical_bias="1.0"
