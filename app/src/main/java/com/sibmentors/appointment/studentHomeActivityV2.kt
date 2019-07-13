@@ -130,7 +130,7 @@ class UserHomeV2 : AppCompatActivity() {
                                 val codes = ds.getValue(String::class.java)
                                 Log.d("TAG", "$codes")
                                 var valu=codes.toString()?.split(",")
-                                if(valu.indexOf(edittectid)<0){
+                                if(valu.indexOf(edittectid)<=0){
                                     Toast.makeText(this@UserHomeV2,"Mentor code not found",Toast.LENGTH_LONG).show()
 
                                 }
@@ -289,9 +289,9 @@ class UserHomeV2 : AppCompatActivity() {
                                 Alertstatus.text=status
                                 Alertstatus.background=getDrawable(R.drawable.roundedbutton)
                                 Alertstatus.width=980
-                                Alertstatus.height=140
+                                Alertstatus.height=150
                                 Alertstatus.setTextColor(Color.WHITE)
-                                Alertstatus.textSize= 34.0F
+                                Alertstatus.textSize= 32.0F
                             }
                             else{
                                 Alertstatus.text = ""
