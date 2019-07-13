@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MultipleSlotBooking</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">&#160;&#160;Email</string>
+    <string name="prompt_email">&#160;Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="title_activity_user_signup">New Registration</string>
@@ -59,6 +59,6 @@
         <i>Click below to</i>
         <b>Check details</b>
     </string>
-    <string name="name_mentor_s_code_delete">Name  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Mentor\'s Code &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Delete</string>
+    <string name="name_mentor_s_code_delete">Name  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Mentor\'s Code &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Delete</string>
     <string name="Mentor_List">Mentors List</string>
 </resources>

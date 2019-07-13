@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/alegreya_sans_sc_bold_italic</item>
+        <item>@font/alegreya_sc</item>
+        <item>@font/alegreya_sc_bold_italic</item>
+        <item>@font/alegreya_sc_italic</item>
         <item>@font/amarante</item>
         <item>@font/kurale</item>
+        <item>@font/lobster_two_bold</item>
+        <item>@font/mate_sc</item>
         <item>@font/modern_antiqua</item>
+        <item>@font/montserrat_bold</item>
         <item>@font/nosifer</item>
         <item>@font/yatra_one</item>
     </array>
