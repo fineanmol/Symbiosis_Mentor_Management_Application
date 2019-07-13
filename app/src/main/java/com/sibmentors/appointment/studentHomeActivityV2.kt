@@ -289,9 +289,9 @@ class UserHomeV2 : AppCompatActivity() {
                                 Alertstatus.text=status
                                 Alertstatus.background=getDrawable(R.drawable.roundedbutton)
                                 Alertstatus.width=980
-                                Alertstatus.height=150
+                                Alertstatus.height=140
                                 Alertstatus.setTextColor(Color.WHITE)
-                                Alertstatus.textSize= 32.0F
+                                Alertstatus.textSize= 30.0F
                             }
                             else{
                                 Alertstatus.text = ""
