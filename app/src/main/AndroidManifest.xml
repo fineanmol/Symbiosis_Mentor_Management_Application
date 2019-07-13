@@ -25,16 +25,21 @@
         <activity android:name=".BuyMeACoffee">
         </activity>
         <activity android:name=".passwordReset"
+                  android:screenOrientation="portrait"
                   android:label="Password Reset">
         </activity>
-        <activity android:name=".UserPassUpdate">
+        <activity android:name=".UserPassUpdate"
+                  android:screenOrientation="portrait">
         </activity>
         <activity android:name=".UserEmailUpdate"
+                  android:screenOrientation="portrait"
                   android:label="Email Update">
         </activity>
-        <activity android:name=".UserPhoneVerify">
+        <activity android:name=".UserPhoneVerify"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".UserProfile">
+        <activity android:name=".UserProfile"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".mentorShowSlotActivity"
@@ -49,9 +54,9 @@
         </activity>
         <activity android:name=".MentorRegistration">
         </activity>
-        <activity android:name=".student_show_reserved_slot_Activity">
+        <activity android:name=".student_show_reserved_slot_Activity"
             android:screenOrientation="portrait"
-            android:label="Your Booking"
+            android:label="Your Booking">
         </activity>
         <activity
                 android:name=".AppointmentList2"
