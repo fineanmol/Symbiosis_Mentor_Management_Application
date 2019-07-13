@@ -36,8 +36,9 @@
             android:layout_height="38dp"
             android:gravity="center"
             android:text="Account Registration"
+            android:fontFamily="@font/lobster_two_bold"
             android:textColor="@color/about_libraries_dividerDark_openSource_dark"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:textStyle="bold"
 
             android:layout_centerHorizontal="true"
@@ -60,7 +61,8 @@
         <TextView
                 android:labelFor="@id/name"
                 android:text="Name"
-                android:fontFamily="sans-serif-light"
+
+                android:fontFamily="@font/mate_sc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/about_libraries_card_dark"/>
@@ -73,6 +75,7 @@
                 android:drawablePadding="10dp"
                 android:singleLine="true"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/rosemary"
                 android:hint="John Phill"
                 android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
@@ -80,7 +83,7 @@
         <TextView
                 android:labelFor="@id/u_r_email"
                 android:text="Email"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/mate_sc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
@@ -93,13 +96,14 @@
                 android:drawablePadding="10dp"
                 android:singleLine="true"
                 android:layout_marginBottom="10dp"
+                android:fontFamily="@font/rosemary"
                 android:hint="john@gmail.com"
                 android:inputType="textEmailAddress" android:textColor="#FFFFFF"
                 android:textColorHint="#847F7F"/>
         <TextView
                 android:labelFor="@id/mobile"
                 android:text="Mobile Number"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/mate_sc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
@@ -109,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:id="@+id/mobile"
+                android:fontFamily="@font/rosemary"
                 android:drawableLeft="@drawable/ic_call_black_24dp"
                 android:hint="9876543210"
                 android:inputType="number" android:textColor="#FFFFFF"
@@ -117,7 +122,7 @@
         <TextView
                 android:labelFor="@id/studentid"
                 android:text="Student Id"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/mate_sc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
@@ -130,7 +135,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
 
-
+android:fontFamily="@font/rosemary"
                 android:singleLine="true"
                 android:layout_marginBottom="10dp"
                 android:hint="1523101109"
@@ -140,7 +145,7 @@
         <TextView
                 android:labelFor="@id/u_r_pass"
                 android:text="Password"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="@font/mate_sc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/about_libraries_dividerDark_openSource_dark"/>
@@ -150,6 +155,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
+                android:fontFamily="@font/rosemary"
                 android:id="@+id/u_r_pass"
                 android:drawableLeft="@android:drawable/ic_lock_lock"
                 android:hint="Password"
@@ -162,6 +168,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@color/md_red_A700"
                 android:text="REGISTER"
+                android:fontFamily="@font/architects_daughter"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="18sp"/>
@@ -171,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:text="Already a member? Login"
+                android:fontFamily="@font/yatra_one"
                 android:gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_width="match_parent"

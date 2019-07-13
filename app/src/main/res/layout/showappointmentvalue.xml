@@ -11,7 +11,7 @@
             android:layout_width="299dp"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-
+            android:fontFamily="@font/kurale"
             android:text="Student Name"
             android:textAlignment="center"
             android:textSize="18dp"
@@ -25,21 +25,22 @@
             android:textSize="20dp"
             android:gravity="center"
             android:text="22"
+            android:fontFamily="@font/yatra_one"
             android:layout_below="@+id/student_Name"
-            android:textColorHint="#673AB7"/>
+            android:textColorHint="#673AB7" android:textAllCaps="false" android:textStyle="bold"/>
 
     <TextView
             android:id="@+id/slot_timing"
             android:layout_width="171dp"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:paddingTop="9dp"
             android:text="Slot Timing"
             android:gravity="center"
             android:textAlignment="viewStart"
             android:foregroundGravity="center"
             android:textSize="11dp"
             android:textStyle="bold"
-
+android:fontFamily="@font/rosemary"
             android:layout_toRightOf="@+id/dateslot"
             android:layout_below="@+id/student_Name" android:layout_marginLeft="142dp"
             android:layout_marginTop="-4dp"
@@ -50,24 +51,27 @@
             android:layout_height="wrap_content"
             android:id="@+id/studentno"
             android:gravity="center"
+            android:fontFamily="@font/sofia"
             android:textAlignment="viewStart"
             android:foregroundGravity="center"
             android:layout_below="@+id/dateslot"
             android:layout_alignStart="@+id/student_Name"
-            android:layout_marginStart="236dp"
-            android:layout_marginTop="20dp" tools:ignore="RtlCompat"/>
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="19dp" tools:ignore="RtlCompat" android:textStyle="bold"/>
     <TextView
             android:text="student id"
             android:layout_width="139dp"
             android:layout_height="wrap_content"
 
             android:layout_alignParentRight="false"
-
+            android:fontFamily="@font/sofia"
             android:layout_alignParentEnd="true"
             android:textAlignment="viewStart"
             android:id="@+id/studentid"
             android:layout_marginEnd="2dp"
-            android:gravity="center" android:layout_below="@+id/dateslot" android:layout_marginTop="1dp"/>
+            android:gravity="center" android:layout_below="@+id/dateslot"
+            android:layout_marginTop="0dp"
+            android:textStyle="bold"/>
     <TextView
             android:layout_width="wrap_content"
             android:background="@drawable/ic_call_black_24dp"
@@ -75,10 +79,11 @@
             android:onClick="call"
             android:id="@+id/callbtn" android:layout_below="@+id/dateslot"
             android:gravity="center" android:layout_alignStart="@+id/slot_timing" android:layout_marginTop="19dp"
-            android:layout_marginStart="-59dp"/>
+            android:layout_marginStart="-59dp" android:textStyle="bold"/>
     <TextView
             android:text="Student Id:"
             android:layout_width="78dp"
+            android:fontFamily="@font/yatra_one"
             android:layout_height="wrap_content"
             android:id="@+id/textView2" android:layout_below="@+id/dateslot" android:layout_marginTop="0dp"
             android:layout_toStartOf="@+id/studentid" android:layout_marginRight="6dp" android:layout_marginEnd="6dp"
@@ -88,6 +93,7 @@
             android:layout_width="78dp"
             android:layout_height="25dp"
             android:gravity="center"
+            android:fontFamily="@font/yatra_one"
             android:id="@+id/textView"
             android:layout_below="@+id/student_Name" android:layout_marginTop="0dp"
             android:layout_toStartOf="@+id/studentid" android:layout_marginEnd="17dp"/>

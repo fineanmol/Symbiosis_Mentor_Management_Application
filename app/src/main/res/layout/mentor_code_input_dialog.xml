@@ -9,6 +9,7 @@
             android:id="@+id/mentor_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rosemary"
             android:hint="enter mentor's unique code"
             android:textColorHint="#847F7F"
             android:inputType="text" />
