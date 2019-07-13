@@ -70,7 +70,7 @@ private  fun studentshowtheirbooking(mentorreferal: String) {
     query.addValueEventListener(object : ValueEventListener {
         override fun onDataChange(p0: DataSnapshot) {
             if (p0.exists()) {
-                slotList.clear()
+
                 for (e in p0.children) {
                     val employee = e.getValue(slotsData::class.java)
                     var status = employee!!.status
