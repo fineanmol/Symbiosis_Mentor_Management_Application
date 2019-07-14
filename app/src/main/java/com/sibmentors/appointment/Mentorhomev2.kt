@@ -204,7 +204,12 @@ class Mentorhomev2 : AppCompatActivity() {
 
         // Create a few sample profile
         profile =
-            ProfileDrawerItem().withName(name).withEmail(email).withIcon(resources.getDrawable(R.drawable.profile))
+            ProfileDrawerItem().withName(name).withEmail(email).withTypeface(
+                Typeface.createFromAsset(
+                    applicationContext.assets,
+                    "fonts/sofia.ttf"
+                )
+            ).withIcon(resources.getDrawable(R.drawable.profile))
 
         // Create the AccountHeader
         buildHeader(false, savedInstanceState)
