@@ -69,7 +69,6 @@
             android:text="Slot Timing:"
             android:layout_width="82dp"
             android:layout_height="26dp"
-            android:id="@+id/textView3"
             android:textAlignment="viewEnd"
             android:layout_marginTop="116dp"
             android:fontFamily="@font/amarante"

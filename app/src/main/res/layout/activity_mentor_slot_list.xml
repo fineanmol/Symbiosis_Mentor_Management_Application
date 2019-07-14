@@ -24,7 +24,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
     <TextView
-            android:id="@+id/banner"
 
             android:layout_height="wrap_content"
             android:fontFamily="@font/alegreya_sans_sc_bold_italic"

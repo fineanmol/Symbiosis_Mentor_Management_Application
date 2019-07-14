@@ -40,5 +40,5 @@
             android:gravity="center"
             app:layout_constraintTop_toTopOf="@id/mentorlistview"
             android:background="@drawable/roundedbutton"
-            android:id="@+id/textView6" android:fontFamily="@font/alegreya_sc_bold_italic"/>
+            android:fontFamily="@font/alegreya_sc_bold_italic"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

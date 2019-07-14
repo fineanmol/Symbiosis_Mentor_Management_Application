@@ -91,7 +91,6 @@
             android:text="Status: "
             android:layout_width="68dp"
             android:layout_height="37dp"
-            android:id="@+id/textView8"
             android:textColor="#1E88E5"
             android:fontFamily="@font/mate_sc"
             android:layout_alignStart="@+id/dateslot"

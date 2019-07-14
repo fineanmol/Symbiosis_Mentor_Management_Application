@@ -41,7 +41,7 @@
                 android:textSize="30dp"
                 android:fontFamily="@font/amarante"
                 android:layout_marginLeft="20dp"
-                android:id="@+id/textView4"/>
+        />
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -93,7 +93,7 @@
                 android:text="Your Booking at :"
                 android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView5" android:fontFamily="@font/kurale"/>
+                android:layout_height="wrap_content" android:fontFamily="@font/kurale"/>
     </androidx.cardview.widget.CardView>
 
 
