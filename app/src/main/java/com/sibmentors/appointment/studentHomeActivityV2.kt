@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -86,12 +87,13 @@ class UserHomeV2 : AppCompatActivity() {
             builder.setTitle("Enter Mentor's Code here")
             //set message for alert dialog
             builder.setMessage("\nEnter your mentor's code here, so you can see that mentor's available bookings\nIts only one time process for a particular mentor!")
-            builder.setIcon(android.R.drawable.ic_dialog_alert)
+            builder.setIcon(android.R.drawable.btn_plus)
             val view = layoutInflater.inflate(R.layout.mentor_code_input_dialog, null)
 
             val code = view.findViewById(R.id.mentor_code) as EditText
 
             builder.setView(view)
+
 
             //performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
@@ -322,6 +324,9 @@ class UserHomeV2 : AppCompatActivity() {
         // Create a few sample profile
         profile =
             ProfileDrawerItem().withName(name).withEmail(email).withIcon(resources.getDrawable(R.drawable.profile))
+                .withTypeface(
+                    Typeface.DEFAULT_BOLD
+                )
 
 
         // Create the AccountHeader
@@ -339,13 +344,13 @@ class UserHomeV2 : AppCompatActivity() {
                             startActivity(Intent(this@UserHomeV2, UserHomeV2::class.java))
                             return false
                         }
-                    }),
+                    }).withTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")),
                 //here we use a customPrimaryDrawerItem we defined in our sample app
                 //this custom DrawerItem extends the PrimaryDrawerItem so it just overwrites some methods
 
                 CustomPrimaryDrawerItem().withBackgroundRes(R.color.accent).withName("Book Appointment").withDescription(
                     "Book Scheduled Slots"
-                )
+                ).withTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf"))
                     .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             currentUser?.let { user ->
@@ -376,7 +381,7 @@ class UserHomeV2 : AppCompatActivity() {
                         }
                     }).withIcon(
                     FontAwesome.Icon.faw_eye
-                ),
+                ).withTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")),
                 CustomUrlPrimaryDrawerItem().withName("Your Mentors").withDescription("Your list of Mentors").withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
@@ -386,16 +391,26 @@ class UserHomeV2 : AppCompatActivity() {
                         }
                     }).withIcon(
                     FontAwesome.Icon.faw_people_carry
-                ),
+                ).withTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")),
                 CustomUrlPrimaryDrawerItem().withEnabled(
                     false
                 ).withName("New Things Coming Up").withDescription("Be Connected").withEnabled(
                     false
                 ).withIcon(
                     FontAwesome.Icon.faw_grin
+                ).withTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/architects_daughter.ttf")),
+                SectionDrawerItem().withName(R.string.drawer_item_section_header).withTypeface(
+                    Typeface.createFromAsset(
+                        applicationContext.assets,
+                        "fonts/sofia.ttf"
+                    )
                 ),
-                SectionDrawerItem().withName(R.string.drawer_item_section_header),
-                SecondaryDrawerItem().withName("Share").withIcon(FontAwesome.Icon.faw_share_alt).withOnDrawerItemClickListener(
+                SecondaryDrawerItem().withName("Share").withIcon(FontAwesome.Icon.faw_share_alt).withTypeface(
+                    Typeface.createFromAsset(
+                        applicationContext.assets,
+                        "fonts/mate_sc.ttf"
+                    )
+                ).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
@@ -414,7 +429,9 @@ class UserHomeV2 : AppCompatActivity() {
                     }),
                 SecondaryDrawerItem().withName(R.string.drawer_item_contact).withSelectedIconColor(Color.RED).withIconTintingEnabled(
                     true
-                ).withIcon(FontAwesome.Icon.faw_instagram).withTag("Bullhorn").withOnDrawerItemClickListener(
+                ).withTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/rosemary.ttf")).withIcon(
+                    FontAwesome.Icon.faw_instagram
+                ).withTag("Bullhorn").withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             val uri = Uri.parse("http://instagram.com/nightowldevelopers")
@@ -436,7 +453,9 @@ class UserHomeV2 : AppCompatActivity() {
                             return false
                         }
                     }),
-                SecondaryDrawerItem().withName("Buy me a Coffee").withIcon(FontAwesome.Icon.faw_coffee).withEnabled(
+                SecondaryDrawerItem().withName("Buy me a Coffee").withIcon(FontAwesome.Icon.faw_coffee).withTypeface(
+                    Typeface.createFromAsset(applicationContext.assets, "fonts/architects_daughter.ttf")
+                ).withEnabled(
                     false
                 ).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
@@ -448,77 +467,9 @@ class UserHomeV2 : AppCompatActivity() {
                             return false
                         }
                     }),
-                SecondaryDrawerItem().withName(R.string.drawer_item_open_source).withIcon(FontAwesome.Icon.faw_github).withOnDrawerItemClickListener(
-                    object : Drawer.OnDrawerItemClickListener {
-                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            val uri =
-                                Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
-                            val intent = Intent(Intent.ACTION_VIEW, uri)
-                            startActivity(intent)
-                            return false
-                        }
-                    }),
-                SecondaryDrawerItem().withName("Developer").withIcon(FontAwesome.Icon.faw_question).withEnabled(
-                    enabled = true
+                SecondaryDrawerItem().withName("Rate on Playstore").withIcon(FontAwesome.Icon.faw_star1).withTypeface(
+                    Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")
                 ).withOnDrawerItemClickListener(
-                    object : Drawer.OnDrawerItemClickListener {
-                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            startActivity(Intent(this@UserHomeV2, AboutDeveloper::class.java))
-                            return false
-                        }
-                    })
-            ) // add the items we want to use with our Drawer
-            .withOnDrawerNavigationListener(object : Drawer.OnDrawerNavigationListener {
-                override fun onNavigationClickListener(clickedView: View): Boolean {
-                    //this method is only called if the Arrow icon is shown. The hamburger is automatically managed by the MaterialDrawer
-                    //if the back arrow is shown. close the activity
-                    this@UserHomeV2.finish()
-                    //return true if we have consumed the event
-                    return true
-                }
-            })
-            .addStickyDrawerItems(
-                SecondaryDrawerItem().withName("Help & Feedback").withIcon(FontAwesome.Icon.faw_hire_a_helper).withIdentifier(
-                    10
-                ).withOnDrawerItemClickListener(
-                    object : Drawer.OnDrawerItemClickListener {
-                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            val intent = Intent(
-                                Intent.ACTION_SENDTO, Uri.fromParts(
-                                    "mailto", "agarwal.anmol2004@gmail.com", null
-                                )
-                            )
-                            intent.putExtra(Intent.EXTRA_SUBJECT, "Report of Bugs,Improvements")
-                            intent.putExtra(Intent.EXTRA_TEXT, android.R.id.message)
-                            startActivity(Intent.createChooser(intent, "Choose an Email client :"))
-
-                            return false
-                        }
-                    }),
-                SecondaryDrawerItem().withName(R.string.drawer_item_open_source).withIcon(FontAwesome.Icon.faw_github).withOnDrawerItemClickListener(
-                    object : Drawer.OnDrawerItemClickListener {
-                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            val uri =
-                                Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
-                            val intent = Intent(Intent.ACTION_VIEW, uri)
-                            startActivity(intent)
-                            return false
-                        }
-                    })
-            )
-            .withSavedInstance(savedInstanceState)
-            .build()
-    }
-
-    private fun buildHeader(compact: Boolean, savedInstanceState: Bundle?) {
-        // Create the AccountHeader
-        headerResult = AccountHeaderBuilder()
-            .withActivity(this)
-            .withHeaderBackground(R.drawable.header)
-            .withCompactStyle(compact)
-            .addProfiles(
-                profile,
-                ProfileSettingDrawerItem().withName("Rate on Playstore").withIcon(FontAwesome.Icon.faw_star1).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             //  Toast.makeText(this@UserHomeV2,this@UserHomeV2.packageName,Toast.LENGTH_LONG).show()
@@ -545,7 +496,107 @@ class UserHomeV2 : AppCompatActivity() {
                             return false
                         }
                     }),
-                ProfileSettingDrawerItem().withName("Manage Account").withOnDrawerItemClickListener(
+                SecondaryDrawerItem().withName("Developer").withIcon(FontAwesome.Icon.faw_question).withTypeface(
+                    Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")
+                ).withEnabled(
+                    enabled = true
+                ).withOnDrawerItemClickListener(
+                    object : Drawer.OnDrawerItemClickListener {
+                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                            startActivity(Intent(this@UserHomeV2, AboutDeveloper::class.java))
+                            return false
+                        }
+                    })
+            ) // add the items we want to use with our Drawer
+            .withOnDrawerNavigationListener(object : Drawer.OnDrawerNavigationListener {
+                override fun onNavigationClickListener(clickedView: View): Boolean {
+                    //this method is only called if the Arrow icon is shown. The hamburger is automatically managed by the MaterialDrawer
+                    //if the back arrow is shown. close the activity
+                    this@UserHomeV2.finish()
+                    //return true if we have consumed the event
+                    return true
+                }
+            })
+            .addStickyDrawerItems(
+                SecondaryDrawerItem().withName("Help & Feedback").withIcon(FontAwesome.Icon.faw_hire_a_helper).withTypeface(
+                    Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")
+                ).withIdentifier(
+                    10
+                ).withOnDrawerItemClickListener(
+                    object : Drawer.OnDrawerItemClickListener {
+                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                            val intent = Intent(
+                                Intent.ACTION_SENDTO, Uri.fromParts(
+                                    "mailto", "agarwal.anmol2004@gmail.com", null
+                                )
+                            )
+                            intent.putExtra(Intent.EXTRA_SUBJECT, "Report of Bugs,Improvements")
+                            intent.putExtra(Intent.EXTRA_TEXT, android.R.id.message)
+                            startActivity(Intent.createChooser(intent, "Choose an Email client :"))
+
+                            return false
+                        }
+                    }),
+                SecondaryDrawerItem().withName(R.string.drawer_item_open_source).withIcon(FontAwesome.Icon.faw_github).withTypeface(
+                    Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")
+                ).withOnDrawerItemClickListener(
+                    object : Drawer.OnDrawerItemClickListener {
+                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                            val uri =
+                                Uri.parse("https://github.com/fineanmol/SlotBooking") // missing 'http://' will cause crashed
+                            val intent = Intent(Intent.ACTION_VIEW, uri)
+                            startActivity(intent)
+                            return false
+                        }
+                    })
+            )
+            .withSavedInstance(savedInstanceState)
+            .build()
+    }
+
+    private fun buildHeader(compact: Boolean, savedInstanceState: Bundle?) {
+        // Create the AccountHeader
+        headerResult = AccountHeaderBuilder()
+            .withActivity(this)
+            .withHeaderBackground(R.drawable.header)
+            .withCompactStyle(compact)
+            .addProfiles(
+                profile,
+                ProfileSettingDrawerItem().withName("Rate on Playstore").withIcon(FontAwesome.Icon.faw_star1).withTypeface(
+                    Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")
+                ).withOnDrawerItemClickListener(
+                    object : Drawer.OnDrawerItemClickListener {
+                        override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
+                            //  Toast.makeText(this@UserHomeV2,this@UserHomeV2.packageName,Toast.LENGTH_LONG).show()
+                            val uri = Uri.parse("market://details?id=" + this@UserHomeV2.packageName)
+                            val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+                            // To count with Play market backstack, After pressing back button,
+                            // to taken back to our application, we need to add following flags to intent.
+                            goToMarket.addFlags(
+                                Intent.FLAG_ACTIVITY_NO_HISTORY or
+                                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+                            )
+                            try {
+                                startActivity(goToMarket)
+                            } catch (e: ActivityNotFoundException) {
+                                startActivity(
+                                    Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("http://play.google.com/store/apps/details?id=" + this@UserHomeV2.packageName)
+                                    )
+                                )
+                            }
+
+                            return false
+                        }
+                    }),
+                ProfileSettingDrawerItem().withName("Manage Account").withTypeface(
+                    Typeface.createFromAsset(
+                        applicationContext.assets,
+                        "fonts/rosemary.ttf"
+                    )
+                ).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             //Toast.makeText(this@UserHomeV2,this@UserHomeV2.packageName,Toast.LENGTH_LONG).show()
@@ -554,7 +605,9 @@ class UserHomeV2 : AppCompatActivity() {
                         }
                     }).withIcon(GoogleMaterial.Icon.gmd_settings)
                 ,
-                ProfileSettingDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out_alt).withOnDrawerItemClickListener(
+                ProfileSettingDrawerItem().withName("Logout").withIcon(FontAwesome.Icon.faw_sign_out_alt).withTypeface(
+                    Typeface.createFromAsset(applicationContext.assets, "fonts/rosemary.ttf")
+                ).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
                             logout()

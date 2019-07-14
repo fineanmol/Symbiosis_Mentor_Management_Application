@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/dateslot"
             android:background="@color/md_red_A700"
-            android:text="Book" android:layout_marginLeft="237dp"
+            android:text="Book" android:layout_marginLeft="190dp"
             android:fontFamily="@font/nosifer"
             android:textColor="#FBF4EFF2"
     />

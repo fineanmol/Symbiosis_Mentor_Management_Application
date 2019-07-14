@@ -55,13 +55,13 @@
         <b>Book an Appointment Now !!</b>
     </string>
     <string name="manage_mentor_list">Want to check mentor/s in account?\n
-        Check it Here!
+        <b>Check it Here!</b>
     </string>
     <string name="add_mentor">Want to add mentor to your account?\n
-        Add it Here!
+        <b>Add it Here!</b>
     </string>
     <string name="already_booked_show">Ready for Appointment \n
-        <i>Click below to</i>
+        <i>Click below to</i>\n
         <b>Check details</b>
     </string>
     <string name="name_mentor_s_code_delete">Name  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Mentor\'s Code &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Delete</string>

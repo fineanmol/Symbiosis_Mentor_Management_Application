@@ -29,6 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/ic_add_orange_24dp" tools:ignore="VectorDrawableCompat"/>
+            app:srcCompat="@drawable/userfabicon1" tools:ignore="VectorDrawableCompat"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
