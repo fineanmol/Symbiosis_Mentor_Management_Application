@@ -20,16 +20,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginTop
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.mikepenz.iconics.IconicsColor
-import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.IconicsSize
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.typeface.library.googlematerial.GoogleMaterial
 import com.mikepenz.materialdrawer.AccountHeader
@@ -76,6 +72,10 @@ class UserHomeV2 : AppCompatActivity() {
         })
         show_appointment_btn.setOnClickListener(View.OnClickListener {
             var showintent = Intent(this, student_show_reserved_slot_Activity::class.java)
+            startActivity(showintent)
+        })
+        show_referal_list.setOnClickListener(View.OnClickListener {
+            var showintent = Intent(this, MentorList::class.java)
             startActivity(showintent)
         })
 
@@ -129,7 +129,7 @@ class UserHomeV2 : AppCompatActivity() {
                             for (ds in dataSnapshot.children) {
                                 val codes = ds.getValue(String::class.java)
                                 Log.d("TAG", "$codes")
-                                var valu=codes.toString()?.split(",")
+                                var valu = codes.toString().split(",")
                                 if(valu.indexOf(edittectid)<=0){
                                     Toast.makeText(this@UserHomeV2,"Mentor code not found",Toast.LENGTH_LONG).show()
 
