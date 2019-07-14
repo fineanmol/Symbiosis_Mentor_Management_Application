@@ -7,12 +7,12 @@ class BookedData(
     val date: String,
     val generated_by: String,
     val reserved_by: String,
-    val studentId:String,
-    val studentNumber:String,
-    val status:String,
-    val mentorcode:String
+    val studentId: String,
+    val studentNumber: String,
+    val status: String,
+    val mentorcode: String
 
 ) {
-    constructor() : this("", ("").split("[").last(), "", ("").split("]").first(), "", "", "", "", "","")
+    constructor() : this("", ("").split("[").last(), "", ("").split("]").first(), "", "", "", "", "", "")
 
 }

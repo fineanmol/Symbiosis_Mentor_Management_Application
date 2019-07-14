@@ -83,7 +83,6 @@ class addSlotActivity : AppCompatActivity() {
             }
 
 
-
             var StimeHH = Stime.split(":").first().toString()
             var StimeMM = Stime.split(":").last().split(" ").first().toString()
             var StimeHour = Stime.split(":").last().split(" ").last()
@@ -241,7 +240,7 @@ class addSlotActivity : AppCompatActivity() {
             if (dif < dateObj2.time) {
 
 
-                while (dif < dateObj2.time ) {
+                while (dif < dateObj2.time) {
                     val slot1 = Date(dif)
                     dif += slotDuration.toInt() * 60 * 1000
                     val slot2 = Date(dif)
@@ -277,9 +276,6 @@ class addSlotActivity : AppCompatActivity() {
 
         }
     }
-
-
-
 
 
     override fun onBackPressed() {

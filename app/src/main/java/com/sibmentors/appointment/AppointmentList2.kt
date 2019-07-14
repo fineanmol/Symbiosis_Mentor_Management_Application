@@ -40,15 +40,19 @@ class AppointmentList2 : AppCompatActivity() {
             val eventListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                     //create new user
-                    Toast.makeText(this@AppointmentList2, "User details not found,\nTry Again or Contact Developer", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        this@AppointmentList2,
+                        "User details not found,\nTry Again or Contact Developer",
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 } else {
-                    var lastvalue="Slots"
+                    var lastvalue = "Slots"
                     for (e in dataSnapshot.children) {
                         val employee = e.getValue(Data::class.java)
                         var name = (employee!!.name).split(" ").first()
                         var eid = employee.studentId
-                        appointlist(name, eid,lastvalue)
+                        appointlist(name, eid, lastvalue)
 
 
                     }
@@ -63,11 +67,9 @@ class AppointmentList2 : AppCompatActivity() {
         //endregion
 
 
-
     }
 
-    private fun appointlist(name: String, eid: String, lastvalue: String)
-    {
+    private fun appointlist(name: String, eid: String, lastvalue: String) {
         //region Appointment List Code
         val calendar = Calendar.getInstance()
         var month = calendar.get(Calendar.MONTH)
@@ -150,7 +152,7 @@ class AppointmentList2 : AppCompatActivity() {
                                     }
                                 }
                                 val adapter =
-                                    customAdapter2(this@AppointmentList2, R.layout.showappointmentvalue, slotList)
+                                    CustomAdapter2(this@AppointmentList2, R.layout.showappointmentvalue, slotList)
                                 listview.adapter = adapter
                             }
                         }
@@ -168,6 +170,7 @@ class AppointmentList2 : AppCompatActivity() {
         }
         //endregion
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.backarrow, menu)

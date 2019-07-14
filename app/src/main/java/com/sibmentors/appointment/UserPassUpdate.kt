@@ -22,7 +22,6 @@ class UserPassUpdate : AppCompatActivity() {
     val ref = FirebaseDatabase.getInstance().getReference("users")
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_update_pass)
@@ -108,7 +107,7 @@ class UserPassUpdate : AppCompatActivity() {
                             })
 
                             this.toast("Password Updated")
-                            var passIntent= Intent(this,UserProfile::class.java)
+                            var passIntent = Intent(this, UserProfile::class.java)
                             startActivity(passIntent)
 
                         } else {
@@ -118,10 +117,11 @@ class UserPassUpdate : AppCompatActivity() {
             }
         }
     }
+
     override fun onBackPressed() {
         // super.onBackPressed();
         // Not calling **super**, disables back button in current screen.
-        var intent= Intent(this,UserProfile::class.java)
+        var intent = Intent(this, UserProfile::class.java)
         startActivity(intent)
     }
 

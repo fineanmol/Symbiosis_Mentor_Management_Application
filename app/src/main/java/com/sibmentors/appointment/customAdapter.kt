@@ -3,8 +3,6 @@ package com.sibmentors.appointment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -109,31 +106,36 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
 
                                         var mentorcodes = mentorrefercodes.split("/")
                                         for (i in mentorcodes) {
-                                            if (i.split(":").last() == "NB" && i.split(":").first()==id) {
+                                            if (i.split(":").last() == "NB" && i.split(":").first() == id) {
 
-                                                var newrefercodes=mentorrefercodes.replace(i,"$id:B")
-                                                userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes)
-                                                ref.child(id).child(slot.mentorcode).child("studentNumber").setValue(phone)
+                                                var newrefercodes = mentorrefercodes.replace(i, "$id:B")
+                                                userref.child(studentkey!!).child("mentorreferal")
+                                                    .setValue(newrefercodes)
+                                                ref.child(id).child(slot.mentorcode).child("studentNumber")
+                                                    .setValue(phone)
                                                 ref.child(id).child(slot.mentorcode).child("reserved_by")
                                                     .setValue(studentName)
-                                                ref.child(id).child(slot.mentorcode).child("studentId").setValue(studentId)
+                                                ref.child(id).child(slot.mentorcode).child("studentId")
+                                                    .setValue(studentId)
                                                 ref.child(id).child(slot.mentorcode).child("status").setValue("B")
                                                 Toast.makeText(
                                                     mCtx,
                                                     "$studentName Appointment Booked! \n at: ${time.text}",
                                                     Toast.LENGTH_LONG
                                                 ).show()
-                                                book.text="Booked!"
+                                                book.text = "Booked!"
                                                 book.setBackgroundColor(R.color.material_drawer_dark_selected)
-                                                userref.child(studentkey!!).child("status").setValue("")
+                                                userref.child(studentkey).child("status").setValue("")
                                             }
-                                            if (i.split(":").last() == "B" && i.split(":").first()==id) {
+                                            if (i.split(":").last() == "B" && i.split(":").first() == id) {
 
-                                                Toast.makeText(mCtx, "You have already booked an appointment.", Toast.LENGTH_LONG).show()
+                                                Toast.makeText(
+                                                    mCtx,
+                                                    "You have already booked an appointment.",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
                                             }
                                         }
-
-
 
 
                                     }

@@ -1,6 +1,5 @@
 package com.sibmentors.appointment
 
-import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -14,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 
-class CustomAdapter2(val mCtx: Context, val layoutId: Int, val slotList: List<slotsData>) :
+class customAdapter2(val mCtx: Context, val layoutId: Int, val slotList: List<slotsData>) :
     ArrayAdapter<slotsData>(mCtx, layoutId, slotList) {
     val currentUser = FirebaseAuth.getInstance().currentUser
     val ref = FirebaseDatabase.getInstance().getReference("Slots")
@@ -22,7 +21,6 @@ class CustomAdapter2(val mCtx: Context, val layoutId: Int, val slotList: List<sl
     private var myClipboard: ClipboardManager? = null
     private var myClip: ClipData? = null
 
-    @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val layoutInflater: LayoutInflater = LayoutInflater.from(mCtx)
@@ -42,19 +40,19 @@ class CustomAdapter2(val mCtx: Context, val layoutId: Int, val slotList: List<sl
 
         name.text = "Name: ${slot.reserved_by}"
         date.text = "${slot.date.split("/").first()} - ${slot.date.split("/")[1]}"
-        number.text = slot.studentNumber
+        number.text = "${slot.studentNumber}"
         studentId.text = slot.studentId
-        slotTiming.text = slot.begins_At.split("[").last() + ("-") + slot.stop_At
+        slotTiming.text = slot.begins_At.split("[").last().toString() + ("-").toString() + slot.stop_At
         call.setOnClickListener(View.OnClickListener {
             Toast.makeText(mCtx, "Number is ${slot.studentNumber}", Toast.LENGTH_LONG).show()
             try {
-                /*      val call = Intent(Intent.ACTION_CALL,Uri.parse("tel:${slot.studentNumber}"))
+          /*      val call = Intent(Intent.ACTION_CALL,Uri.parse("tel:${slot.studentNumber}"))
 
-                  call.data = Uri.parse("tel:${slot.studentNumber}")
-                      startActivity(mCtx,call,null)
-                      val callIntent = Intent(mCtx,UserHomeV2::class.java)
+            call.data = Uri.parse("tel:${slot.studentNumber}")
+                startActivity(mCtx,call,null)
+                val callIntent = Intent(mCtx,UserHomeV2::class.java)
 
-                      startActivity(mCtx,callIntent, Bundle.EMPTY)*/
+                startActivity(mCtx,callIntent, Bundle.EMPTY)*/
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -64,7 +62,7 @@ class CustomAdapter2(val mCtx: Context, val layoutId: Int, val slotList: List<sl
         })
         return view
     }
-
+  
 
 }
 
