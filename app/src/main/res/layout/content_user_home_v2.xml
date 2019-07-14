@@ -104,6 +104,7 @@
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:id="@+id/show_referal_list"
+            android:fontFamily="@font/kurale"
             android:background="@color/md_red_A700" android:textAllCaps="false"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@+id/divider4" android:layout_marginTop="28dp"
@@ -126,10 +127,12 @@
             android:layout_marginTop="64dp" android:layout_marginBottom="8dp"/>
     <ImageView
             android:layout_width="113dp"
-            android:layout_height="141dp" app:srcCompat="@drawable/arrow"
+            android:layout_height="141dp" app:srcCompat="@drawable/downarrow"
             android:id="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/divider4"
-            app:layout_constraintHorizontal_bias="0.184" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView13"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintHorizontal_bias="2.284"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="2.0"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
