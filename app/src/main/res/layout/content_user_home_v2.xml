@@ -130,9 +130,9 @@
             android:layout_height="141dp" app:srcCompat="@drawable/downarrow"
             android:id="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/divider4"
-            app:layout_constraintHorizontal_bias="2.284"
+            app:layout_constraintHorizontal_bias="0.63"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
-            app:layout_constraintVertical_bias="2.0"/>
+            app:layout_constraintVertical_bias="0.129"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

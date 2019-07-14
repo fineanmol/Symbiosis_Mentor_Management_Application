@@ -345,8 +345,7 @@ class UserHomeV2 : AppCompatActivity() {
                             return false
                         }
                     }).withTypeface(Typeface.createFromAsset(applicationContext.assets, "fonts/mate_sc.ttf")),
-                //here we use a customPrimaryDrawerItem we defined in our sample app
-                //this custom DrawerItem extends the PrimaryDrawerItem so it just overwrites some methods
+
 
                 CustomPrimaryDrawerItem().withBackgroundRes(R.color.accent).withName("Book Appointment").withDescription(
                     "Book Scheduled Slots"
