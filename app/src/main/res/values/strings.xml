@@ -11,8 +11,14 @@
     <string name="title__addslot">Add Slot</string>
     <string name="title_appointmentList">Appointment List</string>
     <string name="title_aboutdeveloper">About Developer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">Slot Booking</string>
+    <string name="nav_header_desc">Navigation header</string>
     <string name="action_logout">Logout</string>
 
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
     <string name="title_activity_user_home_v2">Student Home</string>
 
 
@@ -48,6 +54,12 @@
 
     <string name="newooking">Need any Assistance? \n
         <b>Book an Appointment Now !!</b>
+    </string>
+    <string name="manage_mentor_list">Want to check mentor/s in account?\n
+        Check it Here!
+    </string>
+    <string name="add_mentor">Want to add mentor to your account?\n
+        Add it Here!
     </string>
     <string name="already_booked_show">Ready for Appointment \n
         <i>Click below to</i>

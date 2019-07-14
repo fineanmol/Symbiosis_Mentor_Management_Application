@@ -19,33 +19,30 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorAccent"
                 android:minHeight="?attr/actionBarSize"
-                />
+        />
 
     </com.google.android.material.appbar.AppBarLayout>
     <Spinner
             android:id="@+id/spinner"
             android:layout_width="368dp"
-            android:layout_height="82dp"
-            
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="-2dp"
+            android:layout_height="wrap_content"
+
             android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/appointmentList"
-            app:layout_constraintVertical_bias="0.703"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.488" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/appointmentList"/>
 
     <ListView
             android:id="@+id/appointmentList"
-            android:layout_width="403dp"
-            android:layout_height="557dp"
+            android:layout_width="395dp"
+            android:layout_height="632dp"
             android:listSelector="@android:color/transparent"
             android:cacheColorHint="@android:color/transparent"
             android:divider="@null"
             android:dividerHeight="10dp" tools:ignore="MissingConstraints"
-            app:layout_constraintBottom_toBottomOf="parent" tools:layout_editor_absoluteX="3dp"
-            android:background="@color/about_libraries_special_button_openSource_dark"/>
+            android:background="@color/about_libraries_special_button_openSource_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/spinner"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

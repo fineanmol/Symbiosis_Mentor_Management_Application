@@ -7,21 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".Mentor_refer"
         android:background="#ffffff">
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay" tools:ignore="MissingConstraints">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_marginTop="28dp"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorAccent"
-                android:minHeight="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
             android:layout_width="match_parent"
@@ -40,10 +26,10 @@
 
             android:fontFamily="@font/kurale"
             android:id="@+id/mentorrefertext"
-            android:layout_marginBottom="230dp"
-            app:layout_constraintBottom_toBottomOf="@+id/refer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/refer"
+            app:layout_constraintEnd_toStartOf="@+id/refer"
+            app:layout_constraintTop_toBottomOf="@+id/refer" app:layout_constraintBottom_toTopOf="@+id/refer"
+            app:layout_constraintVertical_bias="0.328" app:layout_constraintHorizontal_bias="0.5"/>
     <TextView
             android:text="SHARE WITH YOUR STUDENTS"
             android:layout_width="250dp"
@@ -51,8 +37,10 @@
             android:textColor="#F7F6F6"
             android:gravity="center"
             android:fontFamily="@font/yatra_one"
-            android:background="@drawable/roundedbutton2"
-            android:id="@+id/invitebtn" android:layout_marginBottom="26dp"
-            app:layout_constraintBottom_toBottomOf="@+id/refer" android:layout_marginStart="60dp"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:background="@color/md_red_A700"
+            android:id="@+id/invitebtn"
+            app:layout_constraintStart_toEndOf="@+id/refer"
+            app:layout_constraintEnd_toStartOf="@+id/refer"
+            app:layout_constraintTop_toBottomOf="@+id/refer" app:layout_constraintBottom_toTopOf="@+id/refer"
+            app:layout_constraintVertical_bias="0.127" app:layout_constraintHorizontal_bias="0.5"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

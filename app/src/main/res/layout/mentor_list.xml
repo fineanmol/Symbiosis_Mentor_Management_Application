@@ -36,9 +36,9 @@
             android:layout_width="match_parent"
             android:layout_marginTop="80dp"
             android:layout_height="34dp"
-            android:textColor="#000000"
+            android:textColor="@color/about_libraries_special_button_openSource_dark"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="@id/mentorlistview"
-            android:background="@drawable/roundedbutton"
+            android:background="@color/md_blue_A700"
             android:fontFamily="@font/alegreya_sc_bold_italic"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

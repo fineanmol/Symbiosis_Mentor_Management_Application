@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
 
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay" tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -32,11 +32,11 @@
             android:textAlignment="viewStart"
             android:textColor="#ffffff"
             app:layout_constraintTop_toTopOf="parent"
-           android:layout_marginTop="82dp"
+            android:layout_marginTop="82dp"
             android:layout_width="fill_parent"
             android:textSize="16dip"
-            android:background="@drawable/roundedredbutton"
-            app:layout_constraintVertical_bias="0.881"/>
+            android:background="@color/md_light_blue_A700"
+            tools:ignore="MissingConstraints,RtlCompat"/>
     <ListView
             android:layout_marginTop="108dp"
             android:layout_width="match_parent"
