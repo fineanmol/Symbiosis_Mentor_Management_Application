@@ -289,7 +289,7 @@ class addSlotActivity : AppCompatActivity() {
             .setMessage("Do you want to leave the page?")
             .setPositiveButton("Yes", DialogInterface.OnClickListener { arg0, arg1 ->
                 // do something when the button is clicked
-                var intent = Intent(this, mentorhomev2::class.java)
+                var intent = Intent(this, Mentorhomev2::class.java)
                 startActivity(intent)
 
             })

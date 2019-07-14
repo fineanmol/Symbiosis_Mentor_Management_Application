@@ -260,7 +260,7 @@ class MentorSlotList : AppCompatActivity() {
                             .setNegativeButton("No", // do something when the button is clicked
 
                                 DialogInterface.OnClickListener { arg0, arg1 ->
-                                    val intent = Intent(this, mentorhomev2::class.java)
+                                    val intent = Intent(this, Mentorhomev2::class.java)
                                     startActivity(intent)
                                 })
                             .show()
@@ -281,7 +281,7 @@ class MentorSlotList : AppCompatActivity() {
                             .setNegativeButton("No", // do something when the button is clicked
 
                                 DialogInterface.OnClickListener { arg0, arg1 ->
-                                    val intent = Intent(this, mentorhomev2::class.java)
+                                    val intent = Intent(this, Mentorhomev2::class.java)
                                     startActivity(intent)
                                 })
                             .show()

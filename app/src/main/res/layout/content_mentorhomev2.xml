@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_mentorhomev2"
-        tools:context=".mentorhomev2" android:background="@color/about_libraries_special_button_openSource_dark">
+        tools:context=".Mentorhomev2" android:background="@color/about_libraries_special_button_openSource_dark">
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

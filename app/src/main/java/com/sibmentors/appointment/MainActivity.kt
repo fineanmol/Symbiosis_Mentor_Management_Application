@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                                         else if (u_type == "M") startActivity(
                                             Intent(
                                                 this@MainActivity,
-                                                mentorhomev2::class.java
+                                                Mentorhomev2::class.java
                                             )
                                         )
 

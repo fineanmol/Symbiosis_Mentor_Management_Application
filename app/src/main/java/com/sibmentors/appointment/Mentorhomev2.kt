@@ -42,7 +42,7 @@ import com.sibmentors.appointment.drawerItems.OverflowMenuDrawerItem
 import kotlinx.android.synthetic.main.content_mentorhomev2.*
 
 
-class mentorhomev2 : AppCompatActivity() {
+class Mentorhomev2 : AppCompatActivity() {
     val userref = FirebaseDatabase.getInstance().getReference("users")
     val currentUser = FirebaseAuth.getInstance().currentUser
 
@@ -74,7 +74,7 @@ class mentorhomev2 : AppCompatActivity() {
             val eventListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                     //create new user
-                    Toast.makeText(this@mentorhomev2, "User details not found", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@Mentorhomev2, "User details not found", Toast.LENGTH_LONG).show()
                     logout()
                 } else {
                     for (e in dataSnapshot.children) {
@@ -97,7 +97,7 @@ class mentorhomev2 : AppCompatActivity() {
 
 
         new_session_btn.setOnClickListener {
-            val builder = AlertDialog.Builder(this@mentorhomev2)
+            val builder = AlertDialog.Builder(this@Mentorhomev2)
 
             // Set the alert dialog title
             builder.setTitle("New Session Confirmation")
@@ -114,7 +114,7 @@ class mentorhomev2 : AppCompatActivity() {
                     val eventListener = object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                             //create new user
-                            Toast.makeText(this@mentorhomev2, "User details not found", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@Mentorhomev2, "User details not found", Toast.LENGTH_LONG).show()
                             logout()
                         } else {
                             for (e in dataSnapshot.children) {
@@ -122,7 +122,7 @@ class mentorhomev2 : AppCompatActivity() {
                                 var Name = employee!!.name.split(" ").first()
                                 var empid = employee.studentId
                                 var lastvalue="Slots"
-                                SessionReset(Name, empid, lastvalue)
+                                sessionReset(Name, empid, lastvalue)
 
 
                             }
@@ -157,25 +157,25 @@ class mentorhomev2 : AppCompatActivity() {
 
 
         existing_session_btn.setOnClickListener {
-            startActivity(Intent(this@mentorhomev2, mentorShowSlotActivity::class.java))
+            startActivity(Intent(this@Mentorhomev2, mentorShowSlotActivity::class.java))
         }
 
 
     }
-    private fun SessionReset(name: String, empid: String, lastvalue: String) {
+    private fun sessionReset(name: String, empid: String, lastvalue: String) {
         var id= name+empid+lastvalue
         val userNameRef = userref.orderByChild("user_type").equalTo("S")
         val eventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (!dataSnapshot.exists()) {
                     //create new user
-                    Toast.makeText(this@mentorhomev2, "Slots are ready for booking", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@Mentorhomev2, "Slots are ready for booking", Toast.LENGTH_LONG).show()
                 } else {
                     for (e in dataSnapshot.children) {
                         val employee = e.getValue(Data::class.java)
-                        var studentkey = employee?.id
-                        var mentorrefercodes = employee!!.mentorreferal
-                        var mentorcodes = mentorrefercodes.split("/")
+                        val studentkey = employee?.id
+                        val mentorrefercodes = employee!!.mentorreferal
+                        val mentorcodes = mentorrefercodes.split("/")
                         for (i in mentorcodes) {
                             if (i.split(":").last() == "B" && i.split(":").first() == id) {
 
@@ -223,7 +223,7 @@ class mentorhomev2 : AppCompatActivity() {
                 PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(FontAwesome.Icon.faw_home).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            startActivity(Intent(this@mentorhomev2, mentorhomev2::class.java))
+                            startActivity(Intent(this@Mentorhomev2, Mentorhomev2::class.java))
                             Log.d("TAGDDD", "clicked")
                             return false
                         }
@@ -243,7 +243,7 @@ class mentorhomev2 : AppCompatActivity() {
                 ).withOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
 
                     if (item.itemId == R.id.newSession) {
-                        val builder = AlertDialog.Builder(this@mentorhomev2)
+                        val builder = AlertDialog.Builder(this@Mentorhomev2)
 
                         // Set the alert dialog title
                         builder.setTitle("New Session Confirmation")
@@ -260,7 +260,7 @@ class mentorhomev2 : AppCompatActivity() {
                                     if (!dataSnapshot.exists()) {
                                         //create new user
                                         Toast.makeText(
-                                            this@mentorhomev2,
+                                            this@Mentorhomev2,
                                             "Slots are ready for booking",
                                             Toast.LENGTH_LONG
                                         ).show()
@@ -312,7 +312,7 @@ class mentorhomev2 : AppCompatActivity() {
                         dialog.show()
                     }
                     if (item.itemId == R.id.oldSession) {
-                        startActivity(Intent(this@mentorhomev2, mentorShowSlotActivity::class.java))
+                        startActivity(Intent(this@Mentorhomev2, mentorShowSlotActivity::class.java))
                     }
                     false
                 }).withIcon(GoogleMaterial.Icon.gmd_filter_center_focus),
@@ -321,7 +321,7 @@ class mentorhomev2 : AppCompatActivity() {
                 )
                     .withOnDrawerItemClickListener(object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            startActivity(Intent(this@mentorhomev2, mentorShowSlotActivity::class.java))
+                            startActivity(Intent(this@Mentorhomev2, mentorShowSlotActivity::class.java))
                             return false
                         }
                     }).withIcon(
@@ -331,7 +331,7 @@ class mentorhomev2 : AppCompatActivity() {
                 PrimaryDrawerItem().withName(R.string.drawer_item_custom).withDescription("Check Appointment Today onwards").withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            startActivity(Intent(this@mentorhomev2, AppointmentList2::class.java))
+                            startActivity(Intent(this@Mentorhomev2, AppointmentList2::class.java))
                             return false
                         }
                     }).withIcon(
@@ -339,7 +339,7 @@ class mentorhomev2 : AppCompatActivity() {
                 ),CustomUrlPrimaryDrawerItem().withName(R.string.drawer_item_custom1).withDescription("Refer your mentor code to Students").withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            startActivity(Intent(this@mentorhomev2, Mentor_refer::class.java))
+                            startActivity(Intent(this@Mentorhomev2, Mentor_refer::class.java))
                             return false
                         }
                     }).withIcon(
@@ -376,7 +376,7 @@ class mentorhomev2 : AppCompatActivity() {
                             /* val uri = Uri.parse("https://www.buymeacoffee.com/fineanmol") // missing 'http://' will cause crashed
                              val intent = Intent(Intent.ACTION_VIEW, uri)
                              startActivity(intent)*/
-                            startActivity(Intent(this@mentorhomev2, BuyMeACoffee::class.java))
+                            startActivity(Intent(this@Mentorhomev2, BuyMeACoffee::class.java))
                             return false
                         }
                     }),
@@ -418,7 +418,7 @@ class mentorhomev2 : AppCompatActivity() {
                 ).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            startActivity(Intent(this@mentorhomev2, AboutDeveloper::class.java))
+                            startActivity(Intent(this@Mentorhomev2, AboutDeveloper::class.java))
                             return false
                         }
                     })
@@ -427,7 +427,7 @@ class mentorhomev2 : AppCompatActivity() {
                 override fun onNavigationClickListener(clickedView: View): Boolean {
                     //this method is only called if the Arrow icon is shown. The hamburger is automatically managed by the MaterialDrawer
                     //if the back arrow is shown. close the activity
-                    this@mentorhomev2.finish()
+                    this@Mentorhomev2.finish()
                     //return true if we have consumed the event
                     return true
                 }
@@ -478,7 +478,7 @@ class mentorhomev2 : AppCompatActivity() {
                 ProfileSettingDrawerItem().withName("Rate on Playstore").withIcon(FontAwesome.Icon.faw_star1).withOnDrawerItemClickListener(
                     object : Drawer.OnDrawerItemClickListener {
                         override fun onItemClick(view: View?, position: Int, drawerItem: IDrawerItem<*>): Boolean {
-                            val uri = Uri.parse("market://details?id=" + this@mentorhomev2.packageName)
+                            val uri = Uri.parse("market://details?id=" + this@Mentorhomev2.packageName)
                             val goToMarket = Intent(Intent.ACTION_VIEW, uri)
                             // To count with Play market backstack, After pressing back button,
                             // to taken back to our application, we need to add following flags to intent.
@@ -493,7 +493,7 @@ class mentorhomev2 : AppCompatActivity() {
                                 startActivity(
                                     Intent(
                                         Intent.ACTION_VIEW,
-                                        Uri.parse("http://play.google.com/store/apps/details?id=" + this@mentorhomev2.packageName)
+                                        Uri.parse("http://play.google.com/store/apps/details?id=" + this@Mentorhomev2.packageName)
                                     )
                                 )
                             }

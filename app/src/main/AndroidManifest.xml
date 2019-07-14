@@ -67,9 +67,7 @@
                 android:label="@string/title_aboutdeveloper">
         </activity>
         <activity
-                android:name=".mentorhomev2"
-                android:icon="@drawable/property"
-
+                android:name=".Mentorhomev2"
                 android:screenOrientation="portrait"
                 android:label="@string/title_activity_mentorhomev2"
                 android:theme="@style/CustomTheme"/>

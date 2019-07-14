@@ -32,7 +32,7 @@
                 android:id="@+id/material_drawer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sofia"
+                android:fontFamily="@font/mate_sc"
                 android:gravity="center_vertical|start"
                 android:lines="1"
 
