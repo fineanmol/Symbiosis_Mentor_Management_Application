@@ -24,21 +24,58 @@
     <ListView
             android:paddingTop="100dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="0dp"
+            android:layout_height="605dp"
+            tools:layout_editor_absoluteX="4dp"
             android:id="@+id/mentorlistview"
-          >
+            tools:layout_editor_absoluteY="118dp" tools:ignore="MissingConstraints">
 
     </ListView>
     <TextView
-            android:text="@string/name_mentor_s_code_delete"
-            android:layout_width="match_parent"
-            android:layout_marginTop="80dp"
+            android:layout_height="40dp"
+            android:textColor="@color/about_libraries_special_button_openSource_dark"
+            android:gravity="center"
+            android:background="@color/md_blue_A700"
+            android:fontFamily="@font/alegreya_sc_bold_italic"
+            android:layout_width="match_parent" app:layout_constraintStart_toEndOf="@+id/mentorlistview"
+            app:layout_constraintEnd_toStartOf="@+id/mentorlistview"
+            app:layout_constraintTop_toBottomOf="@+id/mentorlistview"
+            app:layout_constraintBottom_toTopOf="@+id/mentorlistview" app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="0.826" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/textView5"/>
+    <TextView
+            android:text="Name"
             android:layout_height="34dp"
             android:textColor="@color/about_libraries_special_button_openSource_dark"
             android:gravity="center"
-            app:layout_constraintTop_toTopOf="@id/mentorlistview"
             android:background="@color/md_blue_A700"
-            android:fontFamily="@font/alegreya_sc_bold_italic"/>
+            android:fontFamily="@font/alegreya_sc_bold_italic"
+            android:layout_width="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintHorizontal_bias="0.856" app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView3" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3" app:layout_constraintVertical_bias="0.0"/>
+    <TextView
+            android:text="MentorCode"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:textColor="@color/about_libraries_special_button_openSource_dark"
+            android:gravity="center"
+            android:background="@color/md_blue_A700"
+            android:fontFamily="@font/alegreya_sc_bold_italic"
+            android:id="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/textView5" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/textView5" app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"/>
+    <TextView
+            android:text="Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:textColor="@color/about_libraries_special_button_openSource_dark"
+            android:gravity="center"
+            android:background="@color/md_blue_A700"
+            android:fontFamily="@font/alegreya_sc_bold_italic"
+            app:layout_constraintStart_toEndOf="@+id/textView5"
+            app:layout_constraintHorizontal_bias="0.169" app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="@+id/textView3" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3" app:layout_constraintVertical_bias="0.0"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

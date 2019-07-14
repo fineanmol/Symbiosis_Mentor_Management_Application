@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:padding="12dp"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="3dp"
-                android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_marginTop="20dp"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:orientation="vertical">
 
     <TextView
             android:id="@+id/mentor_Name"
-            android:layout_width="163dp"
+            android:layout_width="392dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/dateslot"
             android:layout_toRightOf="@+id/dateslot"
-            android:paddingBottom="10dp"
             android:text="Mentor Name"
             android:textColor="#039BE5"
             android:fontFamily="@font/yatra_one"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textAlignment="textStart"
+            android:textAlignment="center"
 
             android:textSize="15dp"
-            android:textStyle="bold" android:layout_marginLeft="54dp"
-            android:layout_marginStart="54dp" android:layout_alignTop="@+id/dateslot" android:layout_marginTop="1dp"/>
+            android:textStyle="bold"
+            android:layout_alignTop="@+id/dateslot"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@+id/textView4"/>
 
     <TextView
             android:id="@+id/dateslot"
@@ -31,26 +32,28 @@
             android:layout_height="wrap_content"
             android:textSize="15dp"
             android:gravity="center"
-            android:text="22" android:fontFamily="@font/amarante"/>
+            android:text="22" android:fontFamily="@font/amarante"
+            app:layout_constraintBottom_toTopOf="@+id/slot_timing"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/slot_timing"/>
 
     <TextView
             android:id="@+id/slot_timing"
             android:layout_width="116dp"
-            android:layout_height="wrap_content"
+            android:layout_height="26dp"
             android:layout_toEndOf="@+id/dateslot"
             android:layout_toRightOf="@+id/dateslot"
-            android:paddingTop="10dp"
             android:text="Slot Timing"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:gravity="center"
             android:textSize="12dp"
 
             android:textStyle="bold"
             android:layout_alignTop="@+id/mentor_Name"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="53dp"
-            android:layout_marginStart="53dp" tools:ignore="RtlCompat"
-            android:fontFamily="@font/amarante"/>
+            android:fontFamily="@font/amarante"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintBottom_toTopOf="@+id/divider6" app:layout_constraintStart_toEndOf="@+id/dateslot"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/bookbtn"/>
 
     <Button
             android:id="@+id/bookbtn"
@@ -58,19 +61,33 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/dateslot"
             android:background="@color/md_red_A700"
-            android:text="Book" android:layout_marginLeft="190dp"
+            android:text="Book"
             android:fontFamily="@font/nosifer"
             android:textColor="#FBF4EFF2"
-    />
+            app:layout_constraintTop_toBottomOf="@+id/mentor_Name"
+            app:layout_constraintBottom_toTopOf="@+id/divider6"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.904"/>
     <TextView
             android:text="Slot Timing:"
             android:layout_width="82dp"
             android:layout_height="26dp"
-            android:textAlignment="viewEnd"
-            android:layout_marginTop="116dp"
+            android:textAlignment="center"
             android:fontFamily="@font/amarante"
-            android:layout_marginStart="-15dp" android:layout_marginBottom="-9dp"
-            android:layout_alignBottom="@+id/slot_timing" android:textSize="12dp"/>
+            android:layout_alignBottom="@+id/slot_timing" android:textSize="12dp"
+            android:gravity="center"
+            android:id="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/mentor_Name"
+            app:layout_constraintBottom_toTopOf="@+id/slot_timing" app:layout_constraintStart_toEndOf="@+id/dateslot"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/bookbtn"/>
+    <View
+            android:id="@+id/divider6"
+            android:layout_width="392dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="152dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.526" app:layout_constraintEnd_toEndOf="parent"/>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
