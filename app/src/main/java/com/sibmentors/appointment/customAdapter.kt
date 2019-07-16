@@ -120,7 +120,7 @@ class customAdapter(val mCtx: Context, val layoutId: Int, val slotList: List<Boo
                                                 ref.child(id).child(slot.mentorcode).child("status").setValue("B")
                                                 Toast.makeText(
                                                     mCtx,
-                                                    "$studentName Appointment Booked! \n at: ${time.text}",
+                                                    "$studentName's Appointment Booked! \n at: ${time.text}",
                                                     Toast.LENGTH_LONG
                                                 ).show()
                                                 book.text = "Booked!"

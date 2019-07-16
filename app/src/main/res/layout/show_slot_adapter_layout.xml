@@ -89,17 +89,16 @@
             android:layout_marginTop="101dp" android:layout_marginStart="3dp"/>
 
     <Button
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="14dp"
+            android:layout_height="wrap_content"
             android:id="@+id/deletebtn"
             android:background="@drawable/ic_delete_gray_24dp"
             tools:ignore="MissingConstraints"
-            android:layout_alignStart="@+id/slot_timing"
-            android:layout_marginStart="56dp"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="13dp" android:layout_marginBottom="35dp"
-            android:layout_alignBottom="@+id/divider2" android:layout_marginEnd="99dp"
-            android:layout_alignEnd="@+id/divider2"/>
+            android:layout_below="@+id/slot_timing"
+            android:layout_marginTop="21dp" android:layout_marginBottom="32dp"
+            android:layout_alignBottom="@+id/divider2" android:layout_marginEnd="247dp"
+            android:layout_alignEnd="@+id/slot_timing"
+            android:layout_toEndOf="@+id/textView" android:layout_marginStart="-215dp"/>
 
 
 </RelativeLayout>

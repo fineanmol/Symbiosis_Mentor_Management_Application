@@ -270,7 +270,8 @@ class MentorSlotList : AppCompatActivity() {
                     if (parts1.size <= 1) {
                         /**Alert Box*/
                         val alertbox = AlertDialog.Builder(this)
-                            .setMessage("No slot present to be submit \n Generate slots again?")
+                            .setTitle("Generate slots again?")
+                            .setMessage("Minimum two slots required to Submit!")
                             .setPositiveButton("Yes", DialogInterface.OnClickListener { arg0, arg1 ->
                                 // do something when the button is clicked
                                 val intent = Intent(this, addSlotActivity::class.java)

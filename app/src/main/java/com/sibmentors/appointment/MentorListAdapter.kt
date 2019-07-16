@@ -106,7 +106,7 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                                             var newrefercodes3 = newrefercodes2.replace("$i", "")
                                             userref.child(studentkey!!).child("mentorreferal")
                                                 .setValue(newrefercodes3)
-                                            Toast.makeText(mCtx, "Deleted!!  \n${employee.name}, You won't see ${listmentor} available slots from now!", Toast.LENGTH_LONG).show()
+                                            Toast.makeText(mCtx, "Deleted!!  \n,You won't see ${employee.name} available slots from now!", Toast.LENGTH_LONG).show()
 
 
                                         }

@@ -12,6 +12,15 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import androidx.core.content.ContextCompat.startActivity
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import kotlin.Exception as Exception1
+import androidx.core.content.ContextCompat.startActivity
+
+
 
 
 class CustomAdapter2(val mCtx: Context, val layoutId: Int, val slotList: List<slotsData>) :
@@ -48,13 +57,9 @@ class CustomAdapter2(val mCtx: Context, val layoutId: Int, val slotList: List<sl
         call.setOnClickListener(View.OnClickListener {
             Toast.makeText(mCtx, "Number is ${slot.studentNumber}", Toast.LENGTH_LONG).show()
             try {
-                /*      val call = Intent(Intent.ACTION_CALL,Uri.parse("tel:${slot.studentNumber}"))
+              /*  val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "${slot.studentNumber}"))
+                startActivity(mCtx,intent,null)*/
 
-                  call.data = Uri.parse("tel:${slot.studentNumber}")
-                      startActivity(mCtx,call,null)
-                      val callIntent = Intent(mCtx,UserHomeV2::class.java)
-
-                      startActivity(mCtx,callIntent, Bundle.EMPTY)*/
 
             } catch (e: Exception) {
                 e.printStackTrace()

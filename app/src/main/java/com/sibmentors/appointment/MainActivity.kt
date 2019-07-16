@@ -241,13 +241,14 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
 
         var remoteCodeVersion = mFirebaseRemoteConfig.getLong(Version_Code)
-        if (remoteCodeVersion > 0) {
-            val versionCode = BuildConfig.VERSION_CODE
-            if (remoteCodeVersion < versionCode) {
+        val versionCode = BuildConfig.VERSION_CODE
+
+
+            if (remoteCodeVersion > versionCode) {
                 getRemoteConfigValues()
             }
 
-        } else {
+         else {
             mAuth.currentUser?.let {
 
                 login()
