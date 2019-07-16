@@ -45,8 +45,8 @@ class addSlotActivity : AppCompatActivity() {
 
         generateSlot.setOnClickListener {
             val sdate = slotDate.text.toString()
-            var Stime = slotSTime.text.toString()
-            var Etime = slotETime.text.toString()
+            val Stime = slotSTime.text.toString()
+            val Etime = slotETime.text.toString()
             val slotDurations = slotDuration.text.toString()
             var interval = setBreak.text.toString()
 
@@ -83,15 +83,15 @@ class addSlotActivity : AppCompatActivity() {
             }
 
 
-            var StimeHH = Stime.split(":").first().toString()
-            var StimeMM = Stime.split(":").last().split(" ").first().toString()
+            val StimeHH = Stime.split(":").first().toString()
+            val StimeMM = Stime.split(":").last().split(" ").first().toString()
             var StimeHour = Stime.split(":").last().split(" ").last()
             if (StimeHour == "PM" || StimeHour.toLowerCase() == "pm") {
                 // StimeHH = StimeHH + 12
                 StimeHour = "PM"
                 timeFlagS = 1
             }
-            var EtimeHH = Etime.split(":").first().toString()
+            val EtimeHH = Etime.split(":").first().toString()
             val EtimeMM = Etime.split(":").last().split(" ").first().toString()
             var EtimeHour = Etime.split(":").last().split(" ").last()
             if (EtimeHour == "PM" || EtimeHour.toLowerCase() == "pm") {
@@ -172,22 +172,6 @@ class addSlotActivity : AppCompatActivity() {
         timePickerDialog.show()
     }
 
-    private fun addSlot(begin: String, end: String, date: String): Boolean {
-        val reserved_by = ""
-        var generated = "Nikhil Nishad"
-        var studentId = ""
-        var studentNumber = ""
-        var status = "NB"
-        val sId = (ref.push().key).toString()
-
-        val addSlot = slotsData(sId, begin, end, date, generated, reserved_by, studentId, studentNumber, status)
-
-
-        ref.child(generated).child(sId).setValue(addSlot)
-        Toast.makeText(this, "Slots Added", Toast.LENGTH_LONG).show()
-
-        return true
-    }
 
     private fun getHoursValue(hours: Int): Int {
         return hours - 12
@@ -205,18 +189,18 @@ class addSlotActivity : AppCompatActivity() {
         stimeHour: String
     ) {
         val sdateL = sdate.split(" ").last().toString().trim()
-        var sdateF = sdate.split(" ").first().toString().trim()
-        var sdateM = sdateF.split(",").last()
-        var sdateD = sdateL.split(",").first()
-        var sdateY = sdateL.split(",").last()
+        val sdateF = sdate.split(" ").first().toString().trim()
+        val sdateM = sdateF.split(",").last()
+        val sdateD = sdateL.split(",").first()
+        val sdateY = sdateL.split(",").last()
 
-        var dateText = sdateY + "-" + sdateM + "-" + sdateD
+        val dateText = "$sdateY-$sdateM-$sdateD"
         val dateValue = dateText
         val endDateValue = dateText
 
         var hours = StimeHH
-        var minutes = StimeMM
-        var ampm = stimeHour
+        val minutes = StimeMM
+        val ampm = stimeHour
 
         val amOrPm: String
         if (Integer.parseInt(hours) < 12) {
@@ -226,7 +210,7 @@ class addSlotActivity : AppCompatActivity() {
             hours = getHoursValue(Integer.parseInt(hours)).toString()
         }
         val time1 = "$hours:$minutes $ampm"
-        val time2 = EtimeHH + ":" + EtimeMM + " " + EtimeHour + " "
+        val time2 = "$EtimeHH:$EtimeMM $EtimeHour "
         val format = "yyyy-MM-dd hh:mm a"
 
         val sdf = SimpleDateFormat(format)
@@ -256,7 +240,7 @@ class addSlotActivity : AppCompatActivity() {
 
                 }
 
-                var intent = Intent(this, MentorSlotList::class.java)
+                val intent = Intent(this, MentorSlotList::class.java)
                 intent.putExtra("slotList", slotList.toString())
                 intent.putExtra("slotLists", slotList)
                 startActivity(intent)
@@ -270,7 +254,7 @@ class addSlotActivity : AppCompatActivity() {
                 slotETime.error = ""
             }
         } catch (ex: ParseException) {
-            var intent = Intent(this, addSlotActivity::class.java)
+            val intent = Intent(this, addSlotActivity::class.java)
             startActivity(intent)
             ex.printStackTrace()
 
@@ -281,16 +265,16 @@ class addSlotActivity : AppCompatActivity() {
     override fun onBackPressed() {
         // super.onBackPressed();
         // Not calling **super**, disables back button in current screen.
-        val alertbox = AlertDialog.Builder(this)
+        AlertDialog.Builder(this)
             .setMessage("Do you want to leave the page?")
             .setPositiveButton("Yes", DialogInterface.OnClickListener { arg0, arg1 ->
                 // do something when the button is clicked
-                var intent = Intent(this, Mentorhomev2::class.java)
+                val intent = Intent(this, Mentorhomev2::class.java)
                 startActivity(intent)
 
             })
-            .setNegativeButton("No", // do something when the button is clicked
-                DialogInterface.OnClickListener { arg0, arg1 -> })
+            .setNegativeButton("No" // do something when the button is clicked
+            ) { _, _ -> }
             .show()
     }
 
