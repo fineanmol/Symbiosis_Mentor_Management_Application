@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MentorList" android:id="@+id/mentor_list_layout">
+        tools:context=".MentorList">
     <com.google.android.material.appbar.AppBarLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             app:layout_constraintHorizontal_bias="0.856" app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/mentorcode_id" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/mentorcode_id" app:layout_constraintVertical_bias="0.0"
-            android:id="@+id/name_id"/>
+    />
     <TextView
             android:text="MentorCode"
             android:layout_width="wrap_content"
@@ -79,5 +79,5 @@
             app:layout_constraintHorizontal_bias="0.169" app:layout_constraintEnd_toStartOf="@+id/textView5"
             app:layout_constraintTop_toTopOf="@+id/mentorcode_id" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/mentorcode_id" app:layout_constraintVertical_bias="0.0"
-            android:id="@+id/delete_id"/>
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

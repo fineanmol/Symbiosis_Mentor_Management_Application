@@ -11,13 +11,8 @@
     <string name="title__addslot">Add Slot</string>
     <string name="title_appointmentList">Appointment List</string>
     <string name="title_aboutdeveloper">About Developer</string>
-    <string name="nav_header_subtitle">Slot Booking</string>
-    <string name="nav_header_desc">Navigation header</string>
     <string name="action_logout">Logout</string>
 
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
     <string name="title_activity_user_home_v2">Student Home</string>
 
 
@@ -38,8 +33,6 @@
     <!-- Sample menu -->
 
     <!-- Drawer Items -->
-
-    <string name="drawer_item_menu_drawer_item_desc">existing slots !!</string>
 
     <string name="drawer_item_home">Home</string>
     <string name="drawer_item_free_play">Free Play</string>
@@ -64,7 +57,6 @@
         <i>Click below to</i>\n
         <b>Check details</b>
     </string>
-    <string name="name_mentor_s_code_delete">Name  &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Mentor\'s Code &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Delete</string>
     <string name="Mentor_List">Mentors List</string>
     <string name="starttime_endtime_date">&#160;&#160;&#160;&#160;&#160;&#160;StartTime&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;EndTime &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Date</string>
 </resources>

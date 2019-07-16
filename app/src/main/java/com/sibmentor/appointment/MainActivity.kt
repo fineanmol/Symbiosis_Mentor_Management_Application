@@ -8,24 +8,23 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
-
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mFirebaseRemoteConfig: FirebaseRemoteConfig
-    private var Version_Code = "versionCode"
+    private var VersionCode = "versionCode"
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var database: DatabaseReference
-    lateinit var Loginbtn: Button
     private var mFirebaseAnalytics: FirebaseAnalytics? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             .setDeveloperModeEnabled(BuildConfig.DEBUG)
             .build()
         mFirebaseRemoteConfig.setConfigSettings(configSettings)
-        mFirebaseRemoteConfig!!.setDefaults(R.xml.firebasedefaults);
+        mFirebaseRemoteConfig.setDefaults(R.xml.firebasedefaults)
         getRemoteConfigValues()
         //val versionCode = BuildConfig.VERSION_CODE
 
@@ -80,18 +79,18 @@ class MainActivity : AppCompatActivity() {
         }
         register.setOnClickListener(
             View.OnClickListener {
-                var Intent = Intent(this, UserSignup::class.java)
-                startActivity(Intent)
+                val intent = Intent(this, UserSignup::class.java)
+                startActivity(intent)
             }
         )
         mentorregister.setOnClickListener(
             View.OnClickListener {
-                var Intent = Intent(this, MentorRegistration::class.java)
+                val Intent = Intent(this, MentorRegistration::class.java)
                 startActivity(Intent)
             }
         )
         forget_link.setOnClickListener(View.OnClickListener {
-            var Intent = Intent(this, passwordReset::class.java)
+            val Intent = Intent(this, passwordReset::class.java)
             startActivity(Intent)
         })
     }
@@ -119,7 +118,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRemoteConfigValues() {
-        var remoteCodeVersion = mFirebaseRemoteConfig.getLong(Version_Code)
+        val remoteCodeVersion = mFirebaseRemoteConfig.getLong(VersionCode)
+        val AlertTitle = mFirebaseRemoteConfig.getString("Alert_Title")
+        val AlertMessage = mFirebaseRemoteConfig.getString("Alert_Message")
+        val Alert_Ok_btn = mFirebaseRemoteConfig.getString("Alert_Ok_Btn")
+        val Alert_No_btn = mFirebaseRemoteConfig.getString("Alert_No_Btn")
         if (remoteCodeVersion > 0) {
             val versionCode = BuildConfig.VERSION_CODE
             if (remoteCodeVersion > versionCode) {
@@ -127,11 +130,11 @@ class MainActivity : AppCompatActivity() {
 
 
                 // set message of alert dialog
-                dialogBuilder.setMessage("This App got new update with some new some new Features and stability \nUpdate Now")
+                dialogBuilder.setMessage(AlertMessage)
                     // if the dialog is cancelable
                     .setCancelable(false)
                     // positive button text and action
-                    .setPositiveButton("Update", DialogInterface.OnClickListener { dialog, id ->
+                    .setPositiveButton(Alert_Ok_btn, DialogInterface.OnClickListener { _, _ ->
                         val uri = Uri.parse("market://details?id=" + this@MainActivity.packageName)
                         val goToMarket = Intent(Intent.ACTION_VIEW, uri)
                         // To count with Play market backstack, After pressing back button,
@@ -153,8 +156,8 @@ class MainActivity : AppCompatActivity() {
                         }
                     })
                     // negative button text and action
-                    .setNegativeButton("Not Now", // do something when the button is clicked
-                        DialogInterface.OnClickListener { arg0, arg1 ->
+                    .setNegativeButton(Alert_No_btn, // do something when the button is clicked
+                        DialogInterface.OnClickListener { _, _ ->
                             finishAffinity()
                         })
 
@@ -162,7 +165,7 @@ class MainActivity : AppCompatActivity() {
                 // create dialog box
                 val alert = dialogBuilder.create()
                 // set title for alert dialog box
-                alert.setTitle("Update Alert!!")
+                alert.setTitle(AlertTitle)
                 // show alert dialog
                 alert.show()
             }
@@ -240,7 +243,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onStart()
 
-        var remoteCodeVersion = mFirebaseRemoteConfig.getLong(Version_Code)
+        val remoteCodeVersion = mFirebaseRemoteConfig.getLong(VersionCode)
         val versionCode = BuildConfig.VERSION_CODE
 
 

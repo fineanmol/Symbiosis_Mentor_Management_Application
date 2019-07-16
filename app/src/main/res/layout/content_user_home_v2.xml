@@ -128,7 +128,6 @@
     <ImageView
             android:layout_width="109dp"
             android:layout_height="129dp" app:srcCompat="@drawable/downarrow"
-            android:id="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/divider4"
             app:layout_constraintHorizontal_bias="0.583"
             app:layout_constraintEnd_toEndOf="parent"
