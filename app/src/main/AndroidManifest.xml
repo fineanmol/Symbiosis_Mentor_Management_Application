@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
-          package="com.sibmentors.appointment">
+          package="com.sibmentor.appointment">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+
 
     <application
             android:allowBackup="true"
@@ -16,84 +16,84 @@
             android:theme="@style/MaterialTheme.Light.TranslucentStatus"
 
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MentorList"
+        <activity android:name="com.sibmentor.appointment.MentorList"
                   android:screenOrientation="portrait"
                   android:label="@string/Mentor_List">
         </activity>
-        <activity android:name=".Mentor_refer"
+        <activity android:name="com.sibmentor.appointment.Mentor_refer"
                   android:label="Refer Page"
         >
         </activity>
-        <activity android:name=".BuyMeACoffee">
+        <activity android:name="com.sibmentor.appointment.BuyMeACoffee">
         </activity>
-        <activity android:name=".passwordReset"
+        <activity android:name="com.sibmentor.appointment.passwordReset"
                   android:screenOrientation="portrait"
                   android:label="Password Reset">
         </activity>
-        <activity android:name=".UserPassUpdate"
+        <activity android:name="com.sibmentor.appointment.UserPassUpdate"
                   android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".UserEmailUpdate"
+        <activity android:name="com.sibmentor.appointment.UserEmailUpdate"
                   android:screenOrientation="portrait"
                   android:label="Email Update">
         </activity>
-        <activity android:name=".UserPhoneVerify"
+        <activity android:name="com.sibmentor.appointment.UserPhoneVerify"
                   android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".UserProfile"
+        <activity android:name="com.sibmentor.appointment.UserProfile"
                   android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name=".mentorShowSlotActivity"
+                android:name="com.sibmentor.appointment.mentorShowSlotActivity"
                 android:label="Manage Session"
                 android:theme="@style/CustomTheme">
         </activity>
         <activity
-                android:name=".UserHomeV2"
+                android:name="com.sibmentor.appointment.UserHomeV2"
                 android:screenOrientation="portrait"
                 android:label="@string/title_activity_user_home_v2"
                 android:theme="@style/CustomTheme">
         </activity>
-        <activity android:name=".MentorRegistration">
+        <activity android:name="com.sibmentor.appointment.MentorRegistration">
         </activity>
-        <activity android:name=".student_show_reserved_slot_Activity"
+        <activity android:name="com.sibmentor.appointment.student_show_reserved_slot_Activity"
             android:screenOrientation="portrait"
             android:label="Your Booking">
         </activity>
         <activity
-                android:name=".AppointmentList2"
+                android:name="com.sibmentor.appointment.AppointmentList2"
                 android:label="@string/title_appointmentList">
         </activity>
         <activity
-                android:name=".AboutDeveloper"
+                android:name="com.sibmentor.appointment.AboutDeveloper"
                 android:label="@string/title_aboutdeveloper">
         </activity>
         <activity
-                android:name=".Mentorhomev2"
+                android:name="com.sibmentor.appointment.Mentorhomev2"
                 android:screenOrientation="portrait"
                 android:label="@string/title_activity_mentorhomev2"
                 android:theme="@style/CustomTheme"/>
         <activity
-                android:name=".MentorSlotList"
+                android:name="com.sibmentor.appointment.MentorSlotList"
                 android:screenOrientation="portrait"
                 android:label="@string/title_activity_locallist">
         </activity>
         <activity
-                android:name=".addSlotActivity"
+                android:name="com.sibmentor.appointment.addSlotActivity"
                 android:screenOrientation="portrait"
                 android:label="@string/title__addslot"/>
         <activity
-                android:name=".UserHome"
+                android:name="com.sibmentor.appointment.UserHome"
                 android:screenOrientation="portrait"
                 android:label="Book Slots">
         </activity>
         <activity
-                android:name=".UserSignup"
+                android:name="com.sibmentor.appointment.UserSignup"
                 android:screenOrientation="portrait"
                 android:label="@string/title_activity_user_signup">
         </activity>
         <activity
-                android:name=".MainActivity"
+                android:name="com.sibmentor.appointment.MainActivity"
                 android:screenOrientation="portrait"
                 android:label="@string/title_login">
             <intent-filter>

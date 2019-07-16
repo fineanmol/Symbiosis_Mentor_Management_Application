@@ -26,11 +26,11 @@ buildscript {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.sibmentors.appointment"
+        applicationId "com.sibmentor.appointment"
         minSdkVersion 18
         targetSdkVersion 28
-        versionCode 17
-        versionName "1.1.7"
+        versionCode 19
+        versionName "1.1.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
