@@ -74,7 +74,8 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
 
 
             val alertbox = AlertDialog.Builder(mCtx)
-                .setMessage("Do you want to Delete this Mentor !!\nYou have to add this mentor's code again if you want to see their slots")
+                .setTitle("Delete Mentor")
+                .setMessage("You have to add this mentor's code again if you want to see their slots")
                 .setPositiveButton("Delete", DialogInterface.OnClickListener { arg0, arg1 ->
                     // do something when the button is clicked
                     //region StudentBookButtonFunction
@@ -86,8 +87,7 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                             @SuppressLint("ResourceAsColor")
                             override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
                                 //create new user
-                                Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
-                                    .show()
+
                             } else {
                                 for (e in dataSnapshot.children) {
                                     val employee = e.getValue(Data::class.java)
@@ -106,7 +106,7 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
                                             var newrefercodes3 = newrefercodes2.replace("$i", "")
                                             userref.child(studentkey!!).child("mentorreferal")
                                                 .setValue(newrefercodes3)
-                                            Toast.makeText(mCtx, "Deleted!!  \nNow You won't see their available slots &#128522", Toast.LENGTH_LONG).show()
+                                            Toast.makeText(mCtx, "Deleted!!  \n${employee.name}, You won't see ${listmentor} available slots from now!", Toast.LENGTH_LONG).show()
 
 
                                         }
@@ -138,67 +138,3 @@ class MentorListAdapter(val mCtx: Context, val layoutId: Int, val mentorList: Li
         return view
     }
 }
-/* private fun deletebtnclickmethod(
-     view: View,
-     refercode: String,
-     listmentor: String
- ) {
-
-     deletebtn.setOnClickListener {
-         val alertbox = AlertDialog.Builder(mCtx)
-             .setMessage("Do you want to Delete this Mentor !!\nYou have to add this mentor's code again if you want to see their slots")
-             .setPositiveButton("Delete", DialogInterface.OnClickListener { arg0, arg1 ->
-                 // do something when the button is clicked
-                 //region StudentBookButtonFunction
-
-                 currentUser?.let { user ->
-                     // Toast.makeText(mCtx, user.email, Toast.LENGTH_LONG).show()
-                     val userNameRef = ref.parent?.child("users")?.orderByChild("email")?.equalTo(user.email)
-                     val eventListener = object : ValueEventListener {
-                         @SuppressLint("ResourceAsColor")
-                         override fun onDataChange(dataSnapshot: DataSnapshot) = if (!dataSnapshot.exists()) {
-                             //create new user
-                             Toast.makeText(mCtx, "No Appointments are Available Yet!!", Toast.LENGTH_LONG)
-                                 .show()
-                         } else {
-                             for (e in dataSnapshot.children) {
-                                 val employee = e.getValue(Data::class.java)
-
-                                 var studentkey = employee?.id
-                                 var mentorrefercodes = employee!!.mentorreferal
-
-                                 var mentorcodes = mentorrefercodes.split("/")
-                                 var newcodes=""
-                                 for (i in mentorcodes) {
-                                     if (i.split(":").first() == listmentor ) {
-
-                                         var newrefercodes=mentorrefercodes.replace("/$i/","/")
-                                         var newrefercodes1=newrefercodes.replace("$i/","")
-                                         var newrefercodes2=newrefercodes1.replace("/$i","")
-                                         var newrefercodes3=newrefercodes2.replace("$i","")
-                                         userref.child(studentkey!!).child("mentorreferal").setValue(newrefercodes3)
-
-
-
-                                     }
-
-                                 }
-
-                             }
-                         }
-
-                         override fun onCancelled(databaseError: DatabaseError) {
-                         }
-                     }
-                     userNameRef?.addListenerForSingleValueEvent(eventListener)
-
-                 }
-             })
-             .setNegativeButton("No", // do something when the button is clicked
-                 DialogInterface.OnClickListener { arg0, arg1 -> })
-             .show()
-
-
-             }
-     }
- }*/

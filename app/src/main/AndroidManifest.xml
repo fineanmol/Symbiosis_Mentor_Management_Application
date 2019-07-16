@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
+          xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
           package="com.sibmentors.appointment">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -13,6 +13,7 @@
             android:roundIcon="@mipmap/ic_launcher"
             android:supportsRtl="true"
             android:theme="@style/MaterialTheme.Light.TranslucentStatus"
+
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MentorList"
                   android:screenOrientation="portrait"
