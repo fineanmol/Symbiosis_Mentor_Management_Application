@@ -80,7 +80,7 @@ dependencies {
 
     // the sample uses more advanced functions of the fastadapter
     // https://github.com/mikepenz/FastAdapter/
-    implementation "com.mikepenz:fastadapter-extensions-utils:4.0.0"
+    implementation "com.mikepenz:fastadapter-extensions-utils:4.0.1"
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
     implementation 'com.mikepenz:aboutlibraries:7.0.0-rc1'
