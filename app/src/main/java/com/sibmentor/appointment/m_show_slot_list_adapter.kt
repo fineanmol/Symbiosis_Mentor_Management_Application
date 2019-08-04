@@ -28,7 +28,9 @@ class m_show_slot_list_adapter(val mCtx: Context, val layoutId: Int, val slotLis
     private var myClipboard: ClipboardManager? = null
     private var myClip: ClipData? = null
 
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+
 
         val layoutInflater: LayoutInflater = LayoutInflater.from(mCtx)
         val view: View = layoutInflater.inflate(layoutId, null)

@@ -151,8 +151,10 @@ class AppointmentList2 : AppCompatActivity() {
                                         }
                                     }
                                 }
+                                val sortedList = slotList.sortedWith(compareBy({ it.date }, { it.begins_At }))
+
                                 val adapter =
-                                    CustomAdapter2(this@AppointmentList2, R.layout.showappointmentvalue, slotList)
+                                    CustomAdapter2(this@AppointmentList2, R.layout.showappointmentvalue, sortedList)
                                 listview.adapter = adapter
                             }
                         }

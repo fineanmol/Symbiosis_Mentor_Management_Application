@@ -185,12 +185,14 @@ class mentorShowSlotActivity : AppCompatActivity() {
                                         }
                                     }
                                 }
+                                val sortedList = slotList.sortedWith(compareBy({ it.date }, { it.begins_At }))
+
                                 val adapter =
 
                                     m_show_slot_list_adapter(
                                         this@mentorShowSlotActivity,
                                         R.layout.show_slot_adapter_layout,
-                                        slotList
+                                        sortedList
                                     )
                                 listview.adapter = adapter
                             }

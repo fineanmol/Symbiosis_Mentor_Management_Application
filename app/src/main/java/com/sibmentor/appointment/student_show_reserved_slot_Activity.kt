@@ -47,7 +47,7 @@ class student_show_reserved_slot_Activity : AppCompatActivity() {
                             val employee = e.getValue(Data::class.java)!!
                             studentName = employee.name
                             studentId = employee.studentId
-                            studentshowtheirbooking(employee!!.mentorreferal)
+                            studentshowtheirbooking(employee.mentorreferal)
 
                         }
 
@@ -78,10 +78,12 @@ private  fun studentshowtheirbooking(mentorreferal: String) {
                         slotList.add(employee)
                     }
                 }
+                val sortedList = slotList.sortedWith(compareBy({ it.date }, { it.begins_At }))
+
                 val adapter = student_reserved_slot_adapter(
                     this@student_show_reserved_slot_Activity,
                     R.layout.s_r_s_adapter_list,
-                    slotList
+                    sortedList
                 )
                 listview.adapter = adapter
             } else {

@@ -107,8 +107,9 @@ class UserHome : AppCompatActivity() {
 
                     }
                 }
+                val sortedList = slotList.sortedWith(compareBy({ it.date }, { it.begins_At }))
 
-                val adapter = customAdapter(this@UserHome, R.layout.listview_custom, slotList)
+                val adapter = customAdapter(this@UserHome, R.layout.listview_custom, sortedList)
                 listview.adapter = adapter
 
             }
