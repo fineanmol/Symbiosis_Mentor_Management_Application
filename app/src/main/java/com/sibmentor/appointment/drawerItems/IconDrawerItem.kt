@@ -141,6 +141,7 @@ class IconDrawerItem : AbstractDrawerItem<IconDrawerItem, IconDrawerItem.ViewHol
 
         //get the correct color for the icon
         val iconColorInt: Int = if (this.isEnabled) {
+
             iconColor.applyColor(ctx, R.attr.material_drawer_primary_icon, R.color.material_drawer_primary_icon)
         } else {
             disabledIconColor.applyColor(ctx, R.attr.material_drawer_hint_icon, R.color.material_drawer_hint_icon)
@@ -155,7 +156,6 @@ class IconDrawerItem : AbstractDrawerItem<IconDrawerItem, IconDrawerItem.ViewHol
         val icon = ImageHolder.decideIcon(icon, ctx, iconColorInt, isIconTinted, 1)
         val selectedIcon = ImageHolder.decideIcon(selectedIcon, ctx, selectedIconColorInt, isIconTinted, 1)
         ImageHolder.applyMultiIconTo(icon, iconColorInt, selectedIcon, selectedIconColorInt, isIconTinted, holder.icon)
-
         //call the onPostBindView method to trigger post bind view actions (like the listener to modify the item if required)
         onPostBindView(this, holder.itemView)
     }

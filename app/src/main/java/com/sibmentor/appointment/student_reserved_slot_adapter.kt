@@ -33,7 +33,8 @@ class student_reserved_slot_adapter(val mCtx: Context, val layoutId: Int, val sl
         var temp_date = slot.date.split("/").first().toInt()
         var temp_month = slot.date.split("/")[1].toInt()
         var temp_year = slot.date.split("/").last().toInt()
-
+//MOnth Value Reduced to 1 because it Calender mont starts from 0
+        temp_month-=1
         val calendar1 = Calendar.getInstance()
         calendar1.set(Calendar.YEAR, temp_year)
         calendar1.set(Calendar.MONTH, temp_month)
