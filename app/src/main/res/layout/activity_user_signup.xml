@@ -78,7 +78,7 @@
                 android:fontFamily="@font/rosemary"
                 android:hint="John Phill"
                 android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
+                android:textColor="#FB070707"
                 android:textColorHint="#847F7F"/>
         <TextView
                 android:labelFor="@id/u_r_email"
@@ -98,7 +98,7 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/rosemary"
                 android:hint="john@gmail.com"
-                android:inputType="textEmailAddress" android:textColor="#FFFFFF"
+                android:inputType="textEmailAddress" android:textColor="#FB070707"
                 android:textColorHint="#847F7F"/>
         <TextView
                 android:labelFor="@id/mobile"
@@ -116,7 +116,7 @@
                 android:fontFamily="@font/rosemary"
                 android:drawableLeft="@drawable/ic_call_black_24dp"
                 android:hint="9876543210"
-                android:inputType="number" android:textColor="#FFFFFF"
+                android:inputType="number" android:textColor="#FB070707"
                 android:textColorHint="#847F7F"/>
 
         <TextView
@@ -139,7 +139,7 @@ android:fontFamily="@font/rosemary"
                 android:singleLine="true"
                 android:layout_marginBottom="10dp"
                 android:hint="1523101109"
-                android:inputType="textEmailAddress" android:textColor="#FFFFFF"
+                android:inputType="textEmailAddress" android:textColor="#FB070707"
                 android:textColorHint="#847F7F"/>
 
         <TextView
@@ -160,7 +160,7 @@ android:fontFamily="@font/rosemary"
                 android:drawableLeft="@android:drawable/ic_lock_lock"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="#FFFFFF" android:textColorHint="#847F7F"/>
+                android:textColor="#FFFFFF" android:textColorHint="#FB070707"/>
         <Button
                 android:id="@+id/u_register"
                 android:layout_width="fill_parent"

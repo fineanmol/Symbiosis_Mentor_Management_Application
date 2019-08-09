@@ -22,7 +22,7 @@
                 android:textColor="#FF5722"
                 android:paddingBottom="10dp"
                 android:text="Mentor Name"
-                android:fontFamily="@font/nosifer"
+                android:fontFamily="@font/mate_sc"
                 android:textAlignment="center"
                 android:textSize="40dp"
                 android:textStyle="bold"

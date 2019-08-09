@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools" android:padding="15dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:padding="15dp"
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
 
-                android:orientation="vertical">
+                                                   android:orientation="vertical" android:id="@+id/relativeLayout">
     <TextView
             android:id="@+id/student_Name"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:paddingBottom="10dp"
-            android:layout_marginLeft="230dp"
             android:textAlignment="center"
             android:textSize="18dp"
             android:textStyle="bold"
+            android:text="Anmol Agarwal"
             android:fontFamily="@font/amarante"
             android:clickable="true" android:gravity="center"
             android:textColor="#03A9F4"
-            android:layout_alignBaseline="@+id/status"
-            android:layout_toEndOf="@+id/status"
-            android:layout_marginStart="18dp"/>
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/status" tools:layout_conversion_wrapWidth="0"
+            tools:layout_conversion_wrapHeight="92" app:layout_constraintBottom_toBottomOf="@+id/status"
+            app:layout_constraintTop_toTopOf="@+id/status"/>
 
     <TextView
             android:id="@+id/dateslot"
@@ -32,28 +34,31 @@
             android:fontFamily="@font/rosemary"
             android:text="22"
             android:textColorHint="#673AB7"
-            android:layout_alignStart="@+id/divider2" android:layout_marginStart="3dp"
-            android:layout_alignBaseline="@+id/textView"/>
+            android:layout_marginStart="3dp"
+            app:layout_constraintStart_toStartOf="@+id/divider2"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView" tools:layout_conversion_wrapWidth="265"
+            tools:layout_conversion_wrapHeight="70"/>
 
     <TextView
             android:id="@+id/slot_timing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+            android:paddingTop="3dp"
             android:text="Slot Timing"
             android:textColor="#000000"
-            android:gravity="center"
+            android:gravity="left"
             android:fontFamily="@font/sofia"
-            android:textAlignment="viewStart"
-            android:foregroundGravity="center"
+
+
             android:textSize="11dp"
             android:textStyle="bold"
 
-            android:layout_toRightOf="@+id/dateslot"
-            android:layout_marginLeft="98dp"
             tools:ignore="RtlCompat"
-            android:layout_alignTop="@+id/textView" android:layout_marginTop="-6dp"
-            android:layout_toEndOf="@+id/textView" android:layout_marginStart="-3dp"/>
+            tools:layout_conversion_wrapWidth="154" tools:layout_conversion_wrapHeight="77"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.333" app:layout_constraintStart_toEndOf="@+id/textView"
+            android:layout_marginStart="8dp"/>
     <TextView
             android:text="Time Slot:"
             android:layout_width="78dp"
@@ -62,43 +67,46 @@
             android:textColor="#000000"
             android:id="@+id/textView"
             android:fontFamily="@font/kurale"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/dateslot" android:layout_alignParentTop="true"/>
+            tools:layout_conversion_wrapWidth="205" tools:layout_conversion_wrapHeight="66"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/dateslot"
+            android:layout_marginStart="8dp"/>
     <TextView
             android:text="Not Booked"
             android:layout_width="wrap_content"
             android:layout_height="43dp" android:id="@+id/status"
             android:fontFamily="@font/yatra_one"
             android:textColor="#000000"
-            android:textSize="25sp"
+            android:textSize="30sp"
 
             android:textStyle="bold"
-            android:layout_marginBottom="-178dp"
             android:layout_marginTop="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="60dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" tools:layout_conversion_wrapWidth="396"
+            tools:layout_conversion_wrapHeight="113"/>
     <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:backgroundTint="#625757"
             android:background="?android:attr/listDivider"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="101dp" android:layout_marginStart="3dp"/>
+            android:layout_marginTop="101dp" android:layout_marginStart="3dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" tools:layout_conversion_wrapWidth="994"
+            tools:layout_conversion_wrapHeight="3"/>
 
     <Button
-            android:layout_width="14dp"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:id="@+id/deletebtn"
             android:background="@drawable/ic_delete_gray_24dp"
             tools:ignore="MissingConstraints"
-            android:layout_below="@+id/slot_timing"
-            android:layout_marginTop="21dp" android:layout_marginBottom="32dp"
-            android:layout_alignBottom="@+id/divider2" android:layout_marginEnd="247dp"
-            android:layout_alignEnd="@+id/slot_timing"
-            android:layout_toEndOf="@+id/textView" android:layout_marginStart="-215dp"/>
+            tools:layout_conversion_wrapWidth="63"
+            tools:layout_conversion_wrapHeight="63"
+            app:layout_constraintStart_toEndOf="@+id/status"
+            android:layout_marginStart="152dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/divider2" app:layout_constraintVertical_bias="0.492"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="@+id/divider2"
+            app:layout_constraintHorizontal_bias="1.0"/>
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
