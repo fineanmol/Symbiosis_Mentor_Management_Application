@@ -1,0 +1,49 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "23:30"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.mikepenz:aboutlibraries
+    versions:
+    - 8.6.9
+    - 8.7.0
+    - 8.7.1
+    - 8.8.0
+    - 8.8.4
+  - dependency-name: com.hbb20:ccp
+    versions:
+    - 2.4.5
+    - 2.4.6
+    - 2.4.7
+    - 2.4.9
+  - dependency-name: androidx.recyclerview:recyclerview
+    versions:
+    - 1.2.0-beta01
+    - 1.2.0-beta02
+    - 1.2.0-rc01
+  - dependency-name: com.google.firebase:firebase-auth
+    versions:
+    - 20.0.2
+    - 20.0.3
+  - dependency-name: com.google.firebase:firebase-config
+    versions:
+    - 20.0.3
+  - dependency-name: com.google.firebase:firebase-core
+    versions:
+    - 18.0.2
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - 4.1.2
+  - dependency-name: com.mikepenz:materialdrawer
+    versions:
+    - 8.3.1
+  - dependency-name: com.google.firebase:firebase-storage
+    versions:
+    - 19.2.1
+  - dependency-name: com.google.firebase:firebase-database
+    versions:
+    - 19.6.0
