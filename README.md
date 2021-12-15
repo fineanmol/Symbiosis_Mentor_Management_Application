@@ -29,7 +29,7 @@ We store all your booking records, provided by your Mentors, online, allowing yo
 
 We’d love your feedback! 
 
-Drop us a line at nikhilnishad279@gmail.com
+Drop us a line at coffeewithanmol@gmail.com
 
 
 
